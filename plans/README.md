@@ -1,6 +1,6 @@
 # Kế hoạch triển khai TicketRush
 
-> Thiết kế: [overview.md](../overview.md) · Ghi chú công nghệ: [docs/note_tech.md](../docs/note_tech.md) · Ý tưởng để dành: [backlog.md](backlog.md)
+> Thiết kế: [overview.md](../docs/overview.md) · Ghi chú công nghệ: [docs/note_tech.md](../docs/note_tech.md) · Ý tưởng để dành: [backlog.md](backlog.md)
 
 ## 1. Chiến lược: MVP trước, nâng cấp sau
 
@@ -59,7 +59,7 @@ Review **ngay cuối mỗi step** (không đợi cuối phase). Chưa ưng → s
 Sửa lại một step **đã xong trước đó** là được phép (đó là sửa, không phải nhảy cóc) — ghi chú lại trong file phase.
 
 ### R4 — Đổi thiết kế thì cập nhật tài liệu trước
-Thay đổi ảnh hưởng thiết kế (thêm thư viện, đổi luồng, đổi bảng dữ liệu…) → cập nhật [overview.md](../overview.md) (+ ADR nếu là quyết định lớn) → cập nhật plan → rồi mới code.
+Thay đổi ảnh hưởng thiết kế (thêm thư viện, đổi luồng, đổi bảng dữ liệu…) → cập nhật [overview.md](../docs/overview.md) (+ ADR nếu là quyết định lớn) → cập nhật plan → rồi mới code.
 
 ### R5 — Commit theo step, tag theo phase
 - Mỗi step = 1 hoặc vài commit, message dạng `feat(booking): giữ ghế bằng Redis Lua (step 4.2)`.
@@ -103,7 +103,7 @@ Claude sẽ: code → chạy kiểm tra trong DoD → báo kết quả → chờ
 
 ## 6. Definition of Done chung (áp dụng cho mọi step)
 
-- [ ] Build & test pass (`./mvnw verify`, `pnpm lint && pnpm test`)
+- [ ] Build & test pass (`./mvnw verify`, `npm run lint && npm test`)
 - [ ] Chạy được và kiểm tra bằng tay theo mục **Kiểm tra** của step
 - [ ] Không có secret trong code (gitleaks pass)
 - [ ] Tài liệu liên quan đã cập nhật (nếu có thay đổi)

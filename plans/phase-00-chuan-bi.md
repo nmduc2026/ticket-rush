@@ -18,21 +18,21 @@ Máy dev sẵn sàng, repo có cấu trúc chuẩn, tài khoản AWS được kh
 ---
 
 ## Step 0.1 — Cài công cụ trên máy dev (16GB)
-- [ ] JDK 21 (Eclipse Temurin)
-- [ ] Node.js LTS + pnpm (`corepack enable`)
-- [ ] Docker Desktop (WSL2 backend) + tạo `C:\Users\<user>\.wslconfig` giới hạn `memory=10GB`
-- [ ] Git, IntelliJ IDEA / VS Code
-- [ ] Stripe CLI, AWS CLI v2, Terraform
+- [x] JDK 21 (Eclipse Temurin)
+- [x] Node.js LTS (kèm npm)
+- [x] Docker Desktop (WSL2 backend) + tạo `C:\Users\<user>\.wslconfig` giới hạn `memory=10GB`
+- [x] Git, IntelliJ IDEA / VS Code
+- [x] Stripe CLI, AWS CLI v2, Terraform
 - [ ] Cài tương tự trên máy 32GB (`memory=24GB`) — có thể để đến Phase 7
 
-**Kiểm tra:** `java -version`, `node -v`, `pnpm -v`, `docker run hello-world`, `stripe version`, `aws --version`, `terraform -version` đều chạy.
+**Kiểm tra:** `java -version`, `node -v`, `npm -v`, `docker run hello-world`, `stripe version`, `aws --version`, `terraform -version` đều chạy.
 
 ## Step 0.2 — Khởi tạo repository
-- [ ] Chốt thư mục gốc repo (hiện tại: `vibe/`) và tên repo GitHub
-- [ ] `git init`, tạo `.gitignore` (Java, Node, IDE, `.env`, `*.tfstate`), `.editorconfig`
-- [ ] `.gitattributes` với `* text=auto eol=lf` (tránh lỗi xuống dòng CRLF trên Windows với file `.sh`)
-- [ ] Tạo khung thư mục: `backend/`, `frontend/`, `infra/`, `load-tests/`, `docs/adr/`, `docs/runbooks/`
-- [ ] Chuyển tài liệu vào đúng chỗ nếu muốn (vd. `overview.md` → `docs/`), cập nhật link
+- [x] Chốt thư mục gốc repo (`ticket-rush/`) và tên repo GitHub (`ticket-rush`)
+- [x] `git init`, tạo `.gitignore` (Java, Node, IDE, `.env`, `*.tfstate`), `.editorconfig`
+- [x] `.gitattributes` với `* text=auto eol=lf` (tránh lỗi xuống dòng CRLF trên Windows với file `.sh`)
+- [x] Tạo khung thư mục: `backend/`, `frontend/`, `infra/`, `load-tests/`, `docs/adr/`, `docs/runbooks/`
+- [x] Chuyển `overview.md` → `docs/overview.md`, đã cập nhật link
 - [ ] Tạo repo GitHub (public → GitHub Actions & SonarCloud miễn phí), push
 
 **Kiểm tra:** repo trên GitHub có đúng cấu trúc, không có file rác.
@@ -63,7 +63,7 @@ Máy dev sẵn sàng, repo có cấu trúc chuẩn, tài khoản AWS được kh
 **Kiểm tra:** script báo "sạch"; ngày hôm sau Cost Explorer = 0$.
 
 ## Step 0.6 — Tài khoản dịch vụ ngoài & chốt câu hỏi mở
-- [ ] Trả lời **Q1–Q4** trong [overview.md §25](../overview.md#25-câu-hỏi-mở), cập nhật overview
+- [ ] Trả lời **Q1–Q4** trong [overview.md §25](../docs/overview.md#25-câu-hỏi-mở), cập nhật overview
 - [ ] Tạo tài khoản Stripe (test mode) theo quốc gia đã chốt ở Q1, cài `stripe login`
 - [ ] (Chưa cần) Cloudflare, SonarCloud, Sentry — tạo khi tới phase dùng
 

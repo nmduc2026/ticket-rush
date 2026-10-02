@@ -3,7 +3,7 @@
 > Giai đoạn: **Kiến trúc** · Ước lượng: 2 tuần · Phụ thuộc: Phase 13
 
 ## Mục tiêu
-Tách monolith thành các service độc lập theo [overview §5](../overview.md#5-services--quyền-sở-hữu-dữ-liệu) bằng **strangler pattern**: tách từng service một, hệ thống luôn chạy được sau mỗi step.
+Tách monolith thành các service độc lập theo [overview §5](../docs/overview.md#5-services--quyền-sở-hữu-dữ-liệu) bằng **strangler pattern**: tách từng service một, hệ thống luôn chạy được sau mỗi step.
 
 ## Kết quả cuối phase
 - 6 service + Gateway, mỗi service 1 database.

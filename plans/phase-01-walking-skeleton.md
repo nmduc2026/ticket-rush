@@ -54,14 +54,14 @@ Dựng "bộ xương" chạy được **xuyên suốt** FE → BE → DB với 1
 **Kiểm tra:** `./mvnw verify` chạy cả unit + integration test, xanh.
 
 ## Step 1.5 — Frontend skeleton
-- [ ] `pnpm create vite frontend --template react-ts`, TypeScript strict
+- [ ] `npm create vite@latest frontend -- --template react-ts`, TypeScript strict
 - [ ] Tailwind v4, `shadcn init`, thêm vài component cơ bản (button, card, skeleton, sonner)
 - [ ] TanStack Router (file-based) + TanStack Query
 - [ ] Layout chung: header, footer, chế độ sáng/tối
 - [ ] ESLint, Prettier, Vitest + RTL (1 test mẫu)
-- [ ] Cấu trúc thư mục feature-based theo [overview §14.3](../overview.md#143-cấu-trúc-thư-mục-feature-based)
+- [ ] Cấu trúc thư mục feature-based theo [overview §14.3](../docs/overview.md#143-cấu-trúc-thư-mục-feature-based)
 
-**Kiểm tra:** `pnpm dev` hiển thị layout; `pnpm lint && pnpm test && pnpm build` xanh.
+**Kiểm tra:** `npm run dev` hiển thị layout; `npm run lint && npm test && npm run build` xanh.
 
 ## Step 1.6 — Thông đường FE ↔ BE qua OpenAPI
 - [ ] BE: `GET /api/v1/system/info` (version, thời gian server, đọc 1 giá trị từ DB)
@@ -73,7 +73,7 @@ Dựng "bộ xương" chạy được **xuyên suốt** FE → BE → DB với 1
 **Kiểm tra:** trang chủ hiện thông tin server; thử đổi tên field trong DTO → chạy lại Orval → FE lỗi compile.
 
 ## Step 1.7 — CI v1
-- [ ] GitHub Actions: job BE (`./mvnw -B verify`), job FE (`pnpm lint`, `pnpm test`, `pnpm build`)
+- [ ] GitHub Actions: job BE (`./mvnw -B verify`), job FE (`npm run lint`, `npm test`, `npm run build`)
 - [ ] gitleaks trong CI
 
 **Kiểm tra:** PR thử → cả 3 job xanh.

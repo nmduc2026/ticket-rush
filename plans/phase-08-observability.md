@@ -51,7 +51,7 @@ Nhìn thấy hệ thống đang làm gì: metrics, logs (ELK), traces, alert v�
 ## Step 8.5 — Alerting & SLO
 - [ ] Alertmanager → Telegram bot
 - [ ] Rule: tỉ lệ 5xx, p95 latency, HikariCP pending, job thất bại, instance down
-- [ ] Recording rule cho SLO ([overview §16.2](../overview.md#162-slo)) + alert burn rate
+- [ ] Recording rule cho SLO ([overview §16.2](../docs/overview.md#162-slo)) + alert burn rate
 - [ ] Mỗi alert có link runbook
 
 **Kiểm tra:** `docker stop postgres` → Telegram nhận alert; bật lại → nhận "resolved".

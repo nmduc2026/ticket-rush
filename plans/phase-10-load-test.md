@@ -6,7 +6,7 @@
 Đo khả năng chịu tải bằng JMeter, tìm điểm nghẽn, tối ưu có số liệu trước/sau; trải nghiệm scale-out/in trên AWS.
 
 ## Kết quả cuối phase
-- Báo cáo JMeter cho 5 kịch bản ([overview §20.2](../overview.md#202-load-test-jmeter)).
+- Báo cáo JMeter cho 5 kịch bản ([overview §20.2](../docs/overview.md#202-load-test-jmeter)).
 - Flash sale 500 user / 100 ghế: **đúng 100 vé, 0 trùng**.
 - Bảng "trước / sau tối ưu" trong `docs/perf/`.
 - Quan sát được ASG trên AWS tự thêm / bớt máy.

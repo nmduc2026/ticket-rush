@@ -6,7 +6,7 @@
 Chuyển giao tiếp giữa các module từ event nội bộ sang **Kafka** — vẫn trong monolith — để chuẩn bị tách service ở Phase 14.
 
 ## Kết quả cuối phase
-- Mọi event liên module ([overview §8.1](../overview.md#81-topics)) đi qua Kafka với Avro + Schema Registry.
+- Mọi event liên module ([overview §8.1](../docs/overview.md#81-topics)) đi qua Kafka với Avro + Schema Registry.
 - Consumer idempotent; message lỗi vào DLT và có alert.
 - Trace nối liền qua Kafka trong Jaeger.
 

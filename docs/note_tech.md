@@ -1,6 +1,6 @@
 # Ghi chú công nghệ — TicketRush
 
-> Giải thích ngắn gọn từng khái niệm / công nghệ trong [overview.md](../overview.md), kèm ví dụ dùng trong dự án.
+> Giải thích ngắn gọn từng khái niệm / công nghệ trong [overview.md](overview.md), kèm ví dụ dùng trong dự án.
 > Mỗi mục gồm: **là gì** → **dùng ở đâu trong TicketRush** → **ví dụ**.
 > Code chỉ mang tính minh hoạ ý tưởng, không phải code hoàn chỉnh.
 
@@ -708,18 +708,18 @@ useEffect(() => {
 > **React**: thư viện xây UI bằng component. **TypeScript**: JavaScript có kiểu dữ liệu → bắt lỗi sớm. **Vite**: công cụ chạy dev/build siêu nhanh.
 
 ```bash
-pnpm create vite frontend --template react-ts
-pnpm dev     # chạy dev server, sửa code → trình duyệt cập nhật ngay
+npm create vite@latest frontend -- --template react-ts
+npm run dev     # chạy dev server, sửa code → trình duyệt cập nhật ngay
 ```
 
-### pnpm
-> Trình quản lý package như npm nhưng nhanh hơn, tiết kiệm ổ đĩa (dùng chung package giữa các project).
+### npm
+> Trình quản lý package đi kèm Node.js, dùng để cài thư viện và chạy script (`npm run dev`, `npm run build`).
 
 ### shadcn/ui
 > Bộ component đẹp (Button, Dialog, Table…) dựa trên Radix. Điểm đặc biệt: **copy code vào project của bạn** chứ không cài như thư viện → tuỳ biến thoải mái.
 
 ```bash
-pnpm dlx shadcn@latest add button dialog table
+npx shadcn@latest add button dialog table
 # → sinh file vào src/components/ui/button.tsx ... bạn sở hữu và sửa trực tiếp
 ```
 ```tsx
@@ -760,7 +760,7 @@ if (isLoading) return <Skeleton />
 > Đọc file OpenAPI của backend → **sinh tự động** hàm gọi API + hook TanStack Query + kiểu TypeScript. Không phải viết tay `fetch`.
 
 ```bash
-pnpm orval     # sinh vào src/api/generated
+npx orval     # sinh vào src/api/generated
 ```
 ```tsx
 const { data } = useGetEvent(id)           // hook do Orval sinh, kiểu dữ liệu chuẩn theo BE
@@ -834,7 +834,7 @@ const form = useForm<z.infer<typeof schema>>({ resolver: zodResolver(schema) })
 | date-fns | Xử lý ngày giờ | `format(startsAt, 'dd/MM/yyyy HH:mm')` |
 | react-i18next | Đa ngôn ngữ vi/en | `t('booking.holdExpired')` |
 | Sentry | Bắt lỗi JS ở browser | `Sentry.init({ dsn })` |
-| ESLint / Prettier | Kiểm tra lỗi code / định dạng code | `pnpm lint` |
+| ESLint / Prettier | Kiểm tra lỗi code / định dạng code | `npm run lint` |
 | Husky + lint-staged | Chạy lint trước khi commit | tự động |
 
 ---

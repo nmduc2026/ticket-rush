@@ -3,7 +3,7 @@
 > Giai đoạn: **Kiến trúc** · Ước lượng: 1 tuần · Phụ thuộc: Phase 17
 
 ## Mục tiêu
-Chủ động gây 10 sự cố ([overview §20.3](../overview.md#203-kịch-bản-sự-cố-chaos-engineering)), đóng vai người trực sự cố, hoàn thiện runbook & postmortem.
+Chủ động gây 10 sự cố ([overview §20.3](../docs/overview.md#203-kịch-bản-sự-cố-chaos-engineering)), đóng vai người trực sự cố, hoàn thiện runbook & postmortem.
 
 ## Kết quả cuối phase
 - 10 kịch bản C1–C10, mỗi kịch bản có: kết quả, runbook, postmortem.

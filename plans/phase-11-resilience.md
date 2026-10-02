@@ -21,7 +21,7 @@ Hệ thống "chết từng phần chứ không chết toàn bộ": bảo vệ l
 - [ ] Đọc lại plan, xem backlog
 
 ## Step 11.1 — Resilience4j cho Stripe
-- [ ] Timeout, retry (chỉ với idempotency key), circuit breaker, bulkhead theo [overview §15.1](../overview.md#151-cấu-hình-resilience4j-khi-gọi-stripe)
+- [ ] Timeout, retry (chỉ với idempotency key), circuit breaker, bulkhead theo [overview §15.1](../docs/overview.md#151-cấu-hình-resilience4j-khi-gọi-stripe)
 - [ ] Metric trạng thái circuit breaker lên Grafana
 - [ ] Test bằng WireMock: lỗi 500, chậm 5s, lỗi thoáng qua
 
@@ -33,7 +33,7 @@ Hệ thống "chết từng phần chứ không chết toàn bộ": bảo vệ l
 - [ ] Load shedding ở Gateway khi quá ngưỡng → `503 + Retry-After`
 - [ ] FE: trang/banner bảo trì thân thiện
 
-**Kiểm tra:** `docker stop redis` khi đang dùng → đúng hành vi như [ma trận §15.2](../overview.md#152-ma-trận-suy-giảm-khi-một-thành-phần-chết).
+**Kiểm tra:** `docker stop redis` khi đang dùng → đúng hành vi như [ma trận §15.2](../docs/overview.md#152-ma-trận-suy-giảm-khi-một-thành-phần-chết).
 
 ## Step 11.3 — Gây sự cố thủ công khi đang có tải
 - [ ] JMeter chạy nền + lần lượt: stop Redis, stop Postgres, restart app

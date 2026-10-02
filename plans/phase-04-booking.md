@@ -3,7 +3,7 @@
 > Giai đoạn: **MVP** · Ước lượng: 1.5 tuần · Phụ thuộc: Phase 3
 
 ## Mục tiêu
-Phần cốt lõi của hệ thống: khách chọn ghế, hệ thống giữ ghế 10 phút và **tuyệt đối không bán trùng** (3 lớp phòng thủ — [overview §10](../overview.md#10-chống-oversell-concurrency)).
+Phần cốt lõi của hệ thống: khách chọn ghế, hệ thống giữ ghế 10 phút và **tuyệt đối không bán trùng** (3 lớp phòng thủ — [overview §10](../docs/overview.md#10-chống-oversell-concurrency)).
 
 ## Kết quả cuối phase
 - 2 trình duyệt cùng chọn 1 ghế → chỉ 1 người giữ được.
@@ -29,7 +29,7 @@ Phần cốt lõi của hệ thống: khách chọn ghế, hệ thống giữ gh
 **Kiểm tra:** publish sự kiện 500 ghế → 500 dòng tồn kho; publish lại không tạo trùng (idempotent).
 
 ## Step 4.2 — Giữ ghế bằng Redis (lớp 1)
-- [ ] Thiết kế key theo [overview §9](../overview.md#9-thiết-kế-redis) (hash tag `{eventId}`)
+- [ ] Thiết kế key theo [overview §9](../docs/overview.md#9-thiết-kế-redis) (hash tag `{eventId}`)
 - [ ] Lua script giữ nhiều ghế atomic + nhả ghế
 - [ ] Testcontainers Redis
 

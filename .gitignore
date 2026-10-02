@@ -1,0 +1,44 @@
+# Env & secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Java / Maven
+target/
+*.class
+*.log
+hs_err_pid*
+.mvn/wrapper/maven-wrapper.jar
+
+# Node / Frontend
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+.vite/
+
+# IDE
+.idea/
+*.iml
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl.bak
+crash.log
+*.tfvars
+!*.tfvars.example
+
+# Load tests
+load-tests/**/results/
+*.jtl
+
+# OS
+.DS_Store
+Thumbs.db

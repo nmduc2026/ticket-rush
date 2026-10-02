@@ -874,7 +874,7 @@ Dùng **Chaos Mesh** để chủ động gây sự cố. Mỗi kịch bản: gâ
 
 | Nhóm | Công nghệ |
 |---|---|
-| Nền tảng | **React 19**, **TypeScript** (strict), **Vite**, pnpm |
+| Nền tảng | **React 19**, **TypeScript** (strict), **Vite**, npm |
 | UI | **shadcn/ui** (Radix), **Tailwind CSS v4**, lucide-react, sonner |
 | Routing | **TanStack Router** |
 | Server state | **TanStack Query** |

@@ -2,7 +2,7 @@
 
 > Prototype tương tác (xem & bấm thử): **https://claude.ai/artifact/13t7cm5BAqJ63AZa18fDgU**
 > Mã nguồn từng màn: [prototype/](prototype/) — mỗi file `*.dc.html` là 1 màn hình.
-> Thiết kế hệ thống: [overview.md](../../overview.md) · Kế hoạch: [plans/](../../plans/README.md)
+> Thiết kế hệ thống: [overview.md](../overview.md) · Kế hoạch: [plans/](../../plans/README.md)
 
 ## 1. Cách dùng tài liệu này
 
@@ -168,7 +168,7 @@ Thanh 4 bước luôn hiện ở đầu màn: Tạo tài khoản Stripe → Hồ
 
 ## 6. Dữ liệu trong prototype
 
-Tên sự kiện, địa điểm, người dùng, số liệu doanh thu… là **dữ liệu mẫu** để hình dung bố cục — không phải yêu cầu nghiệp vụ. Quy tắc nghiệp vụ thật nằm trong [overview.md §3](../../overview.md#3-quy-tắc-nghiệp-vụ).
+Tên sự kiện, địa điểm, người dùng, số liệu doanh thu… là **dữ liệu mẫu** để hình dung bố cục — không phải yêu cầu nghiệp vụ. Quy tắc nghiệp vụ thật nằm trong [overview.md §3](../overview.md#3-quy-tắc-nghiệp-vụ).
 
 ## 7. File mẫu import
 
