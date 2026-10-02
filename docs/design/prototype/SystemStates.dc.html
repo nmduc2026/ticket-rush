@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>TicketRush — Trạng thái hệ thống</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Oswald:wght@500;600&amp;display=swap">
+<style>
+body{margin:0;background:#FFFFFF;color:#09090B;font-family:'Be Vietnam Pro',system-ui,sans-serif;font-size:14px;-webkit-font-smoothing:antialiased}
+a{color:#09090B}a:hover{color:#09090B}
+button{font-family:inherit}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:36px;padding:0 16px;border-radius:8px;font-size:14px;font-weight:500;line-height:1;white-space:nowrap;border:1px solid transparent;cursor:pointer;text-decoration:none;box-sizing:border-box;background:transparent;color:#09090B;font-family:inherit}
+.btn:disabled{opacity:.5;cursor:default}
+.btn-sm{height:32px;padding:0 12px;gap:6px}
+.btn-lg{height:44px;font-size:15px}
+.btn-icon{width:36px;padding:0}
+.btn-default{background:#047857;color:#FFFFFF;box-shadow:0 1px 2px rgba(0,0,0,.05)}.btn-default:hover{background:#065F46;color:#FFFFFF}
+.btn-outline{background:#FFFFFF;border-color:#E4E4E7;box-shadow:0 1px 2px rgba(0,0,0,.05)}.btn-outline:hover{background:#F4F4F5}
+.btn-secondary{background:#F4F4F5;color:#18181B}.btn-secondary:hover{background:#E4E4E7}
+.btn-dashed{border-style:dashed}
+.btn-ghost:hover{background:#F4F4F5}
+.btn-destructive{background:#DC2626;color:#FFFFFF}.btn-destructive:hover{background:#B91C1C;color:#FFFFFF}
+.btn-link{height:auto;padding:0;color:#047857;text-decoration:underline;text-underline-offset:3px}.btn-link:hover{color:#065F46}
+.input{height:36px;width:100%;border:1px solid #E4E4E7;border-radius:8px;padding:0 12px;font-family:inherit;font-size:14px;color:#09090B;background:#FFFFFF;box-sizing:border-box;outline:none;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.input:focus{border-color:#34D399;box-shadow:0 0 0 3px rgba(52,211,153,.3)}
+.input[readonly],.input:disabled{background:#F4F4F5;color:#52525B}
+.ta{min-height:96px;padding:8px 12px;resize:vertical;line-height:1.5}
+.lbl{display:flex;flex-direction:column;gap:8px;font-size:14px;font-weight:500}
+.hint{font-size:12px;font-weight:400;color:#71717A;line-height:1.5}
+.err{font-size:12px;font-weight:400;color:#DC2626}
+.req{color:#DC2626}
+.badge{display:inline-flex;align-items:center;gap:6px;border:1px solid #E4E4E7;border-radius:6px;padding:2px 8px;font-size:12px;font-weight:500;line-height:16px;white-space:nowrap;background:#FFFFFF}
+.dot{width:6px;height:6px;border-radius:50%;display:inline-block;flex-shrink:0}
+.card{background:#FFFFFF;border:1px solid #E4E4E7;border-radius:12px;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.ch{padding:20px 20px 0;display:flex;flex-direction:column;gap:4px}
+.ct{margin:0;font-size:16px;font-weight:600}
+.cd{margin:0;color:#71717A;line-height:1.5}
+.cd:empty{display:none}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin:0;padding:0;list-style:none}
+.steps li{display:flex;flex-direction:column;gap:8px;padding-right:12px}
+.steps .bar{height:4px;border-radius:999px}
+.sim{border:1px dashed #A1A1AA;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px;background:#FAFAFA}
+.cb{padding:20px;display:flex;flex-direction:column;gap:16px}
+.cf{padding:12px 20px;border-top:1px solid #E4E4E7;display:flex;justify-content:flex-end;gap:8px;background:#FAFAFA;border-radius:0 0 12px 12px}
+.tbl{width:100%;border-collapse:collapse}
+.tbl th{height:40px;padding:0 8px;text-align:left;font-weight:500;color:#71717A;border-bottom:1px solid #E4E4E7;white-space:nowrap}
+.tbl td{height:52px;padding:0 8px;border-bottom:1px solid #E4E4E7;vertical-align:middle}
+.tbl tbody tr:last-child td{border-bottom:none}
+.tbl tbody tr:hover{background:#FAFAFA}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px}
+.num{font-variant-numeric:tabular-nums}
+.muted{color:#71717A}
+.menu{position:absolute;z-index:30;background:#FFFFFF;border:1px solid #E4E4E7;border-radius:8px;box-shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1);padding:4px;min-width:200px;text-align:left}
+.mi{display:flex;align-items:center;gap:8px;width:100%;height:32px;padding:0 8px;border:none;border-radius:4px;background:transparent;font-size:14px;color:#09090B;text-align:left;cursor:pointer;text-decoration:none;box-sizing:border-box;font-family:inherit}
+.mi:hover{background:#F4F4F5;color:#09090B}
+.mi:disabled{opacity:.5;cursor:default}
+.mi-danger,.mi-danger:hover{color:#DC2626}
+.ml{height:28px;display:flex;align-items:center;padding:0 8px;font-size:12px;font-weight:500;color:#71717A}
+.sep{height:1px;background:#E4E4E7;margin:4px -4px}
+.overlay{position:absolute;inset:0;z-index:50;background:rgba(0,0,0,.5);display:flex;justify-content:center;align-items:flex-start;padding-top:96px}
+.dialog{width:100%;max-width:512px;background:#FFFFFF;border:1px solid #E4E4E7;border-radius:10px;padding:24px;box-shadow:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.1);display:flex;flex-direction:column;gap:16px;position:relative;box-sizing:border-box}
+.dialog-lg{max-width:680px}
+.dx{position:absolute;top:16px;right:16px;width:24px;height:24px;border:none;background:transparent;border-radius:4px;cursor:pointer;color:#71717A;display:flex;align-items:center;justify-content:center}
+.dx:hover{background:#F4F4F5}
+.dt{margin:0;font-size:18px;font-weight:600;line-height:1.3}
+.dd{margin:0;font-size:14px;color:#71717A;line-height:1.5}
+.df{display:flex;justify-content:flex-end;gap:8px;padding-top:4px}
+.alert{display:flex;gap:12px;align-items:flex-start;border:1px solid #E4E4E7;border-radius:8px;padding:12px 16px;line-height:1.5}
+.alert svg{flex-shrink:0;margin-top:2px}
+.alert-warn{background:#FFFBEB;border-color:#FDE68A;color:#78350F}
+.alert-err{background:#FEF2F2;border-color:#FECACA;color:#7F1D1D}
+.alert-ok{background:#ECFDF5;border-color:#A7F3D0;color:#065F46}
+.alert-info{background:#F4F4F5;border-color:#E4E4E7;color:#3F3F46}
+.tabs{display:flex;gap:24px;border-bottom:1px solid #E4E4E7}
+.tab{height:40px;display:flex;align-items:center;padding:0 2px;border:none;border-bottom:2px solid transparent;margin-bottom:-1px;background:transparent;font-family:inherit;font-size:14px;color:#71717A;cursor:pointer;text-decoration:none;white-space:nowrap}
+.tab:hover{color:#09090B}
+.tab-on,.tab-on:hover{color:#09090B;font-weight:500;border-bottom-color:#059669}
+.seg{display:inline-flex;background:#F4F4F5;border-radius:8px;padding:3px;gap:2px}
+.sg{height:30px;padding:0 12px;border:none;border-radius:6px;background:transparent;font-family:inherit;font-size:13px;font-weight:500;color:#71717A;cursor:pointer;white-space:nowrap}
+.sg-on{background:#FFFFFF;color:#09090B;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.sw{width:36px;height:20px;border-radius:999px;border:none;padding:2px;cursor:pointer;display:inline-flex;flex-shrink:0;box-sizing:border-box}
+.sw:disabled{opacity:.5;cursor:default}
+.sw-on{background:#059669;justify-content:flex-end}
+.sw-off{background:#E4E4E7;justify-content:flex-start}
+.sw span{width:16px;height:16px;border-radius:50%;background:#FFFFFF;box-shadow:0 1px 2px rgba(0,0,0,.2)}
+.ck{width:16px;height:16px;border-radius:4px;border:1px solid #A1A1AA;background:#FFFFFF;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;flex-shrink:0}
+.ck-on{background:#059669;border-color:#059669}
+.rd{width:16px;height:16px;border-radius:50%;border:1px solid #A1A1AA;background:#FFFFFF;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;flex-shrink:0}
+.rd-on{border-color:#059669}
+.rd-on::after{content:'';width:8px;height:8px;border-radius:50%;background:#059669}
+.opt{display:flex;align-items:flex-start;gap:10px;border:none;background:transparent;padding:0;text-align:left;font-family:inherit;font-size:14px;color:#09090B;cursor:pointer}
+.opt .ck,.opt .rd{margin-top:2px}
+.tile{display:flex;align-items:flex-start;gap:10px;border:1px solid #E4E4E7;border-radius:8px;padding:12px;background:#FFFFFF;text-align:left;font-family:inherit;font-size:14px;color:#09090B;cursor:pointer;box-sizing:border-box}
+.tile-on{border-color:#059669;background:#ECFDF5}
+.chip{display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 12px;border:1px solid #E4E4E7;border-radius:999px;background:#FFFFFF;font-family:inherit;font-size:13px;color:#3F3F46;cursor:pointer}
+.chip-on{background:#ECFDF5;border-color:#A7F3D0;color:#065F46;font-weight:500}
+.drop{border:1px dashed #D4D4D8;border-radius:8px;padding:20px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;background:#FAFAFA;color:#71717A}
+.row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid #F4F4F5}
+.row:last-child{border-bottom:none}
+.kv{display:grid;grid-template-columns:180px minmax(0,1fr);row-gap:10px;column-gap:16px;margin:0}
+.kv dt{color:#71717A}.kv dd{margin:0;font-weight:500}
+.toast{position:absolute;right:24px;bottom:24px;z-index:60;background:#09090B;color:#FAFAFA;border-radius:8px;padding:12px 16px;display:flex;align-items:center;gap:10px;box-shadow:0 10px 15px -3px rgba(0,0,0,.2);font-size:14px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.pt{font-family:'Oswald',sans-serif;text-transform:uppercase;white-space:pre-line;font-weight:600}
+.hb{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:36px;padding:0 12px;border-radius:8px;font-size:14px;font-weight:500;color:#09090B;text-decoration:none;border:none;background:transparent;cursor:pointer;position:relative}
+.hb:hover{background:#F4F4F5;color:#09090B}
+.flink{color:#52525B;text-decoration:none;font-size:14px}.flink:hover{color:#09090B}
+.nv{display:flex;align-items:center;gap:10px;height:36px;padding:0 10px;border-radius:8px;font-size:14px;color:#3F3F46;text-decoration:none;border:none;background:transparent;cursor:pointer;width:100%;text-align:left;font-family:inherit;box-sizing:border-box}
+.nv:hover{background:#F4F4F5;color:#09090B}
+.nv-on,.nv-on:hover{background:#ECFDF5;color:#065F46;font-weight:500}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-direction: column; position: relative">
+<header style="background: #FFFFFF; border-bottom: 1px solid #E4E4E7; position: relative; z-index: 20">
+<div style="max-width: 1240px; margin: 0 auto; padding: 0 20px; height: 64px; display: flex; align-items: center; gap: 28px; box-sizing: border-box">
+<a href="Main.dc.html" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: #09090B; font-weight: 700; font-size: 17px; letter-spacing: -0.01em"><span style="width: 28px; height: 28px; border-radius: 6px; background: #059669; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4z"></path></svg></span>TicketRush</a>
+<label style="flex: 1; max-width: 460px; position: relative; display: flex; align-items: center"><span class="sr">Tìm kiếm sự kiện</span><svg style="position: absolute; left: 12px" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><input class="input" type="search" placeholder="Tìm sự kiện, nghệ sĩ, địa điểm" style="height: 40px; padding-left: 36px; background: #F4F4F5; border-color: #F4F4F5; box-shadow: none"></label>
+<div style="flex-grow: 1"></div>
+<nav style="display: flex; align-items: center; gap: 4px; position: relative">
+<a href="OrganizerApply.dc.html" class="hb">Tạo sự kiện</a>
+<a href="MyTickets.dc.html" class="hb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4z"></path></svg>Vé của tôi</a>
+<button type="button" class="hb" style="width: 36px; padding: 0" aria-label="Thông báo (3 chưa đọc)" aria-expanded="{{bellStr}}" onClick="{{toggleBell}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg><span style="position: absolute; top: 7px; right: 8px; width: 8px; height: 8px; border-radius: 50%; background: #DC2626; border: 2px solid #FFFFFF"></span></button>
+<button type="button" aria-label="Tài khoản" aria-expanded="{{umStr}}" onClick="{{toggleUm}}" style="margin-left: 8px; width: 32px; height: 32px; border-radius: 50%; border: none; background: #D1FAE5; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: #065F46; cursor: pointer; font-family: inherit">AN</button>
+<sc-if value="{{bellOpen}}" hint-placeholder-val="{{ false }}"><div class="menu" style="right: 40px; top: 44px; width: 380px; padding: 0">
+<div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid #E4E4E7"><span style="font-weight: 600">Thông báo</span><button type="button" class="btn btn-link" style="font-size: 13px" onClick="{{toggleBell}}">Đánh dấu tất cả đã đọc</button></div>
+<a href="TicketQR.dc.html" class="mi" style="height: auto; padding: 12px 16px; align-items: flex-start; border-radius: 0"><span class="dot" style="background: #059669; margin-top: 7px"></span><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 500">Đặt vé thành công · TR-8F3K2Q</span><span style="font-size: 13px; color: #71717A">2 vé VIP — Đêm nhạc Rock Sài Gòn.</span><span style="font-size: 12px; color: #A1A1AA">5 phút trước</span></span></a>
+<a href="EventDetail.dc.html" class="mi" style="height: auto; padding: 12px 16px; align-items: flex-start; border-radius: 0"><span class="dot" style="background: #059669; margin-top: 7px"></span><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 500">Nhắc lịch: còn 24 giờ</span><span style="font-size: 13px; color: #71717A">Hòa nhạc Mùa Thu bắt đầu 19:30 ngày mai.</span><span style="font-size: 12px; color: #A1A1AA">2 giờ trước</span></span></a>
+<a href="MyBookings.dc.html" class="mi" style="height: auto; padding: 12px 16px; align-items: flex-start; border-radius: 0"><span class="dot" style="background: transparent; margin-top: 7px"></span><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 500">Đã hoàn tiền 450.000 ₫</span><span style="font-size: 13px; color: #71717A">Đơn TR-7C1A9D — Lễ hội Indie Đà Lạt.</span><span style="font-size: 12px; color: #A1A1AA">Hôm qua</span></span></a>
+<div style="padding: 8px; border-top: 1px solid #E4E4E7"><a href="Notifications.dc.html" class="btn btn-ghost btn-sm" style="width: 100%">Xem tất cả thông báo</a></div>
+</div></sc-if>
+<sc-if value="{{umOpen}}" hint-placeholder-val="{{ false }}"><div class="menu" role="menu" style="right: 0; top: 44px; width: 240px">
+<div style="padding: 8px; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600">Nguyễn Văn An</span><span style="font-size: 12px; color: #71717A">an.nguyen@example.com</span></div><div class="sep"></div>
+<a href="Profile.dc.html" class="mi" role="menuitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="5"></circle><path d="M20 21a8 8 0 0 0-16 0"></path></svg>Hồ sơ cá nhân</a><a href="MyTickets.dc.html" class="mi" role="menuitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4z"></path></svg>Vé của tôi</a><a href="MyBookings.dc.html" class="mi" role="menuitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"></path><path d="M8 7h8M8 11h8M8 15h5"></path></svg>Đơn hàng của tôi</a><a href="Notifications.dc.html" class="mi" role="menuitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg>Thông báo<span style="margin-left: auto; font-size: 12px; color: #71717A">3</span></a><div class="sep"></div><a href="OrganizerApply.dc.html" class="mi" role="menuitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg>Đăng ký ban tổ chức</a><div class="sep"></div><a href="Auth.dc.html" class="mi" role="menuitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><path d="m16 17 5-5-5-5M21 12H9"></path></svg>Đăng xuất</a>
+</div></sc-if>
+</nav>
+</div>
+</header>
+<main style="flex-grow: 1; max-width: 1240px; width: 100%; margin: 0 auto; padding: 24px 20px 56px; box-sizing: border-box">
+<div style="display: flex; flex-direction: column; gap: 32px">
+<div style="display: flex; flex-direction: column; gap: 8px"><span class="hint">Trạng thái</span><div class="seg" style="flex-wrap: wrap; max-width: 100%" role="tablist"><sc-for list="{{tabs}}" as="t" hint-placeholder-count="12"><button type="button" role="tab" aria-selected="{{t.sel}}" class="{{t.cls}}" onClick="{{t.pick}}">{{t.label}}</button></sc-for></div></div>
+<sc-if value="{{isOffline}}" hint-placeholder-val="{{ false }}"><div class="alert alert-warn" role="status" style="align-items: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h.01M8.5 16.43a5 5 0 0 1 7 0M2 8.82a15 15 0 0 1 4.17-2.65M10.66 5c4.01-.36 8.14.9 11.34 3.76M16.85 11.25a10 10 0 0 1 2.22 1.68M5 13a10 10 0 0 1 5.24-2.76M2 2l20 20"></path></svg><span style="flex: 1">Mất kết nối mạng · đang kết nối lại. Trạng thái ghế có thể chưa mới nhất.</span><button type="button" class="btn btn-outline btn-sm" onClick="{{retry}}">Thử lại ngay</button></div></sc-if>
+<section style="max-width: 560px; margin: 24px auto 0; display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center">
+<span style="width: 64px; height: 64px; border-radius: 50%; background: {{v.bg}}; color: {{v.fg}}; display: flex; align-items: center; justify-content: center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{v.icon}}"></path></svg></span>
+<sc-if value="{{v.hasCode}}" hint-placeholder-val="{{ true }}"><span class="mono" style="color: #71717A; letter-spacing: 0.1em">{{v.code}}</span></sc-if>
+<h1 style="margin: 0; font-size: 28px; font-weight: 600; letter-spacing: -0.02em">{{v.title}}</h1>
+<p style="margin: 0; color: #52525B; font-size: 15px; line-height: 1.7">{{v.desc}}</p>
+<sc-if value="{{v.hasTimer}}" hint-placeholder-val="{{ false }}"><span class="badge num" style="font-size: 14px; padding: 6px 12px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>{{v.timer}}</span></sc-if>
+<div style="display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; justify-content: center"><a href="{{v.p.href}}" class="btn btn-default btn-lg">{{v.p.label}}</a><sc-if value="{{v.hasS}}" hint-placeholder-val="{{ true }}"><a href="{{v.s.href}}" class="btn btn-outline btn-lg">{{v.s.label}}</a></sc-if></div>
+<span class="hint">Khi nào hiện: {{v.when}}</span>
+</section>
+</div>
+
+</main>
+<footer style="background: #FAFAFA; color: #71717A; border-top: 1px solid #E4E4E7">
+<div style="max-width: 1240px; margin: 0 auto; padding: 24px 20px; box-sizing: border-box; display: flex; justify-content: space-between; font-size: 13px"><span>© 2026 TicketRush</span><div style="display: flex; gap: 20px"><a href="Main.dc.html" class="flink">Chính sách hoàn vé</a><a href="Main.dc.html" class="flink">Điều khoản</a><a href="Main.dc.html" class="flink">Bảo mật</a></div></div>
+</footer>
+<sc-if value="{{toastOn}}" hint-placeholder-val="{{ false }}"><div class="toast" role="status"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span>{{toastMsg}}</span><button type="button" class="btn btn-ghost btn-sm" style="color: #FAFAFA; height: 24px; padding: 0 6px" onClick="{{hideToast}}">Đóng</button></div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"state": {"editor": "enum", "options": ["notFound", "forbidden", "login", "holdExpired", "seatTaken", "pendingExists", "paymentFailed", "processing", "tokenExpired", "soldOut", "serverError", "maintenance", "offline"], "default": "notFound"}, "$preview": {"width": 1280, "height": 900}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = {}; }
+
+  dlg(name) { return () => this.setState({ dialog: name, menu: null }); }
+  common() {
+    const dialog = this.state.dialog !== undefined ? this.state.dialog : (this.props.dialog ?? 'none');
+    return {
+      dialog,
+      closeDialog: () => this.setState({ dialog: 'none' }),
+      toastOn: !!this.state.toast,
+      toastMsg: this.state.toast || '',
+      hideToast: () => this.setState({ toast: null }),
+      done: (msg) => () => this.setState({ dialog: 'none', toast: msg, menu: null }),
+    };
+  }
+
+  um() {
+    const bell = this.state.bell !== undefined ? this.state.bell : !!this.props.bell;
+    return {
+      umOpen: !!this.state.um,
+      umStr: this.state.um ? 'true' : 'false',
+      toggleUm: () => this.setState({ um: !this.state.um, bell: false }),
+      bellOpen: bell,
+      bellStr: bell ? 'true' : 'false',
+      toggleBell: () => this.setState({ bell: !bell, um: false }),
+    };
+  }
+
+  renderVals() {
+    const ICON = {
+      search: 'M21 21l-4.3-4.3M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16z',
+      lock: 'M7 11V7a5 5 0 0 1 10 0v4M5 11h14a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2z',
+      user: 'M20 21a8 8 0 0 0-16 0M12 13a5 5 0 1 0 0-10 5 5 0 0 0 0 10z',
+      clock: 'M12 6v6l4 2M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z',
+      x: 'M18 6 6 18M6 6l12 12',
+      card: 'M2 10h20M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z',
+      alert: 'M12 9v4M12 17h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z',
+      refresh: 'M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8M21 3v5h-5M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16M8 16H3v5',
+      ticket: 'M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4z',
+      tool: 'M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z',
+      wifi: 'M12 20h.01M8.5 16.43a5 5 0 0 1 7 0M5 12.86a10 10 0 0 1 14 0M2 2l20 20',
+    };
+    const red = { bg: '#FEF2F2', fg: '#B91C1C' }, amber = { bg: '#FFFBEB', fg: '#B45309' }, gray = { bg: '#F4F4F5', fg: '#3F3F46' }, green = { bg: '#ECFDF5', fg: '#047857' };
+    const V = {
+      notFound: { tab: '404', code: '404', title: 'Không tìm thấy trang', desc: 'Trang không tồn tại hoặc sự kiện đã bị gỡ.', icon: ICON.search, ...gray, p: { label: 'Về trang chủ', href: 'Main.dc.html' }, s: { label: 'Tìm sự kiện', href: 'EventList.dc.html' }, when: 'URL sai hoặc sự kiện không còn hiển thị.' },
+      forbidden: { tab: '403', code: '403', title: 'Không có quyền truy cập', desc: 'Trang dành cho ban tổ chức hoặc quản trị viên.', icon: ICON.lock, ...gray, p: { label: 'Về trang chủ', href: 'Main.dc.html' }, s: { label: 'Đăng nhập tài khoản khác', href: 'Auth.dc.html' }, when: 'Route bị chặn bởi beforeLoad theo role, hoặc API trả 403.' },
+      login: { tab: 'Cần đăng nhập', code: '401', title: 'Cần đăng nhập', desc: 'Cần đăng nhập để vào hàng chờ và chọn ghế. Đăng nhập xong sẽ quay lại sự kiện này.', icon: ICON.user, ...green, p: { label: 'Đăng nhập', href: 'Auth.dc.html' }, s: { label: 'Tạo tài khoản', href: 'Auth.dc.html' }, when: 'Khách chưa đăng nhập bấm Mua vé, hoặc phiên hết hạn.' },
+      holdExpired: { tab: 'Hết giờ giữ ghế', title: 'Hết thời gian giữ ghế', desc: 'Ghế B7, B8 đã được nhả. Chưa trừ tiền.', icon: ICON.clock, ...amber, p: { label: 'Chọn lại ghế', href: 'SeatSelect.dc.html' }, s: { label: 'Về trang sự kiện', href: 'EventDetail.dc.html' }, when: 'Đồng hồ ở trang Thanh toán về 00:00 (booking EXPIRED).' },
+      seatTaken: { tab: 'Ghế đã có người giữ', code: 'SEAT_UNAVAILABLE', title: 'Ghế vừa có người giữ', desc: 'Ghế B7 đã được người khác giữ. Không ghế nào trong lựa chọn được giữ.', icon: ICON.x, ...red, p: { label: 'Chọn ghế khác', href: 'SeatSelect.dc.html' }, when: 'POST /bookings trả 409 SEAT_UNAVAILABLE.' },
+      pendingExists: { tab: 'Đã có đơn chờ', code: 'PENDING_BOOKING_EXISTS', title: 'Đã có đơn chờ thanh toán', desc: 'Mỗi sự kiện chỉ có 1 đơn chờ thanh toán. Đơn TR-8F3M7P đang giữ ghế.', icon: ICON.ticket, ...amber, timer: 'Còn 06:12', p: { label: 'Tiếp tục thanh toán', href: 'Checkout.dc.html' }, s: { label: 'Xem đơn hàng', href: 'MyBookings.dc.html' }, when: 'Vi phạm BR-02 (unique index 1 booking PENDING_PAYMENT/user/sự kiện).' },
+      paymentFailed: { tab: 'Thanh toán lỗi', code: 'card_declined', title: 'Thanh toán không thành công', desc: 'Ngân hàng từ chối giao dịch (thẻ không đủ số dư). Ghế vẫn đang được giữ.', icon: ICON.card, ...red, timer: 'Ghế còn giữ đến 20:19', p: { label: 'Thử lại', href: 'Checkout.dc.html' }, s: { label: 'Huỷ đơn', href: 'MyBookings.dc.html' }, when: 'Stripe Payment Element trả lỗi; booking vẫn PENDING_PAYMENT.' },
+      processing: { tab: 'Đang xác nhận', title: 'Đang xác nhận thanh toán', desc: 'Stripe đang xử lý giao dịch. Vé phát hành ngay khi có xác nhận, thường dưới 1 phút.', icon: ICON.refresh, ...green, p: { label: 'Làm mới trạng thái', href: 'Success.dc.html' }, s: { label: 'Xem đơn hàng', href: 'MyBookings.dc.html' }, when: 'Đã submit thẻ nhưng chưa nhận webhook payment_intent.succeeded.' },
+      tokenExpired: { tab: 'Lượt vào hết hạn', title: 'Lượt vào chọn ghế đã hết hạn', desc: 'Lượt vào từ hàng chờ có hiệu lực 15 phút.', icon: ICON.clock, ...amber, p: { label: 'Vào lại hàng chờ', href: 'Queue.dc.html' }, s: { label: 'Về trang sự kiện', href: 'EventDetail.dc.html' }, when: 'Admission token hết hạn (BR-04).' },
+      soldOut: { tab: 'Hết vé', title: 'Đã hết vé', desc: 'Toàn bộ ghế đã bán. Ghế mở lại khi có đơn hết hạn giữ chỗ hoặc hoàn vé.', icon: ICON.ticket, ...gray, p: { label: 'Xem sự kiện khác', href: 'EventList.dc.html' }, s: { label: 'Về trang sự kiện', href: 'EventDetail.dc.html' }, when: 'Sự kiện ở trạng thái SOLD_OUT.' },
+      serverError: { tab: '500', code: '500 · Mã tham chiếu 7f3a-91c2', title: 'Hệ thống đang gặp sự cố', desc: 'Lỗi đã được ghi nhận. Vé và giao dịch không bị ảnh hưởng.', icon: ICON.alert, ...red, p: { label: 'Thử lại', href: 'Main.dc.html' }, s: { label: 'Về trang chủ', href: 'Main.dc.html' }, when: 'API trả 5xx hoặc lỗi không xác định (kèm traceId).' },
+      maintenance: { tab: 'Bảo trì', title: 'TicketRush đang bảo trì', desc: 'Tạm dừng bán vé đến 02:00, 03/10/2026. Vé đã mua vẫn check-in bình thường.', icon: ICON.tool, ...gray, p: { label: 'Xem vé của tôi', href: 'MyTickets.dc.html' }, when: 'Admin bật flag maintenance.mode.' },
+      offline: { tab: 'Mất mạng', title: 'Mất kết nối mạng', desc: 'Trang tự kết nối lại khi có mạng.', icon: ICON.wifi, ...amber, p: { label: 'Thử lại', href: 'SeatSelect.dc.html' }, when: 'Trình duyệt offline hoặc SSE mất kết nối quá 30 giây.' },
+    };
+    const key = this.state.k || this.props.state || 'notFound';
+    const v = V[key] || V.notFound;
+    const tabs = Object.keys(V).map((k) => ({ label: V[k].tab, sel: k === key ? 'true' : 'false', cls: k === key ? 'sg sg-on' : 'sg', pick: () => this.setState({ k }) }));
+    return {
+      ...this.common(), ...this.um(), tabs,
+      v: { ...v, hasCode: !!v.code, hasTimer: !!v.timer, hasS: !!v.s, s: v.s || { label: '', href: '' } },
+      isOffline: key === 'offline',
+      retry: () => this.setState({ toast: 'Đang kết nối lại…' }),
+    };
+  }
+}
+</script>
+</body>
+</html>

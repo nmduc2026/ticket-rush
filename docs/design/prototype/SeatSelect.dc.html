@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>TicketRush — Chọn ghế</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#FFFFFF;color:#09090B;font-family:'Be Vietnam Pro',system-ui,sans-serif;font-size:14px;-webkit-font-smoothing:antialiased}
+a{color:#09090B}a:hover{color:#09090B}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:36px;padding:0 16px;border-radius:8px;font-family:inherit;font-size:14px;font-weight:500;line-height:1;white-space:nowrap;border:1px solid transparent;cursor:pointer;text-decoration:none;box-sizing:border-box}
+.btn:disabled{opacity:.5;cursor:default}
+.btn-ghost{background:transparent;color:#09090B}.btn-ghost:hover{background:#F4F4F5;color:#09090B}
+.btn-brand{background:#047857;color:#FFFFFF}.btn-brand:hover{background:#065F46;color:#FFFFFF}
+.ctrl{width:36px;height:36px;border:none;background:#FFFFFF;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#09090B}
+.ctrl:hover{background:#F4F4F5}
+.seat{width:20px;height:20px;border-radius:50%;padding:0;font-family:inherit;font-size:9px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;box-sizing:border-box}
+.seat:disabled{cursor:not-allowed}
+.lg{display:flex;align-items:center;gap:6px;font-size:12px;color:#3F3F46}
+</style>
+</helmet>
+<div style="height: 100vh; min-height: 760px; display: flex; flex-direction: column">
+<header style="height: 56px; border-bottom: 1px solid #E4E4E7; display: flex; align-items: center; gap: 12px; padding: 0 16px; flex-shrink: 0">
+<a href="EventDetail.dc.html" class="btn btn-ghost" aria-label="Quay lại" style="width: 36px; padding: 0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg></a>
+<div style="display: flex; flex-direction: column">
+<span style="font-weight: 600">Đêm nhạc Rock Sài Gòn</span>
+<span style="font-size: 12px; color: #71717A">T7, 15/11/2026 · 20:00 · Nhà hát Hòa Bình</span>
+</div>
+<div style="flex-grow: 1"></div>
+<span style="font-size: 13px; color: #71717A">Bước 1/2 · Chọn ghế</span>
+<span style="width: 1px; height: 20px; background: #E4E4E7"></span>
+<span style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 500"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>Lượt chọn còn <span style="font-variant-numeric: tabular-nums">14:12</span></span>
+</header>
+
+<div style="flex-grow: 1; display: grid; grid-template-columns: minmax(0, 1fr) 380px; min-height: 0">
+<section aria-label="Sơ đồ ghế" style="background: #F4F4F5; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 22px; padding: 40px 0 80px">
+<div style="width: 420px; height: 36px; border-radius: 0 0 120px 120px / 0 0 36px 36px; background: #27272A; color: #FAFAFA; font-size: 12px; font-weight: 600; letter-spacing: 0.16em; display: flex; align-items: center; justify-content: center">SÂN KHẤU</div>
+<sc-for list="{{sections}}" as="sec" hint-placeholder-count="3">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 5px">
+<span style="font-size: 12px; font-weight: 500; color: #71717A; margin-bottom: 2px">{{sec.title}}</span>
+<sc-for list="{{sec.rows}}" as="row" hint-placeholder-count="3">
+<div style="display: flex; align-items: center; gap: 5px">
+<span style="width: 16px; font-size: 11px; font-weight: 600; color: #A1A1AA; text-align: center">{{row.label}}</span>
+<sc-for list="{{row.seats}}" as="seat" hint-placeholder-count="14">
+<button type="button" class="seat" aria-label="{{seat.aria}}" aria-pressed="{{seat.pressed}}" disabled="{{seat.disabled}}" onClick="{{seat.pick}}" style="background: {{seat.bg}}; color: {{seat.fg}}; border: 1.5px solid {{seat.border}}">{{seat.text}}</button>
+</sc-for>
+<span style="width: 16px; font-size: 11px; font-weight: 600; color: #A1A1AA; text-align: center">{{row.label}}</span>
+</div>
+</sc-for>
+</div>
+</sc-for>
+</div>
+
+<div style="position: absolute; top: 16px; right: 16px; display: flex; flex-direction: column; border: 1px solid #E4E4E7; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,.05)">
+<button type="button" class="ctrl" aria-label="Phóng to"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></button>
+<span style="height: 1px; background: #E4E4E7"></span>
+<button type="button" class="ctrl" aria-label="Thu nhỏ"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"></path></svg></button>
+<span style="height: 1px; background: #E4E4E7"></span>
+<button type="button" class="ctrl" aria-label="Vừa màn hình"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3M21 8V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3M16 21h3a2 2 0 0 0 2-2v-3"></path></svg></button>
+</div>
+
+<div style="position: absolute; left: 16px; bottom: 16px; background: #FFFFFF; border: 1px solid #E4E4E7; border-radius: 8px; padding: 10px 14px; display: flex; gap: 16px; box-shadow: 0 1px 2px rgba(0,0,0,.05)">
+<span class="lg"><span style="width: 12px; height: 12px; border-radius: 50%; background: #FFFFFF; border: 1.5px solid #71717A"></span>Còn trống</span>
+<span class="lg"><span style="width: 12px; height: 12px; border-radius: 50%; background: #047857"></span>Đang chọn</span>
+<span class="lg"><span style="width: 12px; height: 12px; border-radius: 50%; background: #D4D4D8"></span>Không khả dụng</span>
+</div>
+</section>
+
+<aside style="border-left: 1px solid #E4E4E7; display: flex; flex-direction: column; min-height: 0">
+<div style="padding: 20px; display: flex; flex-direction: column; gap: 10px; border-bottom: 1px solid #E4E4E7">
+<span style="font-size: 13px; font-weight: 500; color: #71717A">Hạng vé</span>
+<sc-for list="{{tierList}}" as="t" hint-placeholder-count="3">
+<div style="display: flex; align-items: center; gap: 10px; font-size: 14px">
+<span style="width: 12px; height: 12px; border-radius: 50%; border: 3px solid {{t.color}}; box-sizing: border-box"></span>
+<span style="flex-grow: 1; font-weight: 500">{{t.name}}</span>
+<span style="color: #71717A; font-size: 13px">{{t.left}}</span>
+<span style="font-weight: 600; width: 96px; text-align: right">{{t.price}}</span>
+</div>
+</sc-for>
+</div>
+
+<div style="padding: 20px; display: flex; flex-direction: column; gap: 12px; flex-grow: 1; overflow: auto">
+<div style="display: flex; justify-content: space-between; align-items: baseline">
+<span style="font-weight: 600">Ghế đã chọn</span>
+<span style="font-size: 13px; color: #71717A">{{countLabel}}</span>
+</div>
+<sc-if value="{{hasSelection}}" hint-placeholder-val="{{ true }}">
+<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column">
+<sc-for list="{{picked}}" as="p" hint-placeholder-count="2">
+<li style="display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid #F4F4F5">
+<div style="display: flex; flex-direction: column; flex-grow: 1">
+<span style="font-weight: 500">Hàng {{p.row}} · Ghế {{p.num}}</span>
+<span style="font-size: 12px; color: #71717A">{{p.tier}}</span>
+</div>
+<span style="font-weight: 500">{{p.price}}</span>
+<button type="button" class="btn btn-ghost" aria-label="Bỏ chọn ghế" onClick="{{p.remove}}" style="width: 32px; height: 32px; padding: 0; color: #71717A"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+</li>
+</sc-for>
+</ul>
+</sc-if>
+<sc-if value="{{noSelection}}" hint-placeholder-val="{{ false }}">
+<p style="margin: 0; color: #71717A; line-height: 1.6">Tối đa 6 ghế · bấm lại để bỏ chọn</p>
+</sc-if>
+</div>
+
+<div style="padding: 20px; border-top: 1px solid #E4E4E7; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; justify-content: space-between; align-items: baseline">
+<span style="color: #71717A">Tạm tính</span>
+<span style="font-size: 20px; font-weight: 700; letter-spacing: -0.01em">{{total}}</span>
+</div>
+<sc-if value="{{hasSelection}}" hint-placeholder-val="{{ true }}">
+<a href="Checkout.dc.html" class="btn btn-brand" style="height: 44px; font-size: 15px">Tiếp tục</a>
+</sc-if>
+<sc-if value="{{noSelection}}" hint-placeholder-val="{{ false }}">
+<button type="button" class="btn btn-brand" disabled="{{ true }}" style="height: 44px; font-size: 15px">Tiếp tục</button>
+</sc-if>
+<span style="font-size: 12px; color: #71717A; text-align: center">Giữ ghế 10 phút sau khi bấm Tiếp tục.</span>
+</div>
+</aside>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1000}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { selected: ['B-7', 'B-8'] };
+  }
+  toggle(id) {
+    const s = this.state.selected;
+    if (s.includes(id)) this.setState({ selected: s.filter((x) => x !== id) });
+    else if (s.length < 6) this.setState({ selected: [...s, id] });
+  }
+  renderVals() {
+    const tiers = {
+      VIP: { name: 'VIP', price: 2500000, color: '#9A3412' },
+      STD: { name: 'Standard', price: 1500000, color: '#EA580C' },
+      ECO: { name: 'Phổ thông', price: 800000, color: '#F59E0B' },
+    };
+    const layout = [
+      { tier: 'VIP', rows: ['A', 'B', 'C'], count: 14 },
+      { tier: 'STD', rows: ['D', 'E', 'F', 'G', 'H'], count: 18 },
+      { tier: 'ECO', rows: ['I', 'J', 'K', 'L'], count: 22 },
+    ];
+    const fmt = (v) => v.toLocaleString('vi-VN') + ' ₫';
+    const unavailable = (r, n) => ((r.charCodeAt(0) * 7 + n * 13) % 9 === 0) || ((r.charCodeAt(0) + n * 5) % 11 === 0) || ((r.charCodeAt(0) * 3 + n * 17) % 23 === 0);
+    const sel = this.state.selected;
+    const tierOfRow = {};
+    layout.forEach((sec) => sec.rows.forEach((r) => { tierOfRow[r] = tiers[sec.tier]; }));
+    let free = { VIP: 0, STD: 0, ECO: 0 };
+
+    const sections = layout.map((sec) => {
+      const t = tiers[sec.tier];
+      return {
+        title: t.name + ' · ' + fmt(t.price),
+        rows: sec.rows.map((r) => ({
+          label: r,
+          seats: Array.from({ length: sec.count }, (_, i) => {
+            const n = i + 1;
+            const id = r + '-' + n;
+            const off = unavailable(r, n);
+            const picked = sel.includes(id);
+            if (!off) free[sec.tier] += 1;
+            let bg = '#FFFFFF', fg = t.color, border = t.color, text = '';
+            if (off) { bg = '#D4D4D8'; border = '#D4D4D8'; }
+            if (picked) { bg = '#047857'; fg = '#FFFFFF'; border = '#047857'; text = String(n); }
+            return {
+              bg, fg, border, text,
+              disabled: off,
+              pressed: picked ? 'true' : 'false',
+              aria: 'Hàng ' + r + ' ghế ' + n + ', ' + t.name + ', ' + fmt(t.price) + (off ? ', không khả dụng' : ''),
+              pick: () => this.toggle(id),
+            };
+          }),
+        })),
+      };
+    });
+
+    const tierList = ['VIP', 'STD', 'ECO'].map((k) => ({ name: tiers[k].name, color: tiers[k].color, price: fmt(tiers[k].price), left: 'còn ' + free[k] }));
+    const picked = sel.map((id) => {
+      const [row, num] = id.split('-');
+      const t = tierOfRow[row];
+      return { row, num, tier: t.name, price: fmt(t.price), raw: t.price, remove: () => this.toggle(id) };
+    });
+    const total = picked.reduce((sum, p) => sum + p.raw, 0);
+    return {
+      sections,
+      tierList,
+      picked,
+      hasSelection: picked.length > 0,
+      noSelection: picked.length === 0,
+      countLabel: picked.length + '/6',
+      total: fmt(total),
+    };
+  }
+}
+</script>
+</body>
+</html>

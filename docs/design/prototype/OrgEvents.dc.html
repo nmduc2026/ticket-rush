@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Organizer — Sự kiện</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#FFFFFF;color:#09090B;font-family:'Be Vietnam Pro',system-ui,sans-serif;font-size:14px;-webkit-font-smoothing:antialiased}
+a{color:#09090B}a:hover{color:#09090B}
+button{font-family:inherit}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:36px;padding:0 16px;border-radius:8px;font-size:14px;font-weight:500;line-height:1;white-space:nowrap;border:1px solid transparent;cursor:pointer;text-decoration:none;box-sizing:border-box;background:transparent;color:#09090B}
+.btn:disabled{opacity:.5;cursor:default}
+.btn-sm{height:32px;padding:0 12px;gap:6px}
+.btn-icon{width:32px;padding:0}
+.btn-default{background:#047857;color:#FFFFFF;box-shadow:0 1px 2px rgba(0,0,0,.05)}.btn-default:hover{background:#065F46;color:#FFFFFF}
+.btn-outline{background:#FFFFFF;border-color:#E4E4E7;box-shadow:0 1px 2px rgba(0,0,0,.05)}.btn-outline:hover{background:#F4F4F5}
+.btn-dashed{border-style:dashed}
+.btn-ghost:hover{background:#F4F4F5}
+.btn-destructive{background:#DC2626;color:#FFFFFF}.btn-destructive:hover{background:#B91C1C;color:#FFFFFF}
+.input{height:36px;border:1px solid #E4E4E7;border-radius:8px;padding:0 12px;font-family:inherit;font-size:14px;color:#09090B;background:#FFFFFF;box-sizing:border-box;outline:none;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.lbl{display:flex;flex-direction:column;gap:8px;font-size:14px;font-weight:500}
+.badge{display:inline-flex;align-items:center;gap:6px;border:1px solid #E4E4E7;border-radius:6px;padding:2px 8px;font-size:12px;font-weight:500;line-height:16px;white-space:nowrap}
+.tbl{width:100%;border-collapse:collapse}
+.tbl th{height:40px;padding:0 8px;text-align:left;font-weight:500;color:#71717A;border-bottom:1px solid #E4E4E7;white-space:nowrap}
+.tbl td{height:52px;padding:0 8px;border-bottom:1px solid #E4E4E7;vertical-align:middle}
+.tbl tbody tr:last-child td{border-bottom:none}
+.tbl tbody tr:hover{background:#FAFAFA}
+.cb{width:16px;height:16px;margin:0;accent-color:#059669;vertical-align:middle}
+.sb{display:flex;align-items:center;gap:8px;height:32px;padding:0 8px;border-radius:6px;font-size:14px;color:#3F3F46;text-decoration:none;box-sizing:border-box}
+.sb:hover{background:#F4F4F5;color:#18181B}
+.sb-on,.sb-on:hover{background:#ECFDF5;color:#065F46;font-weight:500}
+.sbs{display:flex;align-items:center;height:28px;padding:0 8px;border-radius:6px;font-size:14px;color:#3F3F46;text-decoration:none}
+.sbs:hover{background:#F4F4F5;color:#18181B}
+.sbs-on,.sbs-on:hover{background:#ECFDF5;color:#065F46;font-weight:500}
+.sbl{height:32px;display:flex;align-items:center;padding:0 8px;font-size:12px;font-weight:500;color:#71717A}
+.menu{position:absolute;z-index:30;background:#FFFFFF;border:1px solid #E4E4E7;border-radius:8px;box-shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1);padding:4px;min-width:200px;text-align:left}
+.mi{display:flex;align-items:center;gap:8px;width:100%;height:32px;padding:0 8px;border:none;border-radius:4px;background:transparent;font-size:14px;color:#09090B;text-align:left;cursor:pointer;text-decoration:none;box-sizing:border-box}
+.mi:hover{background:#F4F4F5;color:#09090B}
+.mi-danger,.mi-danger:hover{color:#DC2626}
+.sep{height:1px;background:#E4E4E7;margin:4px -4px}
+.overlay{position:absolute;inset:0;z-index:50;background:rgba(0,0,0,.5);display:flex;justify-content:center;align-items:flex-start;padding-top:120px}
+.dialog{width:100%;max-width:512px;background:#FFFFFF;border:1px solid #E4E4E7;border-radius:10px;padding:24px;box-shadow:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.1);display:flex;flex-direction:column;gap:16px;position:relative;box-sizing:border-box}
+.dx{position:absolute;top:16px;right:16px;width:24px;height:24px;border:none;background:transparent;border-radius:4px;cursor:pointer;color:#71717A;display:flex;align-items:center;justify-content:center}
+.dt{margin:0;font-size:18px;font-weight:600;line-height:1.2}
+.dd{margin:0;font-size:14px;color:#71717A;line-height:1.5}
+.df{display:flex;justify-content:flex-end;gap:8px;padding-top:4px}
+</style>
+</helmet>
+<div style="display: flex; min-height: 100vh; position: relative">
+<aside style="width: 256px; flex-shrink: 0; background: #FAFAFA; border-right: 1px solid #E4E4E7; display: flex; flex-direction: column">
+<div style="padding: 8px">
+<button type="button" class="sb" style="height: 48px; width: 100%; border: none; background: transparent; cursor: pointer; text-align: left">
+<span style="width: 32px; height: 32px; border-radius: 8px; background: #059669; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4z"></path></svg></span>
+<span style="display: flex; flex-direction: column; flex: 1; min-width: 0; line-height: 1.3"><span style="font-weight: 600; color: #09090B">Saigon Sound Co.</span><span style="font-size: 12px; color: #71717A">Organizer</span></span>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 15 5 5 5-5"></path><path d="m7 9 5-5 5 5"></path></svg>
+</button>
+</div>
+<div style="flex: 1; padding: 0 8px; display: flex; flex-direction: column">
+<div class="sbl">Quản lý</div>
+<nav style="display: flex; flex-direction: column; gap: 2px">
+<a href="OrgDashboard.dc.html" class="sb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"></rect><rect x="14" y="3" width="7" height="5" rx="1"></rect><rect x="14" y="12" width="7" height="9" rx="1"></rect><rect x="3" y="16" width="7" height="5" rx="1"></rect></svg>Tổng quan</a>
+<a href="OrgEvents.dc.html" class="sb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg>Sự kiện<svg style="margin-left: auto; transform: rotate(90deg)" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></a>
+<div style="margin: 0 0 2px 15px; padding-left: 10px; border-left: 1px solid #E4E4E7; display: flex; flex-direction: column; gap: 2px">
+<a href="OrgEvents.dc.html" class="sbs sbs-on">Tất cả sự kiện</a>
+<a href="OrgCreateEvent.dc.html" class="sbs">Bản nháp</a>
+<a href="OrgEvents.dc.html" class="sbs">Địa điểm đã dùng</a>
+</div>
+<a href="OrgOrders.dc.html" class="sb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"></path><path d="M8 7h8M8 11h8M8 15h5"></path></svg>Đơn hàng<svg style="margin-left: auto" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></a>
+<a href="Checkin.dc.html" class="sb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2M7 12h10"></path></svg>Check-in</a>
+<a href="OrgStripe.dc.html" class="sb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"></rect><path d="M2 10h20"></path></svg>Thanh toán &amp; Stripe</a>
+<a href="OrgSettings.dc.html" class="sb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-9M14 17H5"></path><circle cx="17" cy="17" r="3"></circle><circle cx="7" cy="7" r="3"></circle></svg>Cài đặt</a>
+</nav>
+<div class="sbl" style="margin-top: 8px">Sự kiện gần đây</div>
+<nav style="display: flex; flex-direction: column; gap: 2px">
+<a href="OrgEventSales.dc.html" class="sb"><span style="width: 16px; height: 16px; border-radius: 4px; background: #0F766E; flex-shrink: 0"></span>Đêm nhạc Rock Sài Gòn</a>
+<a href="OrgCreateEvent.dc.html" class="sb"><span style="width: 16px; height: 16px; border-radius: 4px; background: #EA580C; flex-shrink: 0"></span>Rock Sài Gòn — đêm 2</a>
+<a href="OrgCreateEvent.dc.html" class="sb"><span style="width: 16px; height: 16px; border-radius: 4px; background: #7F1D1D; flex-shrink: 0"></span>Nhạc kịch Giáng Sinh</a>
+<a href="OrgEvents.dc.html" class="sb" style="color: #71717A"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>Xem thêm</a>
+</nav>
+</div>
+<div style="padding: 8px">
+<button type="button" class="sb" style="height: 48px; width: 100%; border: none; background: transparent; cursor: pointer; text-align: left">
+<span style="width: 32px; height: 32px; border-radius: 8px; background: #D1FAE5; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: #065F46; flex-shrink: 0">MK</span>
+<span style="display: flex; flex-direction: column; flex: 1; min-width: 0; line-height: 1.3"><span style="font-weight: 600; color: #09090B">Trần Minh Khoa</span><span style="font-size: 12px; color: #71717A">khoa@saigonsound.vn</span></span>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 15 5 5 5-5"></path><path d="m7 9 5-5 5 5"></path></svg>
+</button>
+</div>
+</aside>
+
+<div style="flex: 1; min-width: 0; display: flex; flex-direction: column">
+<header style="height: 64px; display: flex; align-items: center; gap: 8px; padding: 0 16px; flex-shrink: 0">
+<button type="button" class="btn btn-ghost" aria-label="Thu gọn sidebar" style="width: 28px; height: 28px; padding: 0; margin-left: -4px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M9 3v18"></path></svg></button>
+<span style="width: 1px; height: 16px; background: #E4E4E7; margin-right: 8px"></span>
+<nav aria-label="Breadcrumb"><ol style="display: flex; align-items: center; gap: 6px; list-style: none; margin: 0; padding: 0; color: #71717A"><li><a href="OrgEvents.dc.html" style="color: #71717A; text-decoration: none">Sự kiện</a></li><li style="display: flex"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></li><li style="color: #09090B">Tất cả sự kiện</li></ol></nav>
+</header>
+
+<main style="flex: 1; padding: 4px 16px 24px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h1 style="margin: 0; font-size: 24px; font-weight: 600; letter-spacing: -0.02em">Sự kiện</h1>
+<p style="margin: 0; color: #71717A"></p>
+</div>
+<button type="button" class="btn btn-default" onClick="{{openCreate}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>Tạo sự kiện</button>
+</div>
+
+<div style="display: flex; align-items: center; gap: 8px">
+<input class="input" type="search" aria-label="Lọc sự kiện" placeholder="Lọc theo tên hoặc mã…" value="{{q}}" onChange="{{onSearch}}" style="height: 32px; width: 260px">
+<div style="position: relative">
+<button type="button" class="btn btn-outline btn-sm btn-dashed" aria-expanded="{{facetOpenStr}}" onClick="{{toggleFacet}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 12h8M12 8v8"></path></svg>Trạng thái
+<sc-if value="{{hasStatus}}" hint-placeholder-val="{{ false }}"><span style="width: 1px; height: 16px; background: #E4E4E7; margin: 0 2px"></span><span style="background: #F4F4F5; border-radius: 4px; padding: 2px 6px; font-size: 12px; font-weight: 400">{{statusSummary}}</span></sc-if>
+</button>
+<sc-if value="{{facetOpen}}" hint-placeholder-val="{{ false }}">
+<div class="menu" style="top: 38px; left: 0; width: 220px">
+<div style="display: flex; align-items: center; gap: 8px; height: 36px; padding: 0 8px; border-bottom: 1px solid #E4E4E7; margin: -4px -4px 4px; color: #71717A"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>Trạng thái</div>
+<sc-for list="{{statusOpts}}" as="o" hint-placeholder-count="6">
+<button type="button" class="mi" role="menuitemcheckbox" aria-checked="{{o.checked}}" onClick="{{o.toggle}}">
+<span style="width: 16px; height: 16px; border-radius: 4px; border: 1px solid {{o.boxBorder}}; background: {{o.boxBg}}; display: flex; align-items: center; justify-content: center; box-sizing: border-box"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>
+<span style="width: 6px; height: 6px; border-radius: 50%; background: {{o.dot}}"></span>
+<span style="flex: 1">{{o.label}}</span>
+<span style="font-size: 12px; color: #71717A; font-variant-numeric: tabular-nums">{{o.count}}</span>
+</button>
+</sc-for>
+<sc-if value="{{hasStatus}}" hint-placeholder-val="{{ false }}"><div class="sep"></div><button type="button" class="mi" style="justify-content: center" onClick="{{clearStatus}}">Xoá bộ lọc</button></sc-if>
+</div>
+</sc-if>
+</div>
+<button type="button" class="btn btn-outline btn-sm btn-dashed"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 12h8M12 8v8"></path></svg>Địa điểm</button>
+<sc-if value="{{filtered}}" hint-placeholder-val="{{ false }}">
+<button type="button" class="btn btn-ghost btn-sm" onClick="{{reset}}">Đặt lại<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+</sc-if>
+<div style="flex: 1"></div>
+<button type="button" class="btn btn-outline btn-sm"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 7h-9M14 17H5"></path><circle cx="17" cy="17" r="3"></circle><circle cx="7" cy="7" r="3"></circle></svg>Hiển thị</button>
+</div>
+
+<div style="border: 1px solid #E4E4E7; border-radius: 8px">
+<table class="tbl">
+<thead><tr>
+<th style="width: 32px; padding-left: 12px"><input type="checkbox" class="cb" aria-label="Chọn tất cả"></th>
+<th>Sự kiện</th>
+<th><button type="button" class="btn btn-ghost btn-sm" style="margin-left: -12px; color: #71717A">Ngày diễn<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21 16-4 4-4-4M17 20V4M3 8l4-4 4 4M7 4v16"></path></svg></button></th>
+<th>Địa điểm</th>
+<th>Trạng thái</th>
+<th>Đã bán</th>
+<th style="text-align: right">Doanh thu</th>
+<th style="width: 48px"><span style="position: absolute; width: 1px; height: 1px; overflow: hidden">Thao tác</span></th>
+</tr></thead>
+<tbody>
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="10">
+<tr>
+<td style="padding-left: 12px"><input type="checkbox" class="cb" aria-label="Chọn dòng"></td>
+<td><div style="display: flex; flex-direction: column; gap: 2px"><a href="OrgEventInfo.dc.html" style="font-weight: 500; text-decoration: none">{{r.title}}</a><span style="font-size: 12px; color: #71717A">{{r.id}}</span></div></td>
+<td style="font-variant-numeric: tabular-nums">{{r.date}}</td>
+<td style="color: #3F3F46">{{r.venue}}</td>
+<td><span class="badge"><span style="width: 6px; height: 6px; border-radius: 50%; background: {{r.dot}}"></span>{{r.label}}</span></td>
+<td><div style="display: flex; align-items: center; gap: 10px"><span style="width: 64px; height: 6px; border-radius: 999px; background: #F4F4F5; overflow: hidden; display: block"><span style="display: block; height: 100%; width: {{r.pct}}; background: #059669"></span></span><span style="font-variant-numeric: tabular-nums; color: #3F3F46">{{r.sold}}</span></div></td>
+<td style="text-align: right; font-weight: 500; font-variant-numeric: tabular-nums">{{r.revenue}}</td>
+<td style="text-align: right; position: relative">
+<button type="button" class="btn btn-ghost" aria-label="Mở menu thao tác" aria-expanded="{{r.menuStr}}" onClick="{{r.toggleMenu}}" style="width: 32px; height: 32px; padding: 0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg></button>
+<sc-if value="{{r.menuOpen}}" hint-placeholder-val="{{ false }}">
+<div class="menu" role="menu" style="right: 8px; top: 44px">
+<a href="OrgEventInfo.dc.html" class="mi" role="menuitem">Chỉnh sửa</a>
+<a href="OrgEventSales.dc.html" class="mi" role="menuitem">Xem doanh thu</a>
+<a href="OrgOrders.dc.html" class="mi" role="menuitem">Xem đơn hàng</a>
+<button type="button" class="mi" role="menuitem" onClick="{{closeMenu}}">Nhân bản</button>
+<div class="sep"></div>
+<button type="button" class="mi mi-danger" role="menuitem" onClick="{{r.cancel}}">Huỷ sự kiện</button>
+</div>
+</sc-if>
+</td>
+</tr>
+</sc-for>
+</tbody>
+</table>
+</div>
+
+<div style="display: flex; align-items: center; justify-content: space-between; padding: 0 4px">
+<span style="color: #71717A">0 / {{total}} dòng được chọn.</span>
+<div style="display: flex; align-items: center; gap: 24px">
+<label style="display: flex; align-items: center; gap: 8px; font-weight: 500">Số dòng mỗi trang<select class="input" style="height: 32px; width: 72px; padding: 0 8px"><option>10</option><option>20</option><option>50</option></select></label>
+<span style="font-weight: 500; font-variant-numeric: tabular-nums">Trang {{page}} / {{pageCount}}</span>
+<div style="display: flex; gap: 8px">
+<button type="button" class="btn btn-outline btn-icon" style="height: 32px" aria-label="Trang đầu" disabled="{{atStart}}" onClick="{{first}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m11 17-5-5 5-5M18 17l-5-5 5-5"></path></svg></button>
+<button type="button" class="btn btn-outline btn-icon" style="height: 32px" aria-label="Trang trước" disabled="{{atStart}}" onClick="{{prev}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg></button>
+<button type="button" class="btn btn-outline btn-icon" style="height: 32px" aria-label="Trang sau" disabled="{{atEnd}}" onClick="{{next}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></button>
+<button type="button" class="btn btn-outline btn-icon" style="height: 32px" aria-label="Trang cuối" disabled="{{atEnd}}" onClick="{{last}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 17 5-5-5-5M13 17l5-5-5-5"></path></svg></button>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+<sc-if value="{{dlgCreate}}" hint-placeholder-val="{{ false }}">
+<div class="overlay">
+<div class="dialog" role="dialog" aria-modal="true" aria-labelledby="dlg-create">
+<button type="button" class="dx" aria-label="Đóng" onClick="{{closeDialog}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+<div style="display: flex; flex-direction: column; gap: 8px"><h2 id="dlg-create" class="dt">Tạo sự kiện mới</h2><p class="dd">Hạng vé, mô tả và ảnh bìa bổ sung ở bước sau.</p></div>
+<label class="lbl">Tên sự kiện<input class="input" type="text" placeholder="VD: Đêm nhạc Rock Sài Gòn"></label>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+<label class="lbl">Danh mục<select class="input"><option>Nhạc sống</option><option>Sân khấu</option><option>Hài kịch</option></select></label>
+<label class="lbl">Địa điểm<select class="input"><option>Nhà hát Hòa Bình</option><option>Nhà văn hoá Thanh niên</option></select></label>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+<label class="lbl">Ngày diễn<input class="input" type="text" placeholder="dd/mm/yyyy"></label>
+<label class="lbl">Giờ bắt đầu<input class="input" type="text" placeholder="20:00"></label>
+</div>
+<div class="df"><button type="button" class="btn btn-outline" onClick="{{closeDialog}}">Huỷ</button><a href="OrgEventInfo.dc.html" class="btn btn-default">Tạo &amp; tiếp tục</a></div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{dlgCancel}}" hint-placeholder-val="{{ false }}">
+<div class="overlay">
+<div class="dialog" role="alertdialog" aria-modal="true" aria-labelledby="dlg-cancel">
+<div style="display: flex; flex-direction: column; gap: 8px"><h2 id="dlg-cancel" class="dt">Huỷ sự kiện “{{target}}”?</h2><p class="dd">Mọi đơn đã thanh toán được hoàn tiền tự động, khách nhận email. Không hoàn tác được.</p></div>
+<label class="lbl"><span>Nhập <span style="font-family: ui-monospace, monospace">HUY</span> để xác nhận</span><input class="input" type="text"></label>
+<div class="df"><button type="button" class="btn btn-outline" onClick="{{closeDialog}}">Quay lại</button><button type="button" class="btn btn-destructive" onClick="{{closeDialog}}">Huỷ sự kiện</button></div>
+</div>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dialog":{"editor":"enum","options":["none","create","cancel"],"default":"none"},"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { q: '', st: [], facet: false, page: 1, menu: null, dialog: undefined, target: 'Đêm nhạc Rock Sài Gòn' };
+  }
+  renderVals() {
+    const S = {
+      sale: { label: 'Đang mở bán', dot: '#16A34A' },
+      soon: { label: 'Sắp mở bán', dot: '#F59E0B' },
+      draft: { label: 'Nháp', dot: '#A1A1AA' },
+      sold: { label: 'Hết vé', dot: '#2563EB' },
+      ended: { label: 'Đã kết thúc', dot: '#52525B' },
+      cancel: { label: 'Đã huỷ', dot: '#DC2626' },
+    };
+    const names = ['Đêm nhạc Rock Sài Gòn', 'Rock Sài Gòn — đêm 2', 'Nhạc kịch Giáng Sinh', 'Acoustic chiều Chủ nhật', 'Live Jazz cuối tuần', 'Đêm nhạc Trịnh', 'Countdown 2027', 'Indie Showcase vol.5', 'Hip-hop Night', 'Hòa nhạc Mùa Xuân', 'Stand-up Comedy Night', 'Tribute The Beatles', 'Đêm nhạc Bolero', 'Rock Sài Gòn Unplugged', 'EDM Warm-up Party', 'Gala Âm nhạc Tết', 'Đêm Piano cổ điển', 'Indie Showcase vol.4', 'Workshop Sáng tác ca khúc', 'Talkshow: Nghề làm nhạc', 'Đêm nhạc Indie Hà Nội', 'Liveshow Kỷ niệm 10 năm', 'Acoustic Đà Lạt', 'Rock Sài Gòn — Đà Nẵng'];
+    const seq = ['sale', 'soon', 'sold', 'draft', 'sale', 'soon', 'sale', 'ended', 'draft', 'soon', 'cancel', 'ended'];
+    const venues = ['Nhà hát Hòa Bình', 'NVH Thanh niên', 'Phòng trà Bến Thành', 'Nhà hát Lớn Hà Nội'];
+    const dim = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    const dateOf = (start, m0, y0) => { let d = start, m = m0, y = y0; while (d > dim[m - 1]) { d -= dim[m - 1]; m += 1; if (m > 12) { m = 1; y += 1; } } return String(d).padStart(2, '0') + '/' + String(m).padStart(2, '0') + '/' + y; };
+    const fmt = (v) => v.toLocaleString('vi-VN') + ' ₫';
+    const all = names.map((title, i) => {
+      const s = seq[i % seq.length];
+      const cap = [220, 180, 120, 300][i % 4];
+      const sold = s === 'sold' ? cap : s === 'sale' ? Math.round(cap * (((i * 37) % 80) + 10) / 100) : s === 'ended' ? Math.round(cap * 0.92) : 0;
+      const past = s === 'ended' || s === 'cancel';
+      return {
+        id: 'EV-' + (1024 + i), title, s,
+        date: past ? dateOf(5 + i, 9, 2026) : dateOf(15 + i * 4, 11, 2026),
+        venue: venues[i % venues.length],
+        label: S[s].label, dot: S[s].dot,
+        soldNum: sold, cap,
+        sold: s === 'draft' ? '—' : sold + '/' + cap,
+        pct: Math.round((sold / cap) * 100) + '%',
+        revenue: sold ? fmt(sold * 1250000) : '—',
+      };
+    });
+    const q = this.state.q.trim().toLowerCase();
+    const st = this.state.st;
+    const rowsAll = all.filter((r) => (!q || (r.title + ' ' + r.id).toLowerCase().includes(q)) && (!st.length || st.includes(r.s)));
+    const size = 10;
+    const pageCount = Math.max(1, Math.ceil(rowsAll.length / size));
+    const page = Math.min(this.state.page, pageCount);
+    const rows = rowsAll.slice((page - 1) * size, page * size).map((r) => ({
+      ...r,
+      menuOpen: this.state.menu === r.id,
+      menuStr: this.state.menu === r.id ? 'true' : 'false',
+      toggleMenu: () => this.setState({ menu: this.state.menu === r.id ? null : r.id, facet: false }),
+      cancel: () => this.setState({ dialog: 'cancel', target: r.title, menu: null }),
+    }));
+    const statusOpts = Object.keys(S).map((k) => {
+      const on = st.includes(k);
+      return {
+        label: S[k].label, dot: S[k].dot,
+        count: all.filter((r) => r.s === k).length,
+        checked: on ? 'true' : 'false',
+        boxBg: on ? '#059669' : '#FFFFFF',
+        boxBorder: on ? '#059669' : '#A1A1AA',
+        toggle: () => this.setState({ st: on ? st.filter((x) => x !== k) : [...st, k], page: 1 }),
+      };
+    });
+    const dialog = this.state.dialog !== undefined ? this.state.dialog : (this.props.dialog ?? 'none');
+    return {
+      q: this.state.q,
+      onSearch: (e) => this.setState({ q: e.target.value, page: 1 }),
+      facetOpen: this.state.facet,
+      facetOpenStr: this.state.facet ? 'true' : 'false',
+      toggleFacet: () => this.setState({ facet: !this.state.facet, menu: null }),
+      statusOpts,
+      hasStatus: st.length > 0,
+      statusSummary: st.length > 1 ? st.length + ' đã chọn' : st.length ? S[st[0]].label : '',
+      clearStatus: () => this.setState({ st: [], page: 1 }),
+      filtered: !!q || st.length > 0,
+      reset: () => this.setState({ q: '', st: [], page: 1 }),
+      rows,
+      total: rowsAll.length,
+      page, pageCount,
+      atStart: page === 1,
+      atEnd: page === pageCount,
+      first: () => this.setState({ page: 1 }),
+      prev: () => this.setState({ page: Math.max(1, page - 1) }),
+      next: () => this.setState({ page: Math.min(pageCount, page + 1) }),
+      last: () => this.setState({ page: pageCount }),
+      closeMenu: () => this.setState({ menu: null }),
+      openCreate: () => this.setState({ dialog: 'create' }),
+      closeDialog: () => this.setState({ dialog: 'none' }),
+      dlgCreate: dialog === 'create',
+      dlgCancel: dialog === 'cancel',
+      target: this.state.target,
+    };
+  }
+}
+</script>
+</body>
+</html>

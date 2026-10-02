@@ -1,0 +1,617 @@
+{
+  "v": 3,
+  "attachments": {},
+  "createdOnFiles": {
+    "v": 1,
+    "at": "2026-10-02T09:00:00Z"
+  },
+  "title": "TicketRush Mockups",
+  "launch": {
+    "view": "canvas"
+  },
+  "pages": [],
+  "boards": {
+    "Main.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1280,
+      "h": 1900,
+      "title": "1. Trang chủ",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "EventList.dc.html": {
+      "x": 1360,
+      "y": 0,
+      "w": 1280,
+      "h": 1860,
+      "title": "2. Danh sách sự kiện (lọc + phân trang)",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "EventDetail.dc.html": {
+      "x": 2720,
+      "y": 0,
+      "w": 1280,
+      "h": 1900,
+      "title": "3. Chi tiết sự kiện",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Queue.dc.html": {
+      "x": 4080,
+      "y": 0,
+      "w": 1280,
+      "h": 900,
+      "title": "4. Hàng chờ trực tuyến",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "SeatSelect.dc.html": {
+      "x": 5440,
+      "y": 0,
+      "w": 1280,
+      "h": 1000,
+      "title": "5. Chọn ghế",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Checkout.dc.html": {
+      "x": 6800,
+      "y": 0,
+      "w": 1280,
+      "h": 1100,
+      "title": "6. Thanh toán",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Success.dc.html": {
+      "x": 8160,
+      "y": 0,
+      "w": 1280,
+      "h": 1000,
+      "title": "7. Thanh toán thành công",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "MyTickets.dc.html": {
+      "x": 0,
+      "y": 6400,
+      "w": 390,
+      "h": 844,
+      "title": "8. Vé của tôi (mobile)",
+      "is_interactive": true
+    },
+    "TicketQR.dc.html": {
+      "x": 470,
+      "y": 6400,
+      "w": 390,
+      "h": 844,
+      "title": "9. Vé QR + hoàn vé (mobile)",
+      "is_interactive": true
+    },
+    "Checkin.dc.html": {
+      "x": 940,
+      "y": 6400,
+      "w": 390,
+      "h": 844,
+      "title": "10. Check-in tại cổng (mobile)"
+    },
+    "OrgDashboard.dc.html": {
+      "x": 0,
+      "y": 8744,
+      "w": 1280,
+      "h": 1100,
+      "title": "11. Organizer — Tổng quan",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "OrgEvents.dc.html": {
+      "x": 1360,
+      "y": 8744,
+      "w": 1280,
+      "h": 900,
+      "title": "12. Organizer — Danh sách sự kiện",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "OrgCreateEvent.dc.html": {
+      "x": 4080,
+      "y": 8744,
+      "w": 1280,
+      "h": 1000,
+      "title": "13. Organizer — Sửa sự kiện: hạng vé",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "OrgOrders.dc.html": {
+      "x": 6800,
+      "y": 8744,
+      "w": 1280,
+      "h": 900,
+      "title": "14. Organizer — Đơn hàng (modal hoàn tiền)",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "AdminOrganizers.dc.html": {
+      "x": 0,
+      "y": 11744,
+      "w": 1280,
+      "h": 900,
+      "title": "15. Admin — Hồ sơ organizer",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "AdminVenues.dc.html": {
+      "x": 2720,
+      "y": 11744,
+      "w": 1280,
+      "h": 900,
+      "title": "16. Admin — Địa điểm",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "AdminSeatMap.dc.html": {
+      "x": 4080,
+      "y": 11744,
+      "w": 1280,
+      "h": 1000,
+      "title": "17. Admin — Sơ đồ ghế",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Auth.dc.html": {
+      "x": 0,
+      "y": 3400,
+      "w": 1280,
+      "h": 900,
+      "title": "18. Đăng nhập / Đăng ký / Quên mật khẩu",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Profile.dc.html": {
+      "x": 1360,
+      "y": 3400,
+      "w": 1280,
+      "h": 1100,
+      "title": "19. Hồ sơ cá nhân · Bảo mật · Cài đặt thông báo",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Notifications.dc.html": {
+      "x": 2720,
+      "y": 3400,
+      "w": 1280,
+      "h": 1300,
+      "title": "20. Thông báo (+ popover chuông)",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "MyBookings.dc.html": {
+      "x": 4080,
+      "y": 3400,
+      "w": 1280,
+      "h": 1100,
+      "title": "21. Đơn hàng của tôi",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "OrganizerApply.dc.html": {
+      "x": 5440,
+      "y": 3400,
+      "w": 1280,
+      "h": 1500,
+      "title": "22. Đăng ký làm ban tổ chức",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "SystemStates.dc.html": {
+      "x": 9520,
+      "y": 0,
+      "w": 1280,
+      "h": 900,
+      "title": "23. Trạng thái lỗi & ngoại lệ",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "OrgEventInfo.dc.html": {
+      "x": 2720,
+      "y": 8744,
+      "w": 1280,
+      "h": 1500,
+      "title": "24. Organizer — Sửa sự kiện: thông tin · mở bán · phòng chờ",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "OrgEventSales.dc.html": {
+      "x": 5440,
+      "y": 8744,
+      "w": 1280,
+      "h": 1100,
+      "title": "25. Organizer — Bảng điều khiển sự kiện",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "OrgStripe.dc.html": {
+      "x": 8160,
+      "y": 8744,
+      "w": 1280,
+      "h": 1300,
+      "title": "26. Organizer — Thanh toán & Stripe",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "OrgSettings.dc.html": {
+      "x": 9520,
+      "y": 8744,
+      "w": 1280,
+      "h": 1000,
+      "title": "27. Organizer — Cài đặt",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "AdminUsers.dc.html": {
+      "x": 1360,
+      "y": 11744,
+      "w": 1280,
+      "h": 900,
+      "title": "28. Admin — Người dùng",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "AdminOrders.dc.html": {
+      "x": 6800,
+      "y": 11744,
+      "w": 1280,
+      "h": 960,
+      "title": "29. Admin — Đơn hàng & hoàn tiền",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "AdminFees.dc.html": {
+      "x": 8160,
+      "y": 11744,
+      "w": 1280,
+      "h": 900,
+      "title": "30. Admin — Phí nền tảng",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "AdminAuditLogs.dc.html": {
+      "x": 9520,
+      "y": 11744,
+      "w": 1280,
+      "h": 960,
+      "title": "31. Admin — Audit log",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "AdminFlags.dc.html": {
+      "x": 10880,
+      "y": 11744,
+      "w": 1280,
+      "h": 960,
+      "title": "32. Admin — Feature flags",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "AdminRegions.dc.html": {
+      "x": 5440,
+      "y": 11744,
+      "w": 1280,
+      "h": 1000,
+      "title": "33. Admin — Đơn vị hành chính",
+      "expand": "fill",
+      "is_interactive": true
+    }
+  },
+  "order": [
+    "Main.dc.html",
+    "EventList.dc.html",
+    "EventDetail.dc.html",
+    "Queue.dc.html",
+    "SeatSelect.dc.html",
+    "Checkout.dc.html",
+    "Success.dc.html",
+    "SystemStates.dc.html",
+    "Auth.dc.html",
+    "Profile.dc.html",
+    "Notifications.dc.html",
+    "MyBookings.dc.html",
+    "OrganizerApply.dc.html",
+    "MyTickets.dc.html",
+    "TicketQR.dc.html",
+    "Checkin.dc.html",
+    "OrgDashboard.dc.html",
+    "OrgEvents.dc.html",
+    "OrgEventInfo.dc.html",
+    "OrgCreateEvent.dc.html",
+    "OrgEventSales.dc.html",
+    "OrgOrders.dc.html",
+    "OrgStripe.dc.html",
+    "OrgSettings.dc.html",
+    "AdminOrganizers.dc.html",
+    "AdminUsers.dc.html",
+    "AdminVenues.dc.html",
+    "AdminSeatMap.dc.html",
+    "AdminRegions.dc.html",
+    "AdminOrders.dc.html",
+    "AdminFees.dc.html",
+    "AdminAuditLogs.dc.html",
+    "AdminFlags.dc.html"
+  ],
+  "notes": {
+    "a-Main": {
+      "x": 0,
+      "y": 1980,
+      "w": 640,
+      "maxH": 1000,
+      "text": "HÀNH ĐỘNG — Trang chủ (/)\n• Logo → Trang chủ\n• Ô tìm kiếm → Enter: Danh sách sự kiện ?q=…\n• Tạo sự kiện → Đăng ký ban tổ chức (đã là organizer → Kênh BTC)\n• Vé của tôi → /me/tickets\n• Chuông → Thông báo (badge đỏ = có chưa đọc)\n• Avatar → Hồ sơ (menu tài khoản: xem màn 19–21)\n• Danh mục → Danh sách sự kiện ?category=…\n• Banner / thẻ sự kiện → Chi tiết sự kiện · ‹ › đổi banner\n• Xem tất cả → Danh sách sự kiện\n• Thành phố → Danh sách sự kiện ?city=…\n• Đăng ký bán vé → Đăng ký ban tổ chức\nChưa đăng nhập: thay Vé của tôi + chuông + avatar bằng nút Đăng nhập → màn 18."
+    },
+    "a-EventList": {
+      "x": 1360,
+      "y": 1940,
+      "w": 640,
+      "maxH": 1000,
+      "text": "HÀNH ĐỘNG — Danh sách sự kiện (/events)\n• Bộ lọc bên trái (danh mục, thành phố, thời gian, giá, còn vé) → cập nhật URL + kết quả\n• Chip “×” → bỏ 1 bộ lọc · Xoá tất cả → bỏ hết\n• Sắp xếp → đổi thứ tự\n• Thẻ sự kiện → Chi tiết sự kiện\n• Trước / số trang / Sau → phân trang\n• Không có kết quả → trạng thái trống + gợi ý bỏ bớt bộ lọc."
+    },
+    "a-EventDetail": {
+      "x": 2720,
+      "y": 1980,
+      "w": 640,
+      "maxH": 1000,
+      "text": "HÀNH ĐỘNG — Chi tiết sự kiện (/events/:id)\n• Mua vé:\n  – chưa đăng nhập → màn 23 “Cần đăng nhập” → Auth, xong quay lại đây\n  – sự kiện nhu cầu cao → Hàng chờ\n  – còn lại → Chọn ghế\n  – trước giờ mở bán: nút khoá + đếm ngược · hết vé: “Hết vé”\n• Bản đồ → Google Maps (tab mới)\n• Chia sẻ → sao chép link / Web Share API trên mobile\n• Thêm vào lịch → tải file .ics\n• Tab Giới thiệu / Thông tin vé / Sơ đồ / BTC → cuộn tới mục\n• Liên hệ ban tổ chức → mailto email hỗ trợ của BTC."
+    },
+    "a-Queue": {
+      "x": 4080,
+      "y": 980,
+      "w": 640,
+      "maxH": 1000,
+      "text": "HÀNH ĐỘNG — Hàng chờ (/events/:id/queue)\n• Tự động: SSE cập nhật vị trí và thời gian chờ ước tính\n• Tới lượt (ADMITTED) → tự chuyển Chọn ghế, admission token 15 phút\n• Chọn ghế (khi tới lượt) → Chọn ghế\n• Rời hàng chờ → xác nhận, mất vị trí → Chi tiết sự kiện\n• Mất kết nối → tự kết nối lại, giữ nguyên vị trí\n• Token hết hạn → màn 23 “Lượt vào hết hạn”."
+    },
+    "a-SeatSelect": {
+      "x": 5440,
+      "y": 1080,
+      "w": 640,
+      "maxH": 1000,
+      "text": "HÀNH ĐỘNG — Chọn ghế (/events/:id/seats)\n• Ghế trống → chọn / bỏ chọn (tối đa 6; ghế thứ 7 → toast “Tối đa 6 vé mỗi đơn”)\n• Ghế đã bán / đang giữ → không chọn được, tooltip trạng thái\n• Phóng to / Thu nhỏ / Vừa màn hình → zoom sơ đồ\n• “×” ở danh sách ghế đã chọn → bỏ ghế\n• Tiếp tục → POST /bookings (giữ ghế 10 phút) → Thanh toán\n  – 409 → màn 23 “Ghế vừa có người giữ”\n  – đã có đơn chờ → màn 23 “Đã có đơn chờ”\n• Quay lại → Chi tiết sự kiện (bỏ lựa chọn)."
+    },
+    "a-Checkout": {
+      "x": 6800,
+      "y": 1180,
+      "w": 640,
+      "maxH": 1000,
+      "text": "HÀNH ĐỘNG — Thanh toán (/checkout/:bookingId)\n• Đồng hồ đếm ngược theo expiresAt; về 0 → màn 23 “Hết giờ giữ ghế”\n• Thẻ / Google Pay / Apple Pay → đổi phương thức trong Stripe Payment Element\n• Thanh toán X ₫ → tạo PaymentIntent + confirm\n  – thành công → Thanh toán thành công\n  – bị từ chối → màn 23 “Thanh toán lỗi” (ghế vẫn giữ)\n  – chờ webhook → màn 23 “Đang xác nhận”\n• Quay lại chọn ghế → xác nhận huỷ giữ chỗ → Chọn ghế\n• Điều khoản / Chính sách hoàn vé → trang tĩnh."
+    },
+    "a-Success": {
+      "x": 8160,
+      "y": 1080,
+      "w": 640,
+      "maxH": 1000,
+      "text": "HÀNH ĐỘNG — Thanh toán thành công\n• Tải PDF → tải toàn bộ vé dạng PDF\n• Xem vé → Vé QR\n• Đến Vé của tôi → /me/tickets\n• Thêm vào lịch → .ics\n• Về trang chủ → Trang chủ."
+    },
+    "a-SystemStates": {
+      "x": 9520,
+      "y": 980,
+      "w": 640,
+      "maxH": 1000,
+      "text": "HÀNH ĐỘNG — Trạng thái lỗi & ngoại lệ\nChọn trạng thái ở thanh trên hoặc Tweaks › state. Mỗi trạng thái ghi “Khi nào hiện” ngay dưới nút.\n• 404 → Về trang chủ / Tìm sự kiện\n• 403 → Về trang chủ / Đăng nhập tài khoản khác\n• Cần đăng nhập → Đăng nhập / Tạo tài khoản (quay lại đúng trang)\n• Hết giờ giữ ghế → Chọn lại ghế / Về sự kiện\n• Ghế đã có người giữ (409) → Chọn ghế khác\n• Đã có đơn chờ (BR-02) → Tiếp tục thanh toán / Xem đơn hàng\n• Thanh toán lỗi → Thử lại / Huỷ đơn\n• Đang xác nhận thanh toán → Làm mới / Xem đơn hàng\n• Lượt vào hết hạn → Vào lại hàng chờ\n• Hết vé → Xem sự kiện khác\n• 500 (kèm mã tham chiếu) → Thử lại\n• Bảo trì (flag maintenance.mode) → Xem vé của tôi\n• Mất mạng → banner + Thử lại ngay."
+    },
+    "row1": {
+      "x": 0,
+      "y": -300,
+      "w": 240,
+      "text": "Khách hàng — tìm & mua vé",
+      "kind": "title1",
+      "maxW": 8000
+    },
+    "a-Auth": {
+      "x": 0,
+      "y": 4380,
+      "w": 640,
+      "maxH": 1000,
+      "text": "HÀNH ĐỘNG — Đăng nhập / Đăng ký (Keycloak, theme TicketRush)\nTweaks: mode, error.\nĐĂNG NHẬP\n• Tiếp tục với Google → OAuth → về trang trước (returnTo)\n• Đăng nhập → sai: banner lỗi; sai 5 lần → khoá 15 phút\n• Biểu tượng mắt → hiện/ẩn mật khẩu\n• Ghi nhớ đăng nhập → phiên dài hơn\n• Quên mật khẩu? → màn Quên mật khẩu · Đăng ký → Tạo tài khoản\nTẠO TÀI KHOẢN\n• Tạo tài khoản: chỉ bật khi đã tick điều khoản → gửi email → Xác minh email\nXÁC MINH EMAIL\n• Gửi lại email (giới hạn 60 giây) · Tôi đã xác minh → Đăng nhập · Đổi email → Tạo tài khoản\nQUÊN / ĐẶT LẠI MẬT KHẨU\n• Gửi liên kết → “Đã gửi liên kết” (luôn báo thành công, không lộ email có tồn tại hay không)\n• Mở liên kết → Đặt mật khẩu mới → đăng xuất mọi phiên khác → Đăng nhập + toast."
+    },
+    "a-Profile": {
+      "x": 1360,
+      "y": 4580,
+      "w": 640,
+      "maxH": 1000,
+      "text": "HÀNH ĐỘNG — Hồ sơ cá nhân (/me/profile)\nTweaks: tab, role, dialog. Header: chuông → popover thông báo; avatar → menu tài khoản.\nTHÔNG TIN\n• Tải ảnh lên / Xoá ảnh → toast\n• Đổi email → modal (email mới + mật khẩu hiện tại) → gửi link xác minh\n• Lưu thay đổi → toast · Huỷ thay đổi → khôi phục\n• Khối “Ban tổ chức · Chưa đăng ký” → Đăng ký ban tổ chức (màn 22); role organizer: “Đã duyệt” → Vào kênh BTC\nBẢO MẬT\n• Đổi mật khẩu → modal (hiện tại, mới, nhập lại, tuỳ chọn đăng xuất thiết bị khác)\n• Huỷ liên kết Google → yêu cầu đã đặt mật khẩu\n• Đăng xuất (từng phiên) · Đăng xuất thiết bị khác → modal xác nhận\n• Xoá tài khoản → modal gõ email; bị chặn khi còn vé sắp diễn\nCÀI ĐẶT THÔNG BÁO\n• Switch từng loại email (loại bắt buộc bị khoá)\n• Bật trên thiết bị này → trình duyệt xin quyền push · Lưu cài đặt."
+    },
+    "a-Notifications": {
+      "x": 2720,
+      "y": 4780,
+      "w": 640,
+      "maxH": 1000,
+      "text": "HÀNH ĐỘNG — Thông báo (/me/notifications)\nTweaks: bell = mở popover chuông ở header.\n• Tất cả / Chưa đọc + chip loại → lọc\n• Đánh dấu tất cả đã đọc (khoá khi không còn chưa đọc)\n• Bánh răng → Hồ sơ › Cài đặt thông báo\n• Tiêu đề thông báo → mở nội dung liên quan (Vé QR, Thanh toán, Sự kiện, Đơn hàng, Stripe…) và đánh dấu đã đọc\n• ⋯ → Đánh dấu đã đọc / chưa đọc · Mở nội dung · Xoá thông báo\n• Xem thông báo cũ hơn → tải trang tiếp theo\nPOPOVER CHUÔNG (mọi trang khách hàng)\n• 3 thông báo mới nhất · Đánh dấu tất cả đã đọc · Xem tất cả → màn này."
+    },
+    "a-MyBookings": {
+      "x": 4080,
+      "y": 4580,
+      "w": 640,
+      "maxH": 1000,
+      "text": "HÀNH ĐỘNG — Đơn hàng của tôi (/me/bookings)\nTweaks: dialog.\n• Banner đơn đang giữ ghế: Tiếp tục thanh toán → Thanh toán · Huỷ giữ chỗ → modal → nhả ghế\n• Tìm + chip trạng thái → lọc · phân trang\n• Mã đơn → modal Chi tiết (vé, thanh toán, lịch sử) → Tải hoá đơn / Xem vé\n• ⋯ theo trạng thái:\n  – Chờ thanh toán: Tiếp tục thanh toán, Huỷ giữ chỗ\n  – Đã xác nhận: Xem chi tiết, Xem vé, Tải hoá đơn, Yêu cầu hoàn vé\n  – Khác: Xem chi tiết\n• Yêu cầu hoàn vé → modal (số tiền, lý do, ghi chú) → trạng thái “Đang hoàn tiền”\n• Trong vòng 48h trước giờ diễn (vd. TR-8D9F2A) → modal “Đã quá hạn hoàn vé”."
+    },
+    "a-OrganizerApply": {
+      "x": 5440,
+      "y": 4980,
+      "w": 640,
+      "maxH": 1000,
+      "text": "HÀNH ĐỘNG — Đăng ký ban tổ chức (/organizer/apply)\nTweaks: status (form / pending / rejected / approved), dialog.\nFORM\n• Cá nhân / Doanh nghiệp → đổi trường bắt buộc (CCCD hoặc Tên DN + MST)\n• Chip loại sự kiện → chọn nhiều\n• Chọn tệp / kéo thả → thêm giấy tờ · thùng rác → xoá tệp\n• Lưu nháp → toast\n• Gửi hồ sơ (bật khi tick điều khoản + có ≥ 1 tệp) → modal xác nhận → Đang chờ duyệt, Admin nhận hồ sơ ở màn 15\nĐANG CHỜ: Rút hồ sơ → modal → về bản nháp\nBỊ TỪ CHỐI: hiện lý do của Admin, mở lại form, nút “Gửi lại hồ sơ”\nĐÃ DUYỆT: Kết nối Stripe → màn 26 · Vào kênh BTC → màn 11."
+    },
+    "row1b": {
+      "x": 0,
+      "y": 3100,
+      "w": 240,
+      "text": "Tài khoản khách hàng",
+      "kind": "title1",
+      "maxW": 6720
+    },
+    "a-MyTickets": {
+      "x": 0,
+      "y": 7324,
+      "w": 390,
+      "maxH": 1000,
+      "text": "HÀNH ĐỘNG — Vé của tôi (mobile)\n• Tab Sắp diễn ra / Đã qua / Đã hoàn → lọc\n• Ô tìm → lọc theo tên sự kiện, mã vé\n• Chạm vào vé → Vé QR\n• Trước / Sau → phân trang\n• Logo → Trang chủ."
+    },
+    "a-TicketQR": {
+      "x": 470,
+      "y": 7324,
+      "w": 390,
+      "maxH": 1000,
+      "text": "HÀNH ĐỘNG — Vé QR (mobile)\n• Quay lại → Vé của tôi\n• Chia sẻ vé → chia sẻ thông tin sự kiện (chưa hỗ trợ chuyển nhượng vé)\n• Yêu cầu hoàn vé → bottom sheet:\n  – Xác nhận hoàn vé → vé bị thu hồi (REVOKED), toast\n  – Giữ vé → đóng\n• Trong vòng 48h trước giờ diễn: nút hoàn bị khoá + giải thích (BR-07)\n• Mở màn → tăng độ sáng để dễ quét."
+    },
+    "a-Checkin": {
+      "x": 940,
+      "y": 7324,
+      "w": 390,
+      "maxH": 1000,
+      "text": "HÀNH ĐỘNG — Check-in tại cổng (mobile, PWA)\nTweaks: result (valid / used / forged).\n• Camera quét liên tục → kết quả: Hợp lệ (xanh + âm thanh) · Đã sử dụng (vàng) · Không hợp lệ (đỏ)\n• Quét vé tiếp theo → xoá kết quả, quét tiếp\n• Quay lại → Bảng điều khiển sự kiện\n• 312/1.200 = đã check-in / tổng vé\n• Mất mạng: vẫn kiểm tra chữ ký offline, đồng bộ lượt check-in khi có mạng lại."
+    },
+    "row2": {
+      "x": 0,
+      "y": 6100,
+      "w": 240,
+      "text": "Mobile — vé & check-in",
+      "kind": "title1",
+      "maxW": 1330
+    },
+    "a-OrgDashboard": {
+      "x": 0,
+      "y": 9924,
+      "w": 640,
+      "maxH": 1000,
+      "text": "HÀNH ĐỘNG — Organizer · Tổng quan\n• Khoảng thời gian (select) / 3 tháng · 30 ngày · 7 ngày → đổi số liệu và biểu đồ\n• Tải báo cáo → CSV\n• Xem tất cả (đơn hàng) → Đơn hàng\n• Sidebar: Sự kiện, Đơn hàng, Check-in, Thanh toán & Stripe (26), Cài đặt (27)\n• Sự kiện gần đây → Bảng điều khiển sự kiện (25) / Sửa sự kiện (24)\n• Avatar cuối sidebar → menu: Hồ sơ, Thông báo, Về trang mua vé, Đăng xuất\n• Chưa kết nối Stripe → hiện banner dẫn tới màn 26."
+    },
+    "a-OrgEvents": {
+      "x": 1360,
+      "y": 9724,
+      "w": 640,
+      "maxH": 1000,
+      "text": "HÀNH ĐỘNG — Organizer · Sự kiện\nTweaks: dialog.\n• Tạo sự kiện → modal (tên, danh mục, địa điểm, ngày, giờ) → Tạo & tiếp tục → Sửa sự kiện (24)\n• Lọc tên · Trạng thái · Địa điểm → lọc · Đặt lại\n• Hiển thị → ẩn/hiện cột · Ngày diễn → sắp xếp\n• Tên sự kiện → Sửa sự kiện (24)\n• ⋯ Chỉnh sửa (24) · Xem doanh thu (25) · Xem đơn hàng (14) · Nhân bản → bản nháp mới · Huỷ sự kiện → modal gõ HUY → hoàn tiền tự động (BR-08)\n• Phân trang, số dòng mỗi trang."
+    },
+    "a-OrgEventInfo": {
+      "x": 2720,
+      "y": 10324,
+      "w": 640,
+      "maxH": 1000,
+      "text": "HÀNH ĐỘNG — Sửa sự kiện (/organizer/events/:id/edit)\nTweaks: tab, ready, dialog.\nHEADER\n• Xem trước → trang sự kiện · Lưu nháp → toast\n• Publish → đủ điều kiện: modal xác nhận; chưa đủ: modal “Chưa thể publish” → Kết nối Stripe\n• Tab “Hạng vé & giá” → màn 13\nTHÔNG TIN CHUNG\n• Tải / Xoá ảnh bìa · chọn màu poster tự động\n• Thẻ: Enter để thêm\n• Đổi sơ đồ → modal cảnh báo xoá gán hạng vé\nMỞ BÁN\n• Ngày/giờ mở bán, kết thúc bán · switch hiện trước giờ mở bán\n• Quy định hệ thống (chỉ đọc) · Hiển thị: Công khai / Chỉ người có link\nPHÒNG CHỜ\n• Switch “Nhu cầu cao” (high_demand) → mở phòng chờ trước X phút, số khách mỗi phút\n• Xem trước hàng chờ → Queue\nCHECKLIST: link tới mục còn thiếu."
+    },
+    "a-OrgCreateEvent": {
+      "x": 4080,
+      "y": 9824,
+      "w": 640,
+      "maxH": 1000,
+      "text": "HÀNH ĐỘNG — Sửa sự kiện · Hạng vé & giá\nTweaks: dialog.\n• Tab Thông tin chung / Mở bán / Phòng chờ → màn 24\n• Xem trước → trang sự kiện\n• Publish → đủ điều kiện: modal xác nhận; thiếu: modal “Chưa thể publish”\n• Thêm hạng vé → modal (tên, giá, màu, chọn khu áp dụng)\n• ⋯ Chỉnh sửa → modal · Xoá hạng vé → modal (không xoá khi đã có vé bán)\n• Checklist → link tới mục còn thiếu\n• Bấm khu trên sơ đồ → xem hạng vé đã gán."
+    },
+    "a-OrgEventSales": {
+      "x": 5440,
+      "y": 9924,
+      "w": 640,
+      "maxH": 1000,
+      "text": "HÀNH ĐỘNG — Bảng điều khiển sự kiện (/organizer/events/:id/dashboard)\nTweaks: dialog. Số liệu cập nhật realtime.\n• Trang sự kiện → trang công khai · Check-in → màn 10 · Sửa sự kiện → màn 24\n• ⋯ Xuất danh sách khách (CSV) · Xem đơn hàng (14)\n• ⋯ Tạm dừng bán → modal (thông báo cho khách) → banner “Đã tạm dừng” + Mở bán lại\n• ⋯ Huỷ sự kiện → modal lý do + gõ HUY → hoàn tiền toàn bộ (BR-08)\n• Xem tất cả (đơn mới nhất) → Đơn hàng."
+    },
+    "a-OrgOrders": {
+      "x": 6800,
+      "y": 9724,
+      "w": 640,
+      "maxH": 1000,
+      "text": "HÀNH ĐỘNG — Organizer · Đơn hàng\nTweaks: dialog.\n• Xuất CSV\n• Tìm (mã đơn, tên, email) · Trạng thái · Thời gian → lọc · Đặt lại\n• ⋯ Xem chi tiết → chi tiết đơn · Gửi lại email vé → toast · Hoàn tiền → modal (lý do, ghi chú, gửi email) → hoàn 100% giá vé\n• Phân trang."
+    },
+    "a-OrgStripe": {
+      "x": 8160,
+      "y": 10124,
+      "w": 640,
+      "maxH": 1000,
+      "text": "HÀNH ĐỘNG — Thanh toán & Stripe (bấm Play để chạy luồng)\nTweaks: state (none / redirect / incomplete / pending / active / restricted), dialog.\nThanh 4 bước luôn hiện: Tạo tài khoản → Hồ sơ trên Stripe → Stripe xác minh → Nhận thanh toán & rút tiền.\n1. CHƯA KẾT NỐI: cảnh báo BR-05 + điều khoản (phí 5%, lịch rút, giấy tờ)\n• Kết nối Stripe → modal “Mở trang Stripe” → Mở Stripe\n  BE: POST /organizer/stripe/onboarding-link (tạo Express account nếu chưa có) → redirect sang Stripe\n2. ĐANG Ở TRANG STRIPE (khung nét đứt = mô phỏng, trang thật ở stripe.com)\n• Hoàn tất → quay về: Đang xác minh\n• Thoát giữa chừng → quay về: Hồ sơ chưa hoàn tất\n• Link hết hạn → Hồ sơ chưa hoàn tất (FE tạo link mới khi bấm lại)\n3. HỒ SƠ CHƯA HOÀN TẤT: liệt kê mục thiếu · Tiếp tục trên Stripe → modal → trang Stripe\n4. ĐANG XÁC MINH: hồ sơ đã gửi · Làm mới trạng thái → toast\n• Mô phỏng webhook account.updated: Stripe xác minh xong → Đã kết nối · Stripe yêu cầu bổ sung → Hồ sơ chưa hoàn tất\n5. ĐÃ KẾT NỐI: Stripe Dashboard (tab mới) · số dư · doanh thu & phí theo sự kiện · Xuất CSV payout · Ngắt kết nối → bị chặn khi còn sự kiện đang bán/chưa diễn\n6. BỊ HẠN CHẾ: Stripe tắt charges_enabled → sự kiện đang bán chuyển Tạm dừng bán · Cập nhật trên Stripe → modal → trang Stripe."
+    },
+    "a-OrgSettings": {
+      "x": 9520,
+      "y": 9824,
+      "w": 640,
+      "maxH": 1000,
+      "text": "HÀNH ĐỘNG — Organizer · Cài đặt\nTweaks: tab, dialog.\nHỒ SƠ CÔNG KHAI: Tải / Xoá logo · tên, đường dẫn, giới thiệu, liên hệ · khung “Xem trước” · Lưu\nTHÀNH VIÊN (đề xuất thêm, overview chưa có)\n• Mời thành viên → modal (email, vai trò Quản lý sự kiện / Nhân viên check-in, sự kiện được giao)\n• ⋯ Gửi lại lời mời · Đổi vai trò (modal) · Xoá khỏi tổ chức (modal) / Huỷ lời mời\n• Chủ sở hữu không có menu\nTHÔNG BÁO: switch từng loại email · Lưu\nPHÁP LÝ: chỉ đọc · Yêu cầu cập nhật → modal (nội dung + giấy tờ) → Admin duyệt lại."
+    },
+    "row3": {
+      "x": 0,
+      "y": 8444,
+      "w": 240,
+      "text": "Organizer",
+      "kind": "title1",
+      "maxW": 8000
+    },
+    "a-AdminOrganizers": {
+      "x": 0,
+      "y": 12724,
+      "w": 640,
+      "maxH": 1000,
+      "text": "HÀNH ĐỘNG — Admin · Hồ sơ organizer\nTweaks: dialog.\n• Tìm · Trạng thái · Loại hình → lọc · Đặt lại\n• Tên tổ chức → modal Xem hồ sơ (có nút Từ chối / Duyệt hồ sơ)\n• ⋯ Xem hồ sơ\n• ⋯ Duyệt → modal → APPROVED, gán role ORGANIZER, email cho người đăng ký\n• ⋯ Từ chối → modal, lý do bắt buộc → email (hiện ở màn 22)\n• ⋯ Tạm khoá → modal → SUSPENDED (ẩn sự kiện, ngừng bán)\n• Phân trang. Sidebar dẫn tới các màn 16, 28–32."
+    },
+    "a-AdminUsers": {
+      "x": 1360,
+      "y": 12724,
+      "w": 640,
+      "maxH": 1000,
+      "text": "HÀNH ĐỘNG — Admin · Người dùng\nTweaks: dialog.\n• Tìm · Vai trò · Trạng thái → lọc · Đặt lại · Xuất CSV\n• Tên → modal chi tiết (số đơn, chi tiêu, hoàn vé, Keycloak ID) → Audit log / Xem đơn hàng\n• ⋯ Xem chi tiết\n• ⋯ Đổi vai trò → modal (CUSTOMER khoá; chọn ADMIN thì hiện cảnh báo)\n• ⋯ Gửi email đặt lại mật khẩu · Gửi lại email xác minh (chỉ khi chưa xác minh)\n• ⋯ Khoá tài khoản → modal lý do, huỷ mọi phiên / Mở khoá → toast."
+    },
+    "a-AdminVenues": {
+      "x": 2720,
+      "y": 12724,
+      "w": 640,
+      "maxH": 1000,
+      "text": "HÀNH ĐỘNG — Admin · Địa điểm\nTweaks: dialog.\n• Thêm địa điểm → modal (tên, địa chỉ, Tỉnh/TP → Xã/Phường lấy từ Đơn vị hành chính, sức chứa)\n• Tìm · Tỉnh/TP → lọc · Đặt lại\n• Tên địa điểm → Sơ đồ ghế\n• ⋯ Sửa thông tin → modal · Quản lý sơ đồ ghế → màn 17 · Xoá địa điểm → modal (chặn khi có sự kiện đang dùng)\n• Phân trang.\nTẢI FILE MẪU / IMPORT EXCEL\n• Tải file mẫu → tải mau-dia-diem.xlsx (ma, ten, dia_chi, ma_xa, suc_chua)\n• Import Excel → modal 3 bước:\n  1. Chọn file (.xlsx/.csv, ≤ 5 MB, ≤ 5.000 dòng) · chọn Khi trùng mã: Cập nhật / Bỏ qua · bảng cột của file mẫu · Kiểm tra file\n  2. Kiểm tra: tổng / hợp lệ / lỗi / thêm mới–cập nhật · bảng lỗi theo dòng–cột · Tải file lỗi · Chọn file khác · Import N dòng hợp lệ\n  3. Kết quả: số dòng thêm mới, cập nhật, bỏ qua · ghi audit log VENUES_IMPORTED\n  Dòng lỗi không chặn dòng hợp lệ. Tweaks › dialog: import / importPreview / importDone."
+    },
+    "a-AdminSeatMap": {
+      "x": 4080,
+      "y": 12824,
+      "w": 640,
+      "maxH": 1000,
+      "text": "HÀNH ĐỘNG — Admin · Sơ đồ ghế\nTweaks: dialog.\n• Thêm khu → modal (mã, tên, số hàng, số ghế mỗi hàng → sinh lưới)\n• Bấm khu ở danh sách → chọn và làm nổi bật trên sơ đồ\n• ⋯ Sửa khu (modal) · Nhân bản · Xoá khu (modal)\n• Thu nhỏ / Phóng to / Vừa khung\n• Huỷ thay đổi → về bản đã lưu\n• Lưu sơ đồ → nếu sơ đồ đang được sự kiện đã publish dùng thì tạo phiên bản mới.\nTẢI FILE MẪU / IMPORT EXCEL\n• Tải file mẫu → tải mau-so-do-ghe.xlsx (ma_khu, ten_khu, hang, ghe_tu, ghe_den, x, y)\n• Import Excel → modal 3 bước:\n  1. Chọn file (.xlsx/.csv, ≤ 5 MB, ≤ 5.000 dòng) · chọn Khi trùng mã: Cập nhật / Bỏ qua · bảng cột của file mẫu · Kiểm tra file\n  2. Kiểm tra: tổng / hợp lệ / lỗi / thêm mới–cập nhật · bảng lỗi theo dòng–cột · Tải file lỗi · Chọn file khác · Import N dòng hợp lệ\n  3. Kết quả: số dòng thêm mới, cập nhật, bỏ qua · ghi audit log SEATMAP_IMPORTED\n  Dòng lỗi không chặn dòng hợp lệ. Tweaks › dialog: import / importPreview / importDone."
+    },
+    "a-AdminRegions": {
+      "x": 5440,
+      "y": 12824,
+      "w": 640,
+      "maxH": 1000,
+      "text": "HÀNH ĐỘNG — Admin · Đơn vị hành chính\nTweaks: dialog. Dữ liệu: 1 bảng administrative_units (level 1 = Tỉnh/TP, level 2 = Xã/Phường/Đặc khu, parent_id).\n• Cột trái: 34 tỉnh/thành · tìm theo tên/mã · bấm → xem xã/phường bên phải\n• Xuất Excel → 2 sheet (Tỉnh, Xã) · Thêm đơn vị → modal (chọn cấp 1/2, thuộc tỉnh/thành, mã, tên, loại, hiệu lực từ)\n• Cột phải: tìm tên/mã · chip Phường / Xã / Đặc khu · phân trang · Thêm xã/phường (modal, điền sẵn tỉnh)\n• ⋯ của tỉnh/thành: Sửa · Xuất xã/phường (Excel) · Ngừng sử dụng / Sử dụng lại · Xoá (bị chặn khi còn đơn vị con)\n• ⋯ từng xã: Sửa · Xem địa điểm (số địa điểm tham chiếu) · Ngừng sử dụng (modal) / Sử dụng lại · Xoá (bị chặn khi có địa điểm → gợi ý Ngừng sử dụng)\n• Tỉnh chưa có dữ liệu cấp 2 → trạng thái trống + Import Excel / Thêm xã/phường\nTẢI FILE MẪU / IMPORT EXCEL\n• Tải file mẫu → tải mau-don-vi-hanh-chinh.xlsx (ma, ten, loai, ma_cha, hieu_luc_tu)\n• Import Excel → modal 3 bước:\n  1. Chọn file (.xlsx/.csv, ≤ 5 MB, ≤ 5.000 dòng) · chọn Khi trùng mã: Cập nhật / Bỏ qua · bảng cột của file mẫu · Kiểm tra file\n  2. Kiểm tra: tổng / hợp lệ / lỗi / thêm mới–cập nhật · bảng lỗi theo dòng–cột · Tải file lỗi · Chọn file khác · Import N dòng hợp lệ\n  3. Kết quả: số dòng thêm mới, cập nhật, bỏ qua · ghi audit log ADMIN_UNITS_IMPORTED\n  Dòng lỗi không chặn dòng hợp lệ. Tweaks › dialog: import / importPreview / importDone."
+    },
+    "a-AdminOrders": {
+      "x": 6800,
+      "y": 12784,
+      "w": 640,
+      "maxH": 1000,
+      "text": "HÀNH ĐỘNG — Admin · Đơn hàng & hoàn tiền\nTweaks: dialog.\n• Tab Tất cả đơn / Hoàn tiền đang xử lý / Cần đối soát\n• Tìm (mã đơn, email, PaymentIntent) · Trạng thái · Organizer · Đặt lại · Xuất CSV\n• Mã đơn → modal chi tiết + dòng thời gian (booking, Stripe, vé, email) · Đồng bộ với Stripe\n• ⋯ Xử lý đối soát (khi lệch) → modal: Phát hành vé / Hoàn toàn bộ\n• ⋯ Đồng bộ với Stripe · Gửi lại email vé · Mở trong Stripe\n• ⋯ Hoàn tiền thủ công → modal (switch hoàn cả phí nền tảng, lý do, ghi chú nội bộ bắt buộc, gửi email)."
+    },
+    "a-AdminFees": {
+      "x": 8160,
+      "y": 12724,
+      "w": 640,
+      "maxH": 1000,
+      "text": "HÀNH ĐỘNG — Admin · Phí nền tảng\nTweaks: dialog.\n• Thay đổi mức mặc định → modal (%, hiệu lực ngay hoặc hẹn giờ, lý do); không áp dụng cho đơn cũ\n• Tính thử: chọn giá vé → phí và số organizer nhận\n• Thêm mức riêng → modal (organizer, %, từ–đến, lý do)\n• ⋯ Sửa (modal điền sẵn) · Kết thúc ngay · Xoá (modal)\n• Lịch sử thay đổi → Audit log."
+    },
+    "a-AdminAuditLogs": {
+      "x": 9520,
+      "y": 12784,
+      "w": 640,
+      "maxH": 1000,
+      "text": "HÀNH ĐỘNG — Admin · Audit log (chỉ đọc)\nTweaks: dialog.\n• Tìm · Hành động · Người thực hiện · Khoảng thời gian · Đặt lại · Xuất CSV\n• Xem → modal: request ID, IP/thiết bị, link trace Jaeger, so sánh Trước / Sau (JSON)\n• Sao chép JSON → toast\n• Phân trang."
+    },
+    "a-AdminFlags": {
+      "x": 10880,
+      "y": 12784,
+      "w": 640,
+      "maxH": 1000,
+      "text": "HÀNH ĐỘNG — Admin · Feature flags (Unleash)\nTweaks: dialog.\n• Development / Staging / Production → đổi môi trường\n• Tìm · Loại → lọc · Mở Unleash → tab mới\n• Switch Bật: flag thường → bật/tắt ngay + toast; flag “Quan trọng” → modal nhập lý do\n• Tạo flag → modal (key, mô tả, loại, tỉ lệ, giới hạn sự kiện/organizer, Quan trọng); mặc định tắt\n• ⋯ Sửa cấu hình · Sao chép key · Xem lịch sử → Audit log · Lưu trữ flag (modal)."
+    },
+    "row4": {
+      "x": 0,
+      "y": 11444,
+      "w": 240,
+      "text": "Admin",
+      "kind": "title1",
+      "maxW": 8000
+    }
+  },
+  "designSystems": []
+}

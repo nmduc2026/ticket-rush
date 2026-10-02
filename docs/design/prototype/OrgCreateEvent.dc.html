@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Organizer — Sửa sự kiện</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#FFFFFF;color:#09090B;font-family:'Be Vietnam Pro',system-ui,sans-serif;font-size:14px;-webkit-font-smoothing:antialiased}
+a{color:#09090B}a:hover{color:#09090B}
+button{font-family:inherit}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:36px;padding:0 16px;border-radius:8px;font-size:14px;font-weight:500;line-height:1;white-space:nowrap;border:1px solid transparent;cursor:pointer;text-decoration:none;box-sizing:border-box;background:transparent;color:#09090B}
+.btn-sm{height:32px;padding:0 12px;gap:6px}
+.btn-default{background:#047857;color:#FFFFFF;box-shadow:0 1px 2px rgba(0,0,0,.05)}.btn-default:hover{background:#065F46;color:#FFFFFF}
+.btn-outline{background:#FFFFFF;border-color:#E4E4E7;box-shadow:0 1px 2px rgba(0,0,0,.05)}.btn-outline:hover{background:#F4F4F5}
+.btn-ghost:hover{background:#F4F4F5}
+.btn-destructive{background:#DC2626;color:#FFFFFF}.btn-destructive:hover{background:#B91C1C;color:#FFFFFF}
+.input{height:36px;border:1px solid #E4E4E7;border-radius:8px;padding:0 12px;font-family:inherit;font-size:14px;color:#09090B;background:#FFFFFF;box-sizing:border-box;outline:none;box-shadow:0 1px 2px rgba(0,0,0,.05);width:100%}
+.lbl{display:flex;flex-direction:column;gap:8px;font-size:14px;font-weight:500}
+.badge{display:inline-flex;align-items:center;gap:6px;border:1px solid #E4E4E7;border-radius:6px;padding:2px 8px;font-size:12px;font-weight:500;line-height:16px;white-space:nowrap}
+.card{background:#FFFFFF;border:1px solid #E4E4E7;border-radius:12px;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.tbl{width:100%;border-collapse:collapse}
+.tbl th{height:40px;padding:0 8px;text-align:left;font-weight:500;color:#71717A;border-bottom:1px solid #E4E4E7;white-space:nowrap}
+.tbl td{height:52px;padding:0 8px;border-bottom:1px solid #E4E4E7;vertical-align:middle}
+.tbl tbody tr:last-child td{border-bottom:none}
+.cb{width:16px;height:16px;margin:0;accent-color:#059669;vertical-align:middle}
+.sb{display:flex;align-items:center;gap:8px;height:32px;padding:0 8px;border-radius:6px;font-size:14px;color:#3F3F46;text-decoration:none;box-sizing:border-box}
+.sb:hover{background:#F4F4F5;color:#18181B}
+.sbs{display:flex;align-items:center;height:28px;padding:0 8px;border-radius:6px;font-size:14px;color:#3F3F46;text-decoration:none}
+.sbs:hover{background:#F4F4F5;color:#18181B}
+.sbs-on,.sbs-on:hover{background:#ECFDF5;color:#065F46;font-weight:500}
+.sbl{height:32px;display:flex;align-items:center;padding:0 8px;font-size:12px;font-weight:500;color:#71717A}
+.tabs{display:inline-flex;background:#F4F4F5;border-radius:10px;padding:3px;gap:2px}
+.tab{height:30px;padding:0 12px;border:1px solid transparent;border-radius:8px;background:transparent;font-size:14px;font-weight:500;color:#71717A;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
+.tab-on,.tab-on:hover{background:#FFFFFF;color:#09090B;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.menu{position:absolute;z-index:30;background:#FFFFFF;border:1px solid #E4E4E7;border-radius:8px;box-shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1);padding:4px;min-width:160px;text-align:left}
+.mi{display:flex;align-items:center;gap:8px;width:100%;height:32px;padding:0 8px;border:none;border-radius:4px;background:transparent;font-size:14px;color:#09090B;text-align:left;cursor:pointer;box-sizing:border-box}
+.mi:hover{background:#F4F4F5}
+.mi-danger,.mi-danger:hover{color:#DC2626}
+.sep{height:1px;background:#E4E4E7;margin:4px -4px}
+.overlay{position:absolute;inset:0;z-index:50;background:rgba(0,0,0,.5);display:flex;justify-content:center;align-items:flex-start;padding-top:96px}
+.dialog{width:100%;max-width:512px;background:#FFFFFF;border:1px solid #E4E4E7;border-radius:10px;padding:24px;box-shadow:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.1);display:flex;flex-direction:column;gap:16px;position:relative;box-sizing:border-box}
+.dx{position:absolute;top:16px;right:16px;width:24px;height:24px;border:none;background:transparent;border-radius:4px;cursor:pointer;color:#71717A;display:flex;align-items:center;justify-content:center}
+.dt{margin:0;font-size:18px;font-weight:600;line-height:1.2}
+.dd{margin:0;font-size:14px;color:#71717A;line-height:1.5}
+.df{display:flex;justify-content:flex-end;gap:8px;padding-top:4px}
+.sw{width:28px;height:28px;border-radius:50%;cursor:pointer;padding:0}
+.chk{display:flex;align-items:center;gap:10px;min-height:28px}
+</style>
+</helmet>
+<div style="display: flex; min-height: 100vh; position: relative">
+<aside style="width: 256px; flex-shrink: 0; background: #FAFAFA; border-right: 1px solid #E4E4E7; display: flex; flex-direction: column">
+<div style="padding: 8px">
+<button type="button" class="sb" style="height: 48px; width: 100%; border: none; background: transparent; cursor: pointer; text-align: left">
+<span style="width: 32px; height: 32px; border-radius: 8px; background: #059669; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4z"></path></svg></span>
+<span style="display: flex; flex-direction: column; flex: 1; min-width: 0; line-height: 1.3"><span style="font-weight: 600; color: #09090B">Saigon Sound Co.</span><span style="font-size: 12px; color: #71717A">Organizer</span></span>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 15 5 5 5-5"></path><path d="m7 9 5-5 5 5"></path></svg>
+</button>
+</div>
+<div style="flex: 1; padding: 0 8px; display: flex; flex-direction: column">
+<div class="sbl">Quản lý</div>
+<nav style="display: flex; flex-direction: column; gap: 2px">
+<a href="OrgDashboard.dc.html" class="sb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"></rect><rect x="14" y="3" width="7" height="5" rx="1"></rect><rect x="14" y="12" width="7" height="9" rx="1"></rect><rect x="3" y="16" width="7" height="5" rx="1"></rect></svg>Tổng quan</a>
+<a href="OrgEvents.dc.html" class="sb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg>Sự kiện<svg style="margin-left: auto; transform: rotate(90deg)" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></a>
+<div style="margin: 0 0 2px 15px; padding-left: 10px; border-left: 1px solid #E4E4E7; display: flex; flex-direction: column; gap: 2px">
+<a href="OrgEvents.dc.html" class="sbs sbs-on">Tất cả sự kiện</a>
+<a href="OrgCreateEvent.dc.html" class="sbs">Bản nháp</a>
+<a href="OrgEvents.dc.html" class="sbs">Địa điểm đã dùng</a>
+</div>
+<a href="OrgOrders.dc.html" class="sb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"></path><path d="M8 7h8M8 11h8M8 15h5"></path></svg>Đơn hàng<svg style="margin-left: auto" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></a>
+<a href="Checkin.dc.html" class="sb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2M7 12h10"></path></svg>Check-in</a>
+<a href="OrgStripe.dc.html" class="sb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"></rect><path d="M2 10h20"></path></svg>Thanh toán &amp; Stripe</a>
+<a href="OrgSettings.dc.html" class="sb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-9M14 17H5"></path><circle cx="17" cy="17" r="3"></circle><circle cx="7" cy="7" r="3"></circle></svg>Cài đặt</a>
+</nav>
+<div class="sbl" style="margin-top: 8px">Sự kiện gần đây</div>
+<nav style="display: flex; flex-direction: column; gap: 2px">
+<a href="OrgEventSales.dc.html" class="sb"><span style="width: 16px; height: 16px; border-radius: 4px; background: #0F766E; flex-shrink: 0"></span>Đêm nhạc Rock Sài Gòn</a>
+<a href="OrgCreateEvent.dc.html" class="sb" style="background: #ECFDF5; color: #065F46; font-weight: 500"><span style="width: 16px; height: 16px; border-radius: 4px; background: #EA580C; flex-shrink: 0"></span>Rock Sài Gòn — đêm 2</a>
+<a href="OrgCreateEvent.dc.html" class="sb"><span style="width: 16px; height: 16px; border-radius: 4px; background: #7F1D1D; flex-shrink: 0"></span>Nhạc kịch Giáng Sinh</a>
+</nav>
+</div>
+<div style="padding: 8px">
+<button type="button" class="sb" style="height: 48px; width: 100%; border: none; background: transparent; cursor: pointer; text-align: left">
+<span style="width: 32px; height: 32px; border-radius: 8px; background: #D1FAE5; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: #065F46; flex-shrink: 0">MK</span>
+<span style="display: flex; flex-direction: column; flex: 1; min-width: 0; line-height: 1.3"><span style="font-weight: 600; color: #09090B">Trần Minh Khoa</span><span style="font-size: 12px; color: #71717A">khoa@saigonsound.vn</span></span>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 15 5 5 5-5"></path><path d="m7 9 5-5 5 5"></path></svg>
+</button>
+</div>
+</aside>
+
+<div style="flex: 1; min-width: 0; display: flex; flex-direction: column">
+<header style="height: 64px; display: flex; align-items: center; gap: 8px; padding: 0 16px; flex-shrink: 0">
+<button type="button" class="btn btn-ghost" aria-label="Thu gọn sidebar" style="width: 28px; height: 28px; padding: 0; margin-left: -4px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M9 3v18"></path></svg></button>
+<span style="width: 1px; height: 16px; background: #E4E4E7; margin-right: 8px"></span>
+<nav aria-label="Breadcrumb"><ol style="display: flex; align-items: center; gap: 6px; list-style: none; margin: 0; padding: 0; color: #71717A">
+<li><a href="OrgEvents.dc.html" style="color: #71717A; text-decoration: none">Sự kiện</a></li>
+<li style="display: flex"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></li>
+<li><a href="OrgEventInfo.dc.html" style="color: #71717A; text-decoration: none">Rock Sài Gòn — đêm 2</a></li>
+<li style="display: flex"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></li>
+<li style="color: #09090B">Hạng vé &amp; giá</li>
+</ol></nav>
+</header>
+
+<main style="flex: 1; padding: 4px 16px 24px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; align-items: center; gap: 10px"><h1 style="margin: 0; font-size: 24px; font-weight: 600; letter-spacing: -0.02em">Rock Sài Gòn — đêm 2</h1><span class="badge"><span style="width: 6px; height: 6px; border-radius: 50%; background: #A1A1AA"></span>Nháp</span></div>
+<p style="margin: 0; color: #71717A">CN, 16/11/2026 · 20:00 · Nhà hát Hòa Bình — Khán phòng chính</p>
+</div>
+<div style="display: flex; gap: 8px">
+<a href="EventDetail.dc.html" class="btn btn-outline">Xem trước</a>
+<button type="button" class="btn btn-default" onClick="{{openPublish}}">Publish</button>
+</div>
+</div>
+
+<div class="tabs" role="tablist">
+<a href="OrgEventInfo.dc.html" class="tab" role="tab" aria-selected="false">Thông tin chung</a>
+<a href="OrgCreateEvent.dc.html" class="tab tab-on" role="tab" aria-selected="true">Hạng vé &amp; giá</a>
+<a href="OrgEventInfo.dc.html" class="tab" role="tab" aria-selected="false">Mở bán</a>
+<a href="OrgEventInfo.dc.html" class="tab" role="tab" aria-selected="false">Phòng chờ</a>
+</div>
+
+<div style="display: grid; grid-template-columns: minmax(0, 1fr) 420px; gap: 16px; align-items: start">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<section class="card">
+<div style="padding: 20px 20px 12px; display: flex; justify-content: space-between; align-items: flex-start">
+<div style="display: flex; flex-direction: column; gap: 4px"><h2 style="margin: 0; font-size: 16px; font-weight: 600">Hạng vé</h2><span style="color: #71717A">Mỗi khu ghế gán đúng một hạng vé.</span></div>
+<button type="button" class="btn btn-outline btn-sm" onClick="{{openTier}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>Thêm hạng vé</button>
+</div>
+<table class="tbl">
+<thead><tr><th style="padding-left: 20px">Hạng vé</th><th>Khu áp dụng</th><th style="text-align: right">Số ghế</th><th style="text-align: right">Giá</th><th style="width: 56px"><span style="position: absolute; width: 1px; height: 1px; overflow: hidden">Thao tác</span></th></tr></thead>
+<tbody>
+<sc-for list="{{tiers}}" as="t" hint-placeholder-count="3">
+<tr>
+<td style="padding-left: 20px"><span style="display: inline-flex; align-items: center; gap: 10px; font-weight: 500"><span style="width: 12px; height: 12px; border-radius: 50%; background: {{t.color}}"></span>{{t.name}}</span></td>
+<td style="color: #3F3F46">{{t.sections}}</td>
+<td style="text-align: right; font-variant-numeric: tabular-nums">{{t.seats}}</td>
+<td style="text-align: right; font-weight: 500; font-variant-numeric: tabular-nums">{{t.price}}</td>
+<td style="text-align: right; padding-right: 12px; position: relative">
+<button type="button" class="btn btn-ghost" aria-label="Mở menu thao tác" onClick="{{t.toggleMenu}}" style="width: 32px; height: 32px; padding: 0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg></button>
+<sc-if value="{{t.menuOpen}}" hint-placeholder-val="{{ false }}">
+<div class="menu" role="menu" style="right: 12px; top: 44px">
+<button type="button" class="mi" role="menuitem" onClick="{{t.edit}}">Chỉnh sửa</button>
+<div class="sep"></div>
+<button type="button" class="mi mi-danger" role="menuitem" onClick="{{t.remove}}">Xoá hạng vé</button>
+</div>
+</sc-if>
+</td>
+</tr>
+</sc-for>
+</tbody>
+</table>
+</section>
+
+<section class="card" style="padding: 20px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; flex-direction: column; gap: 4px"><h2 style="margin: 0; font-size: 16px; font-weight: 600">Trước khi publish</h2><span style="color: #71717A">Điều kiện mở bán</span></div>
+<sc-for list="{{checks}}" as="c" hint-placeholder-count="4">
+<div class="chk">
+<span style="width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid {{c.ring}}; background: {{c.fill}}; display: flex; align-items: center; justify-content: center; box-sizing: border-box; flex-shrink: 0"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="{{c.tick}}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>
+<span style="flex: 1; color: {{c.text}}">{{c.label}}</span>
+<sc-if value="{{c.todo}}" hint-placeholder-val="{{ false }}"><a href="OrgCreateEvent.dc.html" class="btn btn-ghost btn-sm" style="text-decoration: underline; text-underline-offset: 3px">{{c.action}}</a></sc-if>
+</div>
+</sc-for>
+</section>
+</div>
+
+<section class="card" style="padding: 20px; display: flex; flex-direction: column; gap: 14px; position: sticky; top: 16px">
+<div style="display: flex; justify-content: space-between; align-items: baseline"><h2 style="margin: 0; font-size: 16px; font-weight: 600">Sơ đồ ghế</h2><span style="color: #71717A">220 ghế · 3 khu</span></div>
+<div style="background: #FAFAFA; border: 1px solid #F4F4F5; border-radius: 8px; padding: 20px 8px; display: flex; flex-direction: column; align-items: center; gap: 12px">
+<div style="width: 60%; height: 20px; border-radius: 4px; background: #27272A; color: #FAFAFA; font-size: 10px; font-weight: 600; letter-spacing: 0.12em; display: flex; align-items: center; justify-content: center">SÂN KHẤU</div>
+<sc-for list="{{map}}" as="sec" hint-placeholder-count="3">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 3px">
+<sc-for list="{{sec.rows}}" as="row" hint-placeholder-count="3">
+<div style="display: flex; gap: 3px">
+<sc-for list="{{row.seats}}" as="seat" hint-placeholder-count="14">
+<span style="width: 11px; height: 11px; border-radius: 50%; background: {{sec.color}}"></span>
+</sc-for>
+</div>
+</sc-for>
+</div>
+</sc-for>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px; padding-top: 4px">
+<div style="display: flex; justify-content: space-between"><span style="color: #71717A">Doanh thu tối đa</span><span style="font-weight: 500; font-variant-numeric: tabular-nums">310.400.000 ₫</span></div>
+<div style="display: flex; justify-content: space-between"><span style="color: #71717A">Phí nền tảng (5%)</span><span style="font-weight: 500; font-variant-numeric: tabular-nums">15.520.000 ₫</span></div>
+<div style="display: flex; justify-content: space-between"><span style="color: #71717A">Thực nhận tối đa</span><span style="font-weight: 600; font-variant-numeric: tabular-nums">294.880.000 ₫</span></div>
+</div>
+</section>
+</div>
+</main>
+</div>
+
+<sc-if value="{{dlgTier}}" hint-placeholder-val="{{ false }}">
+<div class="overlay">
+<div class="dialog" role="dialog" aria-modal="true" aria-labelledby="dlg-tier">
+<button type="button" class="dx" aria-label="Đóng" onClick="{{closeDialog}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+<div style="display: flex; flex-direction: column; gap: 8px"><h2 id="dlg-tier" class="dt">{{tierTitle}}</h2><p class="dd">Giá áp dụng cho mọi ghế trong các khu được chọn.</p></div>
+<div style="display: grid; grid-template-columns: minmax(0, 1fr) 180px; gap: 12px">
+<label class="lbl">Tên hạng vé<input class="input" type="text" value="{{form.name}}"></label>
+<label class="lbl">Giá vé<div style="position: relative"><input class="input" type="text" value="{{form.price}}" style="padding-right: 32px; text-align: right"><span style="position: absolute; right: 12px; top: 9px; color: #71717A">₫</span></div></label>
+</div>
+<div class="lbl">Màu trên sơ đồ
+<div role="radiogroup" aria-label="Màu trên sơ đồ" style="display: flex; gap: 10px">
+<sc-for list="{{swatches}}" as="s" hint-placeholder-count="6">
+<button type="button" class="sw" role="radio" aria-checked="{{s.checked}}" aria-label="{{s.name}}" onClick="{{s.pick}}" style="background: {{s.hex}}; border: 2px solid #FFFFFF; box-shadow: 0 0 0 2px {{s.ring}}"></button>
+</sc-for>
+</div>
+</div>
+<fieldset style="border: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px">
+<legend style="font-weight: 500; margin-bottom: 8px">Khu ghế áp dụng</legend>
+<div style="border: 1px solid #E4E4E7; border-radius: 8px">
+<label style="display: flex; align-items: center; gap: 10px; height: 44px; padding: 0 12px; border-bottom: 1px solid #E4E4E7"><input type="checkbox" class="cb" checked="{{ true }}"><span style="flex: 1">Khu A · hàng A–C</span><span style="color: #71717A">42 ghế</span></label>
+<label style="display: flex; align-items: center; gap: 10px; height: 44px; padding: 0 12px; border-bottom: 1px solid #E4E4E7; color: #A1A1AA"><input type="checkbox" class="cb" disabled="{{ true }}"><span style="flex: 1">Khu B · hàng D–H</span><span>Đã gán: Standard</span></label>
+<label style="display: flex; align-items: center; gap: 10px; height: 44px; padding: 0 12px; color: #A1A1AA"><input type="checkbox" class="cb" disabled="{{ true }}"><span style="flex: 1">Khu C · hàng I–L</span><span>Đã gán: Phổ thông</span></label>
+</div>
+</fieldset>
+<div class="df"><button type="button" class="btn btn-outline" onClick="{{closeDialog}}">Huỷ</button><button type="button" class="btn btn-default" onClick="{{closeDialog}}">Lưu hạng vé</button></div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{dlgDelete}}" hint-placeholder-val="{{ false }}">
+<div class="overlay">
+<div class="dialog" role="alertdialog" aria-modal="true" aria-labelledby="dlg-del" style="max-width: 440px">
+<div style="display: flex; flex-direction: column; gap: 8px"><h2 id="dlg-del" class="dt">Xoá hạng vé “{{form.name}}”?</h2><p class="dd">Các khu ghế đang dùng hạng vé này sẽ chưa có giá, chặn publish.</p></div>
+<div class="df"><button type="button" class="btn btn-outline" onClick="{{closeDialog}}">Huỷ</button><button type="button" class="btn btn-destructive" onClick="{{closeDialog}}">Xoá</button></div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{dlgPublish}}" hint-placeholder-val="{{ false }}">
+<div class="overlay">
+<div class="dialog" role="alertdialog" aria-modal="true" aria-labelledby="dlg-pub" style="max-width: 460px">
+<div style="display: flex; flex-direction: column; gap: 8px"><h2 id="dlg-pub" class="dt">Chưa thể publish</h2><p class="dd">Còn thiếu: ảnh bìa sự kiện.</p></div>
+<div class="df"><button type="button" class="btn btn-default" onClick="{{closeDialog}}">Đã hiểu</button></div>
+</div>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dialog":{"editor":"enum","options":["none","tier","delete","publish"],"default":"none"},"$preview":{"width":1280,"height":1000}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { menu: null, dialog: undefined, form: null, color: '#9A3412' };
+  }
+  renderVals() {
+    const tiersRaw = [
+      { name: 'VIP', color: '#9A3412', sections: 'Khu A', seats: 42, price: '2.500.000' },
+      { name: 'Standard', color: '#EA580C', sections: 'Khu B', seats: 90, price: '1.500.000' },
+      { name: 'Phổ thông', color: '#F59E0B', sections: 'Khu C', seats: 88, price: '800.000' },
+    ];
+    const tiers = tiersRaw.map((t) => ({
+      ...t,
+      price: t.price + ' ₫',
+      menuOpen: this.state.menu === t.name,
+      toggleMenu: () => this.setState({ menu: this.state.menu === t.name ? null : t.name }),
+      edit: () => this.setState({ dialog: 'tier', form: { ...t, mode: 'edit' }, color: t.color, menu: null }),
+      remove: () => this.setState({ dialog: 'delete', form: t, menu: null }),
+    }));
+    const checks = [
+      { label: 'Mọi khu ghế đã có hạng vé', done: true },
+      { label: 'Đã đặt thời gian mở bán', done: true },
+      { label: 'Tài khoản Stripe đã kết nối', done: true },
+      { label: 'Ảnh bìa sự kiện', done: false, action: 'Tải ảnh lên' },
+    ].map((c) => ({
+      ...c,
+      todo: !c.done,
+      ring: c.done ? '#16A34A' : '#D4D4D8',
+      fill: c.done ? '#16A34A' : '#FFFFFF',
+      tick: c.done ? '#FFFFFF' : '#FFFFFF',
+      text: c.done ? '#09090B' : '#71717A',
+    }));
+    const map = [
+      { color: '#9A3412', rows: 3, count: 14 },
+      { color: '#EA580C', rows: 5, count: 18 },
+      { color: '#F59E0B', rows: 4, count: 22 },
+    ].map((s) => ({ color: s.color, rows: Array.from({ length: s.rows }, () => ({ seats: Array.from({ length: s.count }, () => ({})) })) }));
+    const palette = [['#9A3412', 'Nâu cam'], ['#EA580C', 'Cam'], ['#F59E0B', 'Hổ phách'], ['#2563EB', 'Xanh dương'], ['#0D9488', 'Xanh ngọc'], ['#7C3AED', 'Tím']];
+    const swatches = palette.map(([hex, name]) => ({
+      hex, name,
+      checked: this.state.color === hex ? 'true' : 'false',
+      ring: this.state.color === hex ? '#09090B' : '#E4E4E7',
+      pick: () => this.setState({ color: hex }),
+    }));
+    const form = this.state.form || { name: 'VIP', price: '2.500.000', mode: 'new' };
+    const dialog = this.state.dialog !== undefined ? this.state.dialog : (this.props.dialog ?? 'none');
+    return {
+      tiers, checks, map, swatches,
+      form,
+      tierTitle: form.mode === 'edit' ? 'Sửa hạng vé' : 'Thêm hạng vé',
+      openTier: () => this.setState({ dialog: 'tier', form: { name: '', price: '', mode: 'new' } }),
+      openPublish: () => this.setState({ dialog: 'publish' }),
+      closeDialog: () => this.setState({ dialog: 'none' }),
+      dlgTier: dialog === 'tier',
+      dlgDelete: dialog === 'delete',
+      dlgPublish: dialog === 'publish',
+    };
+  }
+}
+</script>
+</body>
+</html>

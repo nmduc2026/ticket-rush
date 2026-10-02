@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Organizer — Thanh toán & Stripe</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Oswald:wght@500;600&amp;display=swap">
+<style>
+body{margin:0;background:#FFFFFF;color:#09090B;font-family:'Be Vietnam Pro',system-ui,sans-serif;font-size:14px;-webkit-font-smoothing:antialiased}
+a{color:#09090B}a:hover{color:#09090B}
+button{font-family:inherit}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:36px;padding:0 16px;border-radius:8px;font-size:14px;font-weight:500;line-height:1;white-space:nowrap;border:1px solid transparent;cursor:pointer;text-decoration:none;box-sizing:border-box;background:transparent;color:#09090B;font-family:inherit}
+.btn:disabled{opacity:.5;cursor:default}
+.btn-sm{height:32px;padding:0 12px;gap:6px}
+.btn-lg{height:44px;font-size:15px}
+.btn-icon{width:36px;padding:0}
+.btn-default{background:#047857;color:#FFFFFF;box-shadow:0 1px 2px rgba(0,0,0,.05)}.btn-default:hover{background:#065F46;color:#FFFFFF}
+.btn-outline{background:#FFFFFF;border-color:#E4E4E7;box-shadow:0 1px 2px rgba(0,0,0,.05)}.btn-outline:hover{background:#F4F4F5}
+.btn-secondary{background:#F4F4F5;color:#18181B}.btn-secondary:hover{background:#E4E4E7}
+.btn-dashed{border-style:dashed}
+.btn-ghost:hover{background:#F4F4F5}
+.btn-destructive{background:#DC2626;color:#FFFFFF}.btn-destructive:hover{background:#B91C1C;color:#FFFFFF}
+.btn-link{height:auto;padding:0;color:#047857;text-decoration:underline;text-underline-offset:3px}.btn-link:hover{color:#065F46}
+.input{height:36px;width:100%;border:1px solid #E4E4E7;border-radius:8px;padding:0 12px;font-family:inherit;font-size:14px;color:#09090B;background:#FFFFFF;box-sizing:border-box;outline:none;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.input:focus{border-color:#34D399;box-shadow:0 0 0 3px rgba(52,211,153,.3)}
+.input[readonly],.input:disabled{background:#F4F4F5;color:#52525B}
+.ta{min-height:96px;padding:8px 12px;resize:vertical;line-height:1.5}
+.lbl{display:flex;flex-direction:column;gap:8px;font-size:14px;font-weight:500}
+.hint{font-size:12px;font-weight:400;color:#71717A;line-height:1.5}
+.err{font-size:12px;font-weight:400;color:#DC2626}
+.req{color:#DC2626}
+.badge{display:inline-flex;align-items:center;gap:6px;border:1px solid #E4E4E7;border-radius:6px;padding:2px 8px;font-size:12px;font-weight:500;line-height:16px;white-space:nowrap;background:#FFFFFF}
+.dot{width:6px;height:6px;border-radius:50%;display:inline-block;flex-shrink:0}
+.card{background:#FFFFFF;border:1px solid #E4E4E7;border-radius:12px;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.ch{padding:20px 20px 0;display:flex;flex-direction:column;gap:4px}
+.ct{margin:0;font-size:16px;font-weight:600}
+.cd{margin:0;color:#71717A;line-height:1.5}
+.cd:empty{display:none}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin:0;padding:0;list-style:none}
+.steps li{display:flex;flex-direction:column;gap:8px;padding-right:12px}
+.steps .bar{height:4px;border-radius:999px}
+.sim{border:1px dashed #A1A1AA;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px;background:#FAFAFA}
+.cb{padding:20px;display:flex;flex-direction:column;gap:16px}
+.cf{padding:12px 20px;border-top:1px solid #E4E4E7;display:flex;justify-content:flex-end;gap:8px;background:#FAFAFA;border-radius:0 0 12px 12px}
+.tbl{width:100%;border-collapse:collapse}
+.tbl th{height:40px;padding:0 8px;text-align:left;font-weight:500;color:#71717A;border-bottom:1px solid #E4E4E7;white-space:nowrap}
+.tbl td{height:52px;padding:0 8px;border-bottom:1px solid #E4E4E7;vertical-align:middle}
+.tbl tbody tr:last-child td{border-bottom:none}
+.tbl tbody tr:hover{background:#FAFAFA}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px}
+.num{font-variant-numeric:tabular-nums}
+.muted{color:#71717A}
+.menu{position:absolute;z-index:30;background:#FFFFFF;border:1px solid #E4E4E7;border-radius:8px;box-shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1);padding:4px;min-width:200px;text-align:left}
+.mi{display:flex;align-items:center;gap:8px;width:100%;height:32px;padding:0 8px;border:none;border-radius:4px;background:transparent;font-size:14px;color:#09090B;text-align:left;cursor:pointer;text-decoration:none;box-sizing:border-box;font-family:inherit}
+.mi:hover{background:#F4F4F5;color:#09090B}
+.mi:disabled{opacity:.5;cursor:default}
+.mi-danger,.mi-danger:hover{color:#DC2626}
+.ml{height:28px;display:flex;align-items:center;padding:0 8px;font-size:12px;font-weight:500;color:#71717A}
+.sep{height:1px;background:#E4E4E7;margin:4px -4px}
+.overlay{position:absolute;inset:0;z-index:50;background:rgba(0,0,0,.5);display:flex;justify-content:center;align-items:flex-start;padding-top:96px}
+.dialog{width:100%;max-width:512px;background:#FFFFFF;border:1px solid #E4E4E7;border-radius:10px;padding:24px;box-shadow:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.1);display:flex;flex-direction:column;gap:16px;position:relative;box-sizing:border-box}
+.dialog-lg{max-width:680px}
+.dx{position:absolute;top:16px;right:16px;width:24px;height:24px;border:none;background:transparent;border-radius:4px;cursor:pointer;color:#71717A;display:flex;align-items:center;justify-content:center}
+.dx:hover{background:#F4F4F5}
+.dt{margin:0;font-size:18px;font-weight:600;line-height:1.3}
+.dd{margin:0;font-size:14px;color:#71717A;line-height:1.5}
+.df{display:flex;justify-content:flex-end;gap:8px;padding-top:4px}
+.alert{display:flex;gap:12px;align-items:flex-start;border:1px solid #E4E4E7;border-radius:8px;padding:12px 16px;line-height:1.5}
+.alert svg{flex-shrink:0;margin-top:2px}
+.alert-warn{background:#FFFBEB;border-color:#FDE68A;color:#78350F}
+.alert-err{background:#FEF2F2;border-color:#FECACA;color:#7F1D1D}
+.alert-ok{background:#ECFDF5;border-color:#A7F3D0;color:#065F46}
+.alert-info{background:#F4F4F5;border-color:#E4E4E7;color:#3F3F46}
+.tabs{display:flex;gap:24px;border-bottom:1px solid #E4E4E7}
+.tab{height:40px;display:flex;align-items:center;padding:0 2px;border:none;border-bottom:2px solid transparent;margin-bottom:-1px;background:transparent;font-family:inherit;font-size:14px;color:#71717A;cursor:pointer;text-decoration:none;white-space:nowrap}
+.tab:hover{color:#09090B}
+.tab-on,.tab-on:hover{color:#09090B;font-weight:500;border-bottom-color:#059669}
+.seg{display:inline-flex;background:#F4F4F5;border-radius:8px;padding:3px;gap:2px}
+.sg{height:30px;padding:0 12px;border:none;border-radius:6px;background:transparent;font-family:inherit;font-size:13px;font-weight:500;color:#71717A;cursor:pointer;white-space:nowrap}
+.sg-on{background:#FFFFFF;color:#09090B;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.sw{width:36px;height:20px;border-radius:999px;border:none;padding:2px;cursor:pointer;display:inline-flex;flex-shrink:0;box-sizing:border-box}
+.sw:disabled{opacity:.5;cursor:default}
+.sw-on{background:#059669;justify-content:flex-end}
+.sw-off{background:#E4E4E7;justify-content:flex-start}
+.sw span{width:16px;height:16px;border-radius:50%;background:#FFFFFF;box-shadow:0 1px 2px rgba(0,0,0,.2)}
+.ck{width:16px;height:16px;border-radius:4px;border:1px solid #A1A1AA;background:#FFFFFF;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;flex-shrink:0}
+.ck-on{background:#059669;border-color:#059669}
+.rd{width:16px;height:16px;border-radius:50%;border:1px solid #A1A1AA;background:#FFFFFF;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;flex-shrink:0}
+.rd-on{border-color:#059669}
+.rd-on::after{content:'';width:8px;height:8px;border-radius:50%;background:#059669}
+.opt{display:flex;align-items:flex-start;gap:10px;border:none;background:transparent;padding:0;text-align:left;font-family:inherit;font-size:14px;color:#09090B;cursor:pointer}
+.opt .ck,.opt .rd{margin-top:2px}
+.tile{display:flex;align-items:flex-start;gap:10px;border:1px solid #E4E4E7;border-radius:8px;padding:12px;background:#FFFFFF;text-align:left;font-family:inherit;font-size:14px;color:#09090B;cursor:pointer;box-sizing:border-box}
+.tile-on{border-color:#059669;background:#ECFDF5}
+.chip{display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 12px;border:1px solid #E4E4E7;border-radius:999px;background:#FFFFFF;font-family:inherit;font-size:13px;color:#3F3F46;cursor:pointer}
+.chip-on{background:#ECFDF5;border-color:#A7F3D0;color:#065F46;font-weight:500}
+.drop{border:1px dashed #D4D4D8;border-radius:8px;padding:20px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;background:#FAFAFA;color:#71717A}
+.row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid #F4F4F5}
+.row:last-child{border-bottom:none}
+.kv{display:grid;grid-template-columns:180px minmax(0,1fr);row-gap:10px;column-gap:16px;margin:0}
+.kv dt{color:#71717A}.kv dd{margin:0;font-weight:500}
+.toast{position:absolute;right:24px;bottom:24px;z-index:60;background:#09090B;color:#FAFAFA;border-radius:8px;padding:12px 16px;display:flex;align-items:center;gap:10px;box-shadow:0 10px 15px -3px rgba(0,0,0,.2);font-size:14px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.pt{font-family:'Oswald',sans-serif;text-transform:uppercase;white-space:pre-line;font-weight:600}
+.sb{display:flex;align-items:center;gap:8px;height:32px;padding:0 8px;border-radius:6px;font-size:14px;color:#3F3F46;text-decoration:none;box-sizing:border-box}
+.sb:hover{background:#F4F4F5;color:#18181B}
+.sb-on,.sb-on:hover{background:#ECFDF5;color:#065F46;font-weight:500}
+.sbs{display:flex;align-items:center;height:28px;padding:0 8px;border-radius:6px;font-size:14px;color:#3F3F46;text-decoration:none}
+.sbs:hover{background:#F4F4F5;color:#18181B}
+.sbs-on,.sbs-on:hover{background:#ECFDF5;color:#065F46;font-weight:500}
+.sbl{height:32px;display:flex;align-items:center;padding:0 8px;font-size:12px;font-weight:500;color:#71717A}
+</style>
+</helmet>
+<div style="display: flex; min-height: 100vh; position: relative">
+<aside style="width: 256px; flex-shrink: 0; background: #FAFAFA; border-right: 1px solid #E4E4E7; display: flex; flex-direction: column">
+<div style="padding: 8px"><button type="button" class="sb" style="height: 48px; width: 100%; border: none; background: transparent; cursor: pointer; text-align: left"><span style="width: 32px; height: 32px; border-radius: 8px; background: #059669; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4z"></path></svg></span><span style="display: flex; flex-direction: column; flex: 1; min-width: 0; line-height: 1.3"><span style="font-weight: 600; color: #09090B">Saigon Sound Co.</span><span style="font-size: 12px; color: #71717A">Organizer</span></span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button></div>
+<div style="flex: 1; padding: 0 8px; display: flex; flex-direction: column">
+<div class="sbl">Quản lý</div>
+<nav style="display: flex; flex-direction: column; gap: 2px">
+<a href="OrgDashboard.dc.html" class="sb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="1"></rect><rect x="14" y="3" width="7" height="5" rx="1"></rect><rect x="14" y="12" width="7" height="9" rx="1"></rect><rect x="3" y="16" width="7" height="5" rx="1"></rect></svg>Tổng quan</a>
+<a href="OrgEvents.dc.html" class="sb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg>Sự kiện<svg style="margin-left: auto" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></a>
+<a href="OrgOrders.dc.html" class="sb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"></path><path d="M8 7h8M8 11h8M8 15h5"></path></svg>Đơn hàng<svg style="margin-left: auto" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></a>
+<a href="Checkin.dc.html" class="sb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2M7 12h10"></path></svg>Check-in</a>
+<a href="OrgStripe.dc.html" class="sb sb-on"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"></rect><path d="M2 10h20"></path></svg>Thanh toán &amp; Stripe</a>
+<a href="OrgSettings.dc.html" class="sb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 7h-9M14 17H5"></path><circle cx="17" cy="17" r="3"></circle><circle cx="7" cy="7" r="3"></circle></svg>Cài đặt</a>
+</nav>
+<div class="sbl" style="margin-top: 8px">Sự kiện gần đây</div>
+<nav style="display: flex; flex-direction: column; gap: 2px">
+<a href="OrgEventSales.dc.html" class="sb"><span style="width: 16px; height: 16px; border-radius: 4px; background: #0F766E; flex-shrink: 0"></span>Đêm nhạc Rock Sài Gòn</a>
+<a href="OrgEventInfo.dc.html" class="sb"><span style="width: 16px; height: 16px; border-radius: 4px; background: #EA580C; flex-shrink: 0"></span>Rock Sài Gòn — đêm 2</a>
+<a href="OrgEventSales.dc.html" class="sb"><span style="width: 16px; height: 16px; border-radius: 4px; background: #7F1D1D; flex-shrink: 0"></span>Nhạc kịch Giáng Sinh</a>
+</nav>
+</div>
+<div style="padding: 8px; position: relative">
+<sc-if value="{{umOpen}}" hint-placeholder-val="{{ false }}"><div class="menu" role="menu" style="left: 8px; right: 8px; bottom: 60px"><div class="ml">khoa@saigonsound.vn</div><div class="sep"></div><a href="Profile.dc.html" class="mi" role="menuitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="5"></circle><path d="M20 21a8 8 0 0 0-16 0"></path></svg>Hồ sơ cá nhân</a><a href="Notifications.dc.html" class="mi" role="menuitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg>Thông báo</a><a href="Main.dc.html" class="mi" role="menuitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20M2 12h20"></path></svg>Về trang mua vé</a><div class="sep"></div><a href="Auth.dc.html" class="mi" role="menuitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><path d="m16 17 5-5-5-5M21 12H9"></path></svg>Đăng xuất</a></div></sc-if>
+<button type="button" class="sb" aria-expanded="{{umStr}}" onClick="{{toggleUm}}" style="height: 48px; width: 100%; border: none; background: transparent; cursor: pointer; text-align: left"><span style="width: 32px; height: 32px; border-radius: 8px; background: #D1FAE5; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: #065F46; flex-shrink: 0">MK</span><span style="display: flex; flex-direction: column; flex: 1; min-width: 0; line-height: 1.3"><span style="font-weight: 600; color: #09090B">Trần Minh Khoa</span><span style="font-size: 12px; color: #71717A">khoa@saigonsound.vn</span></span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button>
+</div>
+</aside>
+<div style="flex: 1; min-width: 0; display: flex; flex-direction: column">
+<header style="height: 64px; display: flex; align-items: center; gap: 8px; padding: 0 16px; flex-shrink: 0">
+<button type="button" class="btn btn-ghost" aria-label="Thu gọn sidebar" style="width: 28px; height: 28px; padding: 0; margin-left: -4px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M9 3v18"></path></svg></button>
+<span style="width: 1px; height: 16px; background: #E4E4E7; margin-right: 8px"></span>
+<nav aria-label="Breadcrumb"><ol style="display: flex; align-items: center; gap: 6px; list-style: none; margin: 0; padding: 0; color: #71717A"><li style="color: #09090B">Thanh toán &amp; Stripe</li></ol></nav>
+<span style="flex: 1"></span>
+<a href="Notifications.dc.html" class="btn btn-ghost btn-icon" aria-label="Thông báo (3 chưa đọc)" style="position: relative"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg><span style="position: absolute; top: 7px; right: 8px; width: 8px; height: 8px; border-radius: 50%; background: #DC2626; border: 2px solid #FFFFFF"></span></a>
+</header>
+<main style="flex: 1; padding: 4px 16px 24px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 4px"><h1 style="margin: 0; font-size: 24px; font-weight: 600; letter-spacing: -0.02em">Thanh toán &amp; Stripe</h1></div>
+<div style="display: flex; gap: 8px; align-items: center"></div>
+</div>
+<section class="card"><div class="cb" style="gap: 20px"><div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap"><span style="width: 40px; height: 40px; border-radius: 10px; background: #635BFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"></rect><path d="M2 10h20"></path></svg></span><div style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600; font-size: 16px; display: flex; gap: 10px; align-items: center">Stripe Connect<span class="badge"><span class="dot" style="background: {{st.dot}}"></span>{{st.label}}</span></span><span class="muted">{{st.sub}}</span></div><sc-if value="{{showConnect}}" hint-placeholder-val="{{ true }}"><button type="button" class="btn btn-default" onClick="{{openConnect}}">{{connectLabel}}<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg></button></sc-if><sc-if value="{{isPending}}" hint-placeholder-val="{{ false }}"><button type="button" class="btn btn-outline" onClick="{{refresh}}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path><path d="M8 16H3v5"></path></svg>Làm mới trạng thái</button></sc-if><sc-if value="{{isActive}}" hint-placeholder-val="{{ false }}"><button type="button" class="btn btn-outline" onClick="{{openDashboard}}">Stripe Dashboard<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg></button></sc-if></div><ol class="steps" aria-label="Tiến trình kết nối"><sc-for list="{{steps}}" as="s" hint-placeholder-count="4"><li><span class="bar" style="background: {{s.bar}}"></span><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; color: #71717A">Bước {{s.n}}</span><span style="font-weight: 500; color: {{s.fg}}">{{s.label}}</span><span class="hint">{{s.state}}</span></span></li></sc-for></ol></div></section>
+<sc-if value="{{isNone}}" hint-placeholder-val="{{ true }}"><div class="alert alert-warn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4M12 17h.01"></path></svg><span>Chưa publish được sự kiện: Stripe chưa bật nhận thanh toán (BR-05).</span></div><section class="card"><div class="ch"><h2 class="ct">Điều khoản</h2></div><div class="cb" style="padding-top: 12px"><dl class="kv"><dt>Hình thức</dt><dd>Stripe Connect Express, tiền vé vào số dư Stripe của ban tổ chức</dd><dt>Phí nền tảng</dt><dd>5% giá vé, trừ tại thời điểm thanh toán</dd><dt>Phí xử lý thẻ</dt><dd>Theo biểu phí Stripe, trừ vào số dư</dd><dt>Rút tiền</dt><dd>Hằng tuần về tài khoản ngân hàng đăng ký với Stripe</dd><dt>Giấy tờ Stripe yêu cầu</dt><dd>CCCD/hộ chiếu người đại diện · tài khoản ngân hàng · MST (doanh nghiệp)</dd></dl></div></section></sc-if>
+<sc-if value="{{isRedirect}}" hint-placeholder-val="{{ false }}"><div class="sim"><div style="display: flex; justify-content: space-between; align-items: center"><span style="font-weight: 600">Trang onboarding của Stripe</span><span class="badge muted">Mô phỏng · chỉ có trong prototype</span></div><span class="hint">Trang thật nằm trên stripe.com, ngoài TicketRush. Các bước Stripe yêu cầu:</span><div style="display: flex; flex-direction: column; gap: 6px"><div style="display: flex; align-items: center; gap: 10px; padding: 8px 12px; background: #FFFFFF; border: 1px solid #E4E4E7; border-radius: 8px"><span style="width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid #D4D4D8"></span><span>Email và số điện thoại</span></div><div style="display: flex; align-items: center; gap: 10px; padding: 8px 12px; background: #FFFFFF; border: 1px solid #E4E4E7; border-radius: 8px"><span style="width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid #D4D4D8"></span><span>Thông tin doanh nghiệp</span></div><div style="display: flex; align-items: center; gap: 10px; padding: 8px 12px; background: #FFFFFF; border: 1px solid #E4E4E7; border-radius: 8px"><span style="width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid #D4D4D8"></span><span>Người đại diện</span></div><div style="display: flex; align-items: center; gap: 10px; padding: 8px 12px; background: #FFFFFF; border: 1px solid #E4E4E7; border-radius: 8px"><span style="width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid #D4D4D8"></span><span>Tài khoản ngân hàng</span></div><div style="display: flex; align-items: center; gap: 10px; padding: 8px 12px; background: #FFFFFF; border: 1px solid #E4E4E7; border-radius: 8px"><span style="width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid #D4D4D8"></span><span>Xem lại và gửi</span></div></div><div style="display: flex; gap: 8px; flex-wrap: wrap"><button type="button" class="btn btn-default btn-sm" onClick="{{simFinish}}">Hoàn tất → quay về TicketRush</button><button type="button" class="btn btn-outline btn-sm" onClick="{{simQuit}}">Thoát giữa chừng → quay về</button><button type="button" class="btn btn-ghost btn-sm" onClick="{{simExpire}}">Link hết hạn</button></div></div></sc-if>
+<sc-if value="{{isIncomplete}}" hint-placeholder-val="{{ false }}"><div class="alert alert-warn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4M12 17h.01"></path></svg><span style="display: flex; flex-direction: column; gap: 4px"><strong>Hồ sơ Stripe chưa hoàn tất</strong><span>Còn thiếu: người đại diện, tài khoản ngân hàng.</span></span></div></sc-if>
+<sc-if value="{{isPending}}" hint-placeholder-val="{{ false }}"><div class="alert alert-info"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg><span>Stripe đang xác minh hồ sơ, thường 1–2 ngày làm việc. Trạng thái cập nhật tự động qua webhook <span class="mono">account.updated</span>.</span></div><section class="card"><div class="ch"><h2 class="ct">Hồ sơ đã gửi</h2></div><div class="cb" style="gap: 10px"><div style="display: flex; gap: 10px; align-items: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#15803D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span style="flex: 1">Thông tin doanh nghiệp</span><span class="hint">Đã gửi</span></div><div style="display: flex; gap: 10px; align-items: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg><span style="flex: 1">Người đại diện (CCCD)</span><span class="hint">Đang xác minh</span></div><div style="display: flex; gap: 10px; align-items: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#15803D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span style="flex: 1">Tài khoản ngân hàng</span><span class="hint">Đã gửi</span></div></div></section><div class="sim"><div style="display: flex; justify-content: space-between; align-items: center"><span style="font-weight: 600">Webhook từ Stripe</span><span class="badge muted">Mô phỏng · chỉ có trong prototype</span></div><div style="display: flex; gap: 8px; flex-wrap: wrap"><button type="button" class="btn btn-default btn-sm" onClick="{{simVerified}}">Stripe xác minh xong</button><button type="button" class="btn btn-outline btn-sm" onClick="{{simNeedMore}}">Stripe yêu cầu bổ sung</button></div></div></sc-if>
+<sc-if value="{{isRestricted}}" hint-placeholder-val="{{ false }}"><div class="alert alert-err" role="alert"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4M12 17h.01"></path></svg><span style="display: flex; flex-direction: column; gap: 4px"><strong>Stripe tạm khoá nhận thanh toán từ 01/10/2026</strong><span>Lý do: giấy tờ người đại diện hết hạn. 3 sự kiện đang mở bán đã chuyển sang Tạm dừng bán. Số dư hiện có vẫn rút được.</span></span></div></sc-if>
+<sc-if value="{{hasAccount}}" hint-placeholder-val="{{ false }}"><section class="card"><div class="ch"><h2 class="ct">Tài khoản</h2></div><div class="cb" style="padding-top: 12px"><dl class="kv"><dt>Mã tài khoản</dt><dd class="mono">acct_1Q2w3E4r5T6y</dd><dt>Loại</dt><dd>Express</dd><dt>Nhận thanh toán</dt><dd><span class="badge"><span class="dot" style="background: {{charges.dot}}"></span>{{charges.label}}</span></dd><dt>Rút tiền</dt><dd><span class="badge"><span class="dot" style="background: {{payouts.dot}}"></span>{{payouts.label}}</span></dd><dt>Ngân hàng</dt><dd>{{bank}}</dd><dt>Lịch rút tiền</dt><dd>Hằng tuần, Thứ Hai</dd></dl></div></section></sc-if>
+<sc-if value="{{isActive}}" hint-placeholder-val="{{ false }}"><div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px"><sc-for list="{{balances}}" as="s" hint-placeholder-count="3"><div class="card" style="padding: 20px; display: flex; flex-direction: column; gap: 10px"><span class="muted">{{s.label}}</span><span class="num" style="font-size: 26px; font-weight: 600; letter-spacing: -0.02em">{{s.value}}</span><span style="font-size: 13px; color: #71717A">{{s.sub}}</span></div></sc-for></div>
+<section class="card" style="overflow: hidden"><div class="ch" style="padding-bottom: 12px"><h2 class="ct">Doanh thu &amp; phí theo sự kiện</h2><p class="cd">Từ lúc mở bán, đã trừ hoàn tiền</p></div><table class="tbl"><thead><tr><th style="padding-left: 20px">Sự kiện</th><th style="text-align: right">Doanh thu gộp</th><th style="text-align: right">Hoàn tiền</th><th style="text-align: right">Phí nền tảng (5%)</th><th style="text-align: right">Phí Stripe</th><th style="text-align: right; padding-right: 20px">Thực nhận</th></tr></thead><tbody><sc-for list="{{byEvent}}" as="e" hint-placeholder-count="3"><tr><td style="padding-left: 20px; font-weight: 500">{{e.name}}</td><td class="num" style="text-align: right">{{e.gross}}</td><td class="num muted" style="text-align: right">{{e.refund}}</td><td class="num muted" style="text-align: right">{{e.fee}}</td><td class="num muted" style="text-align: right">{{e.stripe}}</td><td class="num" style="text-align: right; padding-right: 20px; font-weight: 600">{{e.net}}</td></tr></sc-for></tbody></table></section><section class="card" style="overflow: hidden"><div class="ch" style="padding-bottom: 12px; flex-direction: row; justify-content: space-between"><h2 class="ct">Lịch sử rút tiền</h2><button type="button" class="btn btn-outline btn-sm" onClick="{{exportCsv}}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="m7 10 5 5 5-5M12 15V3"></path></svg>Xuất CSV</button></div><table class="tbl"><thead><tr><th style="padding-left: 20px">Ngày</th><th>Mã payout</th><th>Ngân hàng</th><th>Trạng thái</th><th style="text-align: right; padding-right: 20px">Số tiền</th></tr></thead><tbody><sc-for list="{{payoutRows}}" as="p" hint-placeholder-count="4"><tr><td class="num" style="padding-left: 20px">{{p.date}}</td><td class="mono">{{p.id}}</td><td class="muted">Vietcombank •••• 6789</td><td><span class="badge"><span class="dot" style="background: {{p.dot}}"></span>{{p.status}}</span></td><td class="num" style="text-align: right; padding-right: 20px; font-weight: 500">{{p.amount}}</td></tr></sc-for></tbody></table></section><section class="card" style="border-color: #FECACA"><div class="cb" style="flex-direction: row; align-items: center; justify-content: space-between"><div style="display: flex; flex-direction: column; gap: 4px"><span style="font-weight: 600">Ngắt kết nối Stripe</span><span class="muted">Sau khi ngắt: không bán được vé cho tới khi kết nối lại</span></div><button type="button" class="btn btn-outline" style="color: #B91C1C" onClick="{{openDisconnect}}">Ngắt kết nối</button></div></section></sc-if>
+
+</main>
+</div>
+<sc-if value="{{dlgConnect}}" hint-placeholder-val="{{ false }}">
+<div class="overlay">
+<div class="dialog" role="dialog" aria-modal="true" aria-labelledby="d-conn">
+<button type="button" class="dx" aria-label="Đóng" onClick="{{closeDialog}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+<div style="display: flex; flex-direction: column; gap: 8px"><h2 id="d-conn" class="dt">{{connectTitle}}</h2><p class="dd">Trang onboarding Stripe Express mở trong tab hiện tại. Hoàn tất hoặc thoát, Stripe chuyển về trang này.</p></div>
+<dl class="kv" style="grid-template-columns: 150px minmax(0, 1fr)"><dt>Loại tài khoản</dt><dd>Express</dd><dt>Thời gian</dt><dd>Khoảng 5–10 phút</dd><dt>Môi trường</dt><dd>Test mode, dùng dữ liệu thử của Stripe</dd></dl>
+<div class="df"><button type="button" class="btn btn-outline" onClick="{{closeDialog}}">Huỷ</button><button type="button" class="btn btn-default" onClick="{{goStripe}}">Mở Stripe<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg></button></div>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{dlgDisconnect}}" hint-placeholder-val="{{ false }}">
+<div class="overlay">
+<div class="dialog" role="alertdialog" aria-modal="true" aria-labelledby="d-disc">
+<button type="button" class="dx" aria-label="Đóng" onClick="{{closeDialog}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+<div style="display: flex; flex-direction: column; gap: 8px"><h2 id="d-disc" class="dt">Không thể ngắt kết nối</h2><p class="dd">3 sự kiện đang mở bán và 2 sự kiện chưa diễn ra có vé đã bán. Ngắt kết nối được khi các sự kiện này kết thúc hoặc bị huỷ.</p></div>
+
+<div class="df"><a href="OrgEvents.dc.html" class="btn btn-outline">Danh sách sự kiện</a><button type="button" class="btn btn-default" onClick="{{closeDialog}}">Đóng</button></div>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{toastOn}}" hint-placeholder-val="{{ false }}"><div class="toast" role="status"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span>{{toastMsg}}</span><button type="button" class="btn btn-ghost btn-sm" style="color: #FAFAFA; height: 24px; padding: 0 6px" onClick="{{hideToast}}">Đóng</button></div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"state": {"editor": "enum", "options": ["none", "redirect", "incomplete", "pending", "active", "restricted"], "default": "none"}, "dialog": {"editor": "enum", "options": ["none", "connect", "disconnect"], "default": "none"}, "$preview": {"width": 1280, "height": 1300}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = {}; }
+
+  dlg(name) { return () => this.setState({ dialog: name, menu: null }); }
+  common() {
+    const dialog = this.state.dialog !== undefined ? this.state.dialog : (this.props.dialog ?? 'none');
+    return {
+      dialog,
+      closeDialog: () => this.setState({ dialog: 'none' }),
+      toastOn: !!this.state.toast,
+      toastMsg: this.state.toast || '',
+      hideToast: () => this.setState({ toast: null }),
+      done: (msg) => () => this.setState({ dialog: 'none', toast: msg, menu: null }),
+    };
+  }
+
+  um() {
+    const bell = this.state.bell !== undefined ? this.state.bell : !!this.props.bell;
+    return {
+      umOpen: !!this.state.um,
+      umStr: this.state.um ? 'true' : 'false',
+      toggleUm: () => this.setState({ um: !this.state.um, bell: false }),
+      bellOpen: bell,
+      bellStr: bell ? 'true' : 'false',
+      toggleBell: () => this.setState({ bell: !bell, um: false }),
+    };
+  }
+
+  renderVals() {
+    const st = this.state.st || this.props.state || 'none';
+    const c = this.common();
+    const set = (s, toast) => () => this.setState({ st: s, dialog: 'none', toast: toast || null });
+    const S = {
+      none: { label: 'Chưa kết nối', dot: '#A1A1AA', sub: 'Chưa có tài khoản Stripe' },
+      redirect: { label: 'Đang ở trang Stripe', dot: '#2563EB', sub: 'Đang điền hồ sơ trên Stripe' },
+      incomplete: { label: 'Hồ sơ chưa hoàn tất', dot: '#F59E0B', sub: 'acct_1Q2w3E4r5T6y · thiếu thông tin' },
+      pending: { label: 'Đang xác minh', dot: '#F59E0B', sub: 'acct_1Q2w3E4r5T6y · gửi hồ sơ 02/10/2026' },
+      active: { label: 'Đã kết nối', dot: '#16A34A', sub: 'acct_1Q2w3E4r5T6y · Vietcombank •••• 6789' },
+      restricted: { label: 'Bị hạn chế', dot: '#DC2626', sub: 'acct_1Q2w3E4r5T6y · tạm khoá nhận thanh toán' },
+    };
+    const DONE = { bar: '#059669', fg: '#09090B', state: 'Xong' };
+    const CUR = { bar: '#09090B', fg: '#09090B', state: 'Đang thực hiện' };
+    const WARN = { bar: '#F59E0B', fg: '#09090B', state: 'Cần bổ sung' };
+    const ERR = { bar: '#DC2626', fg: '#09090B', state: 'Bị khoá' };
+    const TODO = { bar: '#E4E4E7', fg: '#71717A', state: 'Chưa tới' };
+    const plan = {
+      none: [CUR, TODO, TODO, TODO], redirect: [DONE, CUR, TODO, TODO], incomplete: [DONE, WARN, TODO, TODO],
+      pending: [DONE, DONE, CUR, TODO], active: [DONE, DONE, DONE, DONE], restricted: [DONE, DONE, DONE, ERR],
+    }[st];
+    const steps = ['Tạo tài khoản Stripe', 'Hồ sơ trên Stripe', 'Stripe xác minh', 'Nhận thanh toán & rút tiền'].map((label, i) => ({ n: i + 1, label, ...plan[i] }));
+    const on = { label: 'Bật', dot: '#16A34A' }, off = { label: 'Chưa bật', dot: '#A1A1AA' }, blocked = { label: 'Tạm khoá', dot: '#DC2626' };
+    return {
+      ...c, ...this.um(), st: S[st], steps,
+      isNone: st === 'none', isRedirect: st === 'redirect', isIncomplete: st === 'incomplete', isPending: st === 'pending', isActive: st === 'active', isRestricted: st === 'restricted',
+      hasAccount: st !== 'none' && st !== 'redirect',
+      showConnect: st === 'none' || st === 'incomplete' || st === 'restricted',
+      connectLabel: st === 'none' ? 'Kết nối Stripe' : st === 'restricted' ? 'Cập nhật trên Stripe' : 'Tiếp tục trên Stripe',
+      connectTitle: st === 'none' ? 'Mở trang Stripe' : 'Tiếp tục hồ sơ trên Stripe',
+      charges: st === 'active' ? on : st === 'restricted' ? blocked : off,
+      payouts: st === 'active' || st === 'restricted' ? on : off,
+      bank: st === 'active' || st === 'restricted' || st === 'pending' ? 'Vietcombank •••• 6789' : '—',
+      balances: [
+        { label: 'Số dư khả dụng', value: '186.420.000 ₫', sub: 'Rút vào Thứ Hai, 06/10' },
+        { label: 'Đang xử lý', value: '94.150.000 ₫', sub: 'Khả dụng sau 2–7 ngày' },
+        { label: 'Đã rút tháng này', value: '312.800.000 ₫', sub: '4 lần rút' },
+      ],
+      byEvent: [
+        { name: 'Đêm nhạc Rock Sài Gòn', gross: '742.500.000 ₫', refund: '−7.500.000 ₫', fee: '−36.750.000 ₫', stripe: '−21.316.000 ₫', net: '676.934.000 ₫' },
+        { name: 'Nhạc kịch Giáng Sinh', gross: '252.000.000 ₫', refund: '0 ₫', fee: '−12.600.000 ₫', stripe: '−7.310.000 ₫', net: '232.090.000 ₫' },
+        { name: 'Live Jazz cuối tuần', gross: '86.000.000 ₫', refund: '−1.000.000 ₫', fee: '−4.250.000 ₫', stripe: '−2.470.000 ₫', net: '78.280.000 ₫' },
+      ],
+      payoutRows: [
+        { date: '29/09/2026', id: 'po_1Q8aB2cD3e', amount: '98.400.000 ₫', status: 'Đã về tài khoản', dot: '#16A34A' },
+        { date: '22/09/2026', id: 'po_1Q6zY8xW7v', amount: '76.200.000 ₫', status: 'Đã về tài khoản', dot: '#16A34A' },
+        { date: '15/09/2026', id: 'po_1Q4tU6sR5q', amount: '81.900.000 ₫', status: 'Đã về tài khoản', dot: '#16A34A' },
+        { date: '08/09/2026', id: 'po_1Q2pO4nM3l', amount: '56.300.000 ₫', status: 'Đã về tài khoản', dot: '#16A34A' },
+      ],
+      openConnect: this.dlg('connect'), openDisconnect: this.dlg('disconnect'),
+      dlgConnect: c.dialog === 'connect', dlgDisconnect: c.dialog === 'disconnect',
+      goStripe: set('redirect'),
+      simFinish: set('pending', 'Đã quay về từ Stripe. Hồ sơ đang được xác minh.'),
+      simQuit: set('incomplete', 'Đã quay về từ Stripe. Hồ sơ chưa hoàn tất.'),
+      simExpire: set(st === 'redirect' ? 'incomplete' : st, 'Link onboarding hết hạn'),
+      simVerified: set('active', 'Stripe đã bật nhận thanh toán và rút tiền'),
+      simNeedMore: set('incomplete', 'Stripe yêu cầu bổ sung hồ sơ'),
+      refresh: () => this.setState({ toast: 'Chưa có thay đổi từ Stripe' }),
+      openDashboard: () => this.setState({ toast: 'Mở Stripe Express Dashboard (tab mới)' }),
+      exportCsv: () => this.setState({ toast: 'Đang xuất payouts.csv' }),
+    };
+  }
+}
+</script>
+</body>
+</html>

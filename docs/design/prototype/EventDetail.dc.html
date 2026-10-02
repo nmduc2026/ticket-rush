@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>TicketRush — Đêm nhạc Rock Sài Gòn</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Oswald:wght@500;600&amp;display=swap">
+<style>
+body{margin:0;background:#FFFFFF;color:#09090B;font-family:'Be Vietnam Pro',system-ui,sans-serif;font-size:14px;-webkit-font-smoothing:antialiased}
+a{color:#09090B}a:hover{color:#09090B}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:36px;padding:0 16px;border-radius:8px;font-family:inherit;font-size:14px;font-weight:500;line-height:1;white-space:nowrap;border:1px solid transparent;cursor:pointer;text-decoration:none;box-sizing:border-box}
+.btn-ghost{background:transparent;color:#09090B}.btn-ghost:hover{background:#F4F4F5;color:#09090B}
+.btn-outline{background:#FFFFFF;color:#09090B;border-color:#E4E4E7;box-shadow:0 1px 2px rgba(0,0,0,.05)}.btn-outline:hover{background:#F4F4F5;color:#09090B}
+.btn-brand{background:#047857;color:#FFFFFF}.btn-brand:hover{background:#065F46;color:#FFFFFF}
+.input{height:40px;border:1px solid #E4E4E7;border-radius:8px;padding:0 12px;font-family:inherit;font-size:14px;color:#09090B;box-sizing:border-box;outline:none}
+.tab{height:44px;display:flex;align-items:center;font-size:14px;color:#71717A;text-decoration:none;border-bottom:2px solid transparent}
+.tab:hover{color:#09090B}
+.tab-on,.tab-on:hover{color:#09090B;font-weight:500;border-bottom-color:#059669}
+.pt{font-family:'Oswald',sans-serif;text-transform:uppercase;white-space:pre-line;font-weight:600}
+.row{display:flex;gap:12px;align-items:flex-start;font-size:14px}
+.row svg{flex-shrink:0;margin-top:2px}
+.link{color:#09090B;text-decoration:underline;text-underline-offset:3px}
+th{height:40px;padding:0 12px;text-align:left;font-weight:500;color:#71717A;border-bottom:1px solid #E4E4E7;font-size:14px}
+td{padding:12px;border-bottom:1px solid #E4E4E7;font-size:14px}
+.flink{color:#52525B;text-decoration:none;font-size:14px}.flink:hover{color:#09090B}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-direction: column">
+<header style="background: #FFFFFF; border-bottom: 1px solid #E4E4E7">
+<div style="max-width: 1240px; margin: 0 auto; padding: 0 20px; height: 64px; display: flex; align-items: center; gap: 28px; box-sizing: border-box">
+<a href="Main.dc.html" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: #09090B; font-weight: 700; font-size: 17px; letter-spacing: -0.01em">
+<span style="width: 28px; height: 28px; border-radius: 6px; background: #059669; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4z"></path><path d="M13 6v2M13 11v2M13 16v2"></path></svg></span>
+TicketRush
+</a>
+<label style="flex: 1; max-width: 460px; position: relative; display: flex; align-items: center">
+<span class="sr">Tìm kiếm sự kiện</span>
+<svg style="position: absolute; left: 12px" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+<input class="input" type="search" placeholder="Tìm sự kiện, nghệ sĩ, địa điểm" style="width: 100%; padding-left: 36px; background: #F4F4F5; border-color: #F4F4F5">
+</label>
+<div style="flex-grow: 1"></div>
+<nav style="display: flex; align-items: center; gap: 4px">
+<a href="OrganizerApply.dc.html" class="btn btn-ghost">Tạo sự kiện</a>
+<a href="MyTickets.dc.html" class="btn btn-ghost">Vé của tôi</a>
+<a href="Notifications.dc.html" class="btn btn-ghost" aria-label="Thông báo (3 chưa đọc)" style="width: 36px; padding: 0; position: relative"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg><span style="position: absolute; top: 7px; right: 8px; width: 8px; height: 8px; border-radius: 50%; background: #DC2626; border: 2px solid #FFFFFF"></span></a>
+<a href="Profile.dc.html" aria-label="Tài khoản" style="margin-left: 8px; width: 32px; height: 32px; border-radius: 50%; background: #D1FAE5; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: #065F46; text-decoration: none">AN</a>
+</nav>
+</div>
+</header>
+
+<main style="flex-grow: 1; max-width: 1240px; width: 100%; margin: 0 auto; padding: 20px 20px 56px; box-sizing: border-box; display: flex; flex-direction: column; gap: 24px">
+<nav aria-label="Breadcrumb" style="font-size: 13px; color: #71717A">Trang chủ / Nhạc sống / Đêm nhạc Rock Sài Gòn</nav>
+
+<div style="display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 32px; align-items: start">
+<div style="position: relative; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; background: #0F766E">
+<span style="position: absolute; border-radius: 50%; width: 62%; padding-top: 62%; left: 52%; top: -40%; background: #F59E0B"></span>
+<span style="position: absolute; left: 0; right: 0; top: 34%; height: 2px; background: #FAFAFA; opacity: 0.2"></span>
+<div style="position: absolute; left: 36px; right: 36px; bottom: 32px; color: #FAFAFA; display: flex; flex-direction: column; gap: 10px">
+<span style="font-size: 13px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.85">Live concert · 15.11.2026</span>
+<span class="pt" style="font-size: 72px; line-height: 0.92">Rock{{nl}}Sài Gòn</span>
+<span style="font-size: 15px; opacity: 0.85">Nhà hát Hòa Bình · TP. Hồ Chí Minh</span>
+</div>
+</div>
+
+<div style="border: 1px solid #E4E4E7; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; gap: 18px; box-shadow: 0 1px 3px rgba(0,0,0,.06)">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 13px; font-weight: 500; color: #71717A">Nhạc sống · Rock</span>
+<h1 style="margin: 0; font-size: 26px; font-weight: 600; line-height: 1.25; letter-spacing: -0.01em">Đêm nhạc Rock Sài Gòn</h1>
+</div>
+<div style="display: flex; flex-direction: column; gap: 12px">
+<div class="row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg><div style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 500">Thứ Bảy, 15 tháng 11, 2026</span><span style="color: #71717A">20:00 – 22:30 · Mở cửa lúc 19:00</span></div></div>
+<div class="row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"></path><circle cx="12" cy="10" r="3"></circle></svg><div style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 500">Nhà hát Hòa Bình</span><span style="color: #71717A">240 Đường 3/2, Quận 10, TP. Hồ Chí Minh · <a href="EventDetail.dc.html" class="link">Bản đồ</a></span></div></div>
+</div>
+<div style="height: 1px; background: #E4E4E7"></div>
+<div style="display: flex; align-items: baseline; justify-content: space-between">
+<span style="color: #71717A">Giá vé từ</span>
+<span style="font-size: 24px; font-weight: 700; letter-spacing: -0.01em">800.000 ₫</span>
+</div>
+<a href="Queue.dc.html" class="btn btn-brand" style="height: 44px; font-size: 15px">Mua vé</a>
+<p style="margin: 0; font-size: 13px; color: #71717A; line-height: 1.6">Mở bán 20:00, 02/10/2026 · Có hàng chờ trực tuyến trước khi chọn ghế.</p>
+<div style="display: flex; gap: 8px">
+<button type="button" class="btn btn-outline" style="flex: 1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><path d="m16 6-4-4-4 4"></path><path d="M12 2v13"></path></svg>Chia sẻ</button>
+<button type="button" class="btn btn-outline" style="flex: 1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18M12 14v4M10 16h4"></path></svg>Thêm vào lịch</button>
+</div>
+</div>
+</div>
+
+<nav aria-label="Nội dung sự kiện" style="display: flex; gap: 28px; border-bottom: 1px solid #E4E4E7">
+<a href="EventDetail.dc.html" class="tab tab-on">Giới thiệu</a>
+<a href="EventDetail.dc.html" class="tab">Thông tin vé</a>
+<a href="EventDetail.dc.html" class="tab">Sơ đồ chỗ ngồi</a>
+<a href="EventDetail.dc.html" class="tab">Ban tổ chức</a>
+</nav>
+
+<div style="display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 40px; align-items: start">
+<div style="display: flex; flex-direction: column; gap: 32px">
+<section style="display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-size: 18px; font-weight: 600">Giới thiệu</h2>
+<p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3F3F46">Đêm nhạc quy tụ các ban nhạc rock của Sài Gòn với hơn hai giờ biểu diễn trực tiếp. Chương trình gồm những ca khúc quen thuộc được phối mới cùng một số sáng tác lần đầu ra mắt khán giả.</p>
+<p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3F3F46">Khán giả từ 16 tuổi trở lên. Không mang theo đồ ăn, thức uống và máy quay chuyên nghiệp vào khán phòng.</p>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-size: 18px; font-weight: 600">Thông tin vé</h2>
+<table style="width: 100%; border-collapse: collapse; border: 1px solid #E4E4E7; border-radius: 8px">
+<thead><tr><th>Hạng vé</th><th>Khu vực</th><th style="text-align: right">Giá</th><th style="text-align: right">Tình trạng</th></tr></thead>
+<tbody>
+<sc-for list="{{tiers}}" as="t" hint-placeholder-count="3">
+<tr>
+<td><span style="display: inline-flex; align-items: center; gap: 8px; font-weight: 500"><span style="width: 10px; height: 10px; border-radius: 50%; background: {{t.color}}"></span>{{t.name}}</span></td>
+<td style="color: #71717A">{{t.area}}</td>
+<td style="text-align: right; font-weight: 500">{{t.price}}</td>
+<td style="text-align: right; color: {{t.availColor}}">{{t.avail}}</td>
+</tr>
+</sc-for>
+</tbody>
+</table>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-size: 18px; font-weight: 600">Sơ đồ chỗ ngồi</h2>
+<div style="border: 1px solid #E4E4E7; border-radius: 8px; padding: 24px; display: flex; flex-direction: column; align-items: center; gap: 12px; background: #FAFAFA">
+<div style="width: 55%; height: 24px; border-radius: 4px; background: #27272A; color: #FAFAFA; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; display: flex; align-items: center; justify-content: center">SÂN KHẤU</div>
+<sc-for list="{{sections}}" as="sec" hint-placeholder-count="3">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 4px">
+<sc-for list="{{sec.rows}}" as="row" hint-placeholder-count="3">
+<div style="display: flex; gap: 4px">
+<sc-for list="{{row.seats}}" as="seat" hint-placeholder-count="14">
+<span style="width: 10px; height: 10px; border-radius: 50%; background: {{seat.bg}}"></span>
+</sc-for>
+</div>
+</sc-for>
+</div>
+</sc-for>
+</div>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-size: 18px; font-weight: 600">Điều khoản</h2>
+<ul style="margin: 0; padding-left: 20px; font-size: 14px; line-height: 1.9; color: #3F3F46">
+<li>Mỗi đơn hàng tối đa 6 vé.</li>
+<li>Ghế được giữ 10 phút để thanh toán.</li>
+<li>Hoàn vé đến 48 giờ trước giờ diễn. Phí nền tảng không được hoàn.</li>
+<li>Vé điện tử gửi qua email và trong mục “Vé của tôi”.</li>
+</ul>
+</section>
+</div>
+
+<aside style="display: flex; flex-direction: column; gap: 16px">
+<div style="border: 1px solid #E4E4E7; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 14px">
+<span style="font-size: 13px; font-weight: 500; color: #71717A">Ban tổ chức</span>
+<div style="display: flex; align-items: center; gap: 12px">
+<span style="width: 44px; height: 44px; border-radius: 8px; background: #047857; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600">SS</span>
+<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600">Saigon Sound Co.</span><span style="font-size: 13px; color: #71717A">12 sự kiện đã tổ chức</span></div>
+</div>
+<button type="button" class="btn btn-outline">Liên hệ ban tổ chức</button>
+</div>
+<div style="border: 1px solid #E4E4E7; border-radius: 12px; overflow: hidden">
+<div style="height: 160px; background: #E4E4E7; position: relative">
+<span style="position: absolute; left: 0; right: 0; top: 40%; height: 10px; background: #F4F4F5"></span>
+<span style="position: absolute; top: 0; bottom: 0; left: 30%; width: 10px; background: #F4F4F5"></span>
+<span style="position: absolute; top: 0; bottom: 0; left: 70%; width: 6px; background: #F4F4F5"></span>
+<span style="position: absolute; left: 50%; top: 38%; width: 28px; height: 28px; margin: -14px 0 0 -14px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); background: #059669"></span>
+</div>
+<div style="padding: 16px; display: flex; flex-direction: column; gap: 4px">
+<span style="font-weight: 600">Nhà hát Hòa Bình</span>
+<span style="font-size: 13px; color: #71717A">240 Đường 3/2, Quận 10, TP. Hồ Chí Minh</span>
+</div>
+</div>
+</aside>
+</div>
+</main>
+
+<footer style="background: #FAFAFA; color: #71717A; border-top: 1px solid #E4E4E7">
+<div style="max-width: 1240px; margin: 0 auto; padding: 24px 20px; box-sizing: border-box; display: flex; justify-content: space-between; font-size: 13px">
+<span>© 2026 TicketRush</span>
+<div style="display: flex; gap: 20px"><a href="Main.dc.html" class="flink">Chính sách hoàn vé</a><a href="Main.dc.html" class="flink">Điều khoản</a><a href="Main.dc.html" class="flink">Bảo mật</a></div>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const layout = [
+      { color: '#9A3412', rows: ['A', 'B', 'C'], count: 14 },
+      { color: '#EA580C', rows: ['D', 'E', 'F', 'G', 'H'], count: 18 },
+      { color: '#FDBA74', rows: ['I', 'J', 'K', 'L'], count: 22 },
+    ];
+    const isSold = (r, n) => ((r.charCodeAt(0) * 7 + n * 13) % 9 === 0) || ((r.charCodeAt(0) + n * 5) % 11 === 0);
+    const sections = layout.map((sec) => ({
+      rows: sec.rows.map((r) => ({
+        seats: Array.from({ length: sec.count }, (_, i) => ({ bg: isSold(r, i + 1) ? '#D4D4D8' : sec.color })),
+      })),
+    }));
+    const tiers = [
+      { name: 'VIP', area: 'Khu A · hàng A–C', color: '#9A3412', price: '2.500.000 ₫', avail: 'Sắp hết', availColor: '#B91C1C' },
+      { name: 'Standard', area: 'Khu B · hàng D–H', color: '#EA580C', price: '1.500.000 ₫', avail: 'Còn vé', availColor: '#3F3F46' },
+      { name: 'Phổ thông', area: 'Khu C · hàng I–L', color: '#FDBA74', price: '800.000 ₫', avail: 'Còn vé', availColor: '#3F3F46' },
+    ];
+    return { sections, tiers, nl: '\n' };
+  }
+}
+</script>
+</body>
+</html>

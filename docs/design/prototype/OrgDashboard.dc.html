@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Organizer — Tổng quan</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#FFFFFF;color:#09090B;font-family:'Be Vietnam Pro',system-ui,sans-serif;font-size:14px;-webkit-font-smoothing:antialiased}
+a{color:#09090B}a:hover{color:#09090B}
+button{font-family:inherit}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:36px;padding:0 16px;border-radius:8px;font-size:14px;font-weight:500;line-height:1;white-space:nowrap;border:1px solid transparent;cursor:pointer;text-decoration:none;box-sizing:border-box;background:transparent;color:#09090B}
+.btn-sm{height:32px;padding:0 12px;gap:6px}
+.btn-outline{background:#FFFFFF;border-color:#E4E4E7;box-shadow:0 1px 2px rgba(0,0,0,.05)}.btn-outline:hover{background:#F4F4F5}
+.btn-ghost:hover{background:#F4F4F5}
+.input{height:36px;border:1px solid #E4E4E7;border-radius:8px;padding:0 12px;font-family:inherit;font-size:14px;color:#09090B;background:#FFFFFF;box-sizing:border-box;outline:none;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.badge{display:inline-flex;align-items:center;gap:6px;border:1px solid #E4E4E7;border-radius:6px;padding:2px 8px;font-size:12px;font-weight:500;line-height:16px;white-space:nowrap}
+.card{background:#FFFFFF;border:1px solid #E4E4E7;border-radius:12px;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.tbl{width:100%;border-collapse:collapse}
+.tbl th{height:40px;padding:0 8px;text-align:left;font-weight:500;color:#71717A;border-bottom:1px solid #E4E4E7;white-space:nowrap}
+.tbl td{height:52px;padding:0 8px;border-bottom:1px solid #E4E4E7;vertical-align:middle}
+.tbl tbody tr:last-child td{border-bottom:none}
+.sb{display:flex;align-items:center;gap:8px;height:32px;padding:0 8px;border-radius:6px;font-size:14px;color:#3F3F46;text-decoration:none;box-sizing:border-box}
+.sb:hover{background:#F4F4F5;color:#18181B}
+.sb-on,.sb-on:hover{background:#ECFDF5;color:#065F46;font-weight:500}
+.sbl{height:32px;display:flex;align-items:center;padding:0 8px;font-size:12px;font-weight:500;color:#71717A}
+.tg{height:32px;padding:0 12px;border:none;background:transparent;font-size:14px;font-weight:500;color:#71717A;cursor:pointer}
+.tg-on{background:#ECFDF5;color:#065F46}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px}
+</style>
+</helmet>
+<div style="display: flex; min-height: 100vh; position: relative">
+<aside style="width: 256px; flex-shrink: 0; background: #FAFAFA; border-right: 1px solid #E4E4E7; display: flex; flex-direction: column">
+<div style="padding: 8px">
+<button type="button" class="sb" style="height: 48px; width: 100%; border: none; background: transparent; cursor: pointer; text-align: left">
+<span style="width: 32px; height: 32px; border-radius: 8px; background: #059669; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4z"></path></svg></span>
+<span style="display: flex; flex-direction: column; flex: 1; min-width: 0; line-height: 1.3"><span style="font-weight: 600; color: #09090B">Saigon Sound Co.</span><span style="font-size: 12px; color: #71717A">Organizer</span></span>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 15 5 5 5-5"></path><path d="m7 9 5-5 5 5"></path></svg>
+</button>
+</div>
+<div style="flex: 1; padding: 0 8px; display: flex; flex-direction: column">
+<div class="sbl">Quản lý</div>
+<nav style="display: flex; flex-direction: column; gap: 2px">
+<a href="OrgDashboard.dc.html" class="sb sb-on"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"></rect><rect x="14" y="3" width="7" height="5" rx="1"></rect><rect x="14" y="12" width="7" height="9" rx="1"></rect><rect x="3" y="16" width="7" height="5" rx="1"></rect></svg>Tổng quan</a>
+<a href="OrgEvents.dc.html" class="sb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg>Sự kiện<svg style="margin-left: auto" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></a>
+<a href="OrgOrders.dc.html" class="sb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"></path><path d="M8 7h8M8 11h8M8 15h5"></path></svg>Đơn hàng<svg style="margin-left: auto" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></a>
+<a href="Checkin.dc.html" class="sb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2M7 12h10"></path></svg>Check-in</a>
+<a href="OrgStripe.dc.html" class="sb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"></rect><path d="M2 10h20"></path></svg>Thanh toán &amp; Stripe</a>
+<a href="OrgSettings.dc.html" class="sb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-9M14 17H5"></path><circle cx="17" cy="17" r="3"></circle><circle cx="7" cy="7" r="3"></circle></svg>Cài đặt</a>
+</nav>
+<div class="sbl" style="margin-top: 8px">Sự kiện gần đây</div>
+<nav style="display: flex; flex-direction: column; gap: 2px">
+<a href="OrgEventSales.dc.html" class="sb"><span style="width: 16px; height: 16px; border-radius: 4px; background: #0F766E; flex-shrink: 0"></span>Đêm nhạc Rock Sài Gòn</a>
+<a href="OrgCreateEvent.dc.html" class="sb"><span style="width: 16px; height: 16px; border-radius: 4px; background: #EA580C; flex-shrink: 0"></span>Rock Sài Gòn — đêm 2</a>
+<a href="OrgCreateEvent.dc.html" class="sb"><span style="width: 16px; height: 16px; border-radius: 4px; background: #7F1D1D; flex-shrink: 0"></span>Nhạc kịch Giáng Sinh</a>
+<a href="OrgEvents.dc.html" class="sb" style="color: #71717A"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>Xem thêm</a>
+</nav>
+</div>
+<div style="padding: 8px">
+<button type="button" class="sb" style="height: 48px; width: 100%; border: none; background: transparent; cursor: pointer; text-align: left">
+<span style="width: 32px; height: 32px; border-radius: 8px; background: #D1FAE5; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: #065F46; flex-shrink: 0">MK</span>
+<span style="display: flex; flex-direction: column; flex: 1; min-width: 0; line-height: 1.3"><span style="font-weight: 600; color: #09090B">Trần Minh Khoa</span><span style="font-size: 12px; color: #71717A">khoa@saigonsound.vn</span></span>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 15 5 5 5-5"></path><path d="m7 9 5-5 5 5"></path></svg>
+</button>
+</div>
+</aside>
+
+<div style="flex: 1; min-width: 0; display: flex; flex-direction: column">
+<header style="height: 64px; display: flex; align-items: center; gap: 8px; padding: 0 16px; flex-shrink: 0">
+<button type="button" class="btn btn-ghost" aria-label="Thu gọn sidebar" style="width: 28px; height: 28px; padding: 0; margin-left: -4px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M9 3v18"></path></svg></button>
+<span style="width: 1px; height: 16px; background: #E4E4E7; margin-right: 8px"></span>
+<nav aria-label="Breadcrumb"><ol style="display: flex; align-items: center; gap: 6px; list-style: none; margin: 0; padding: 0"><li style="color: #09090B">Tổng quan</li></ol></nav>
+</header>
+
+<main style="flex: 1; padding: 4px 16px 24px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h1 style="margin: 0; font-size: 24px; font-weight: 600; letter-spacing: -0.02em">Tổng quan</h1>
+<p style="margin: 0; color: #71717A">Tất cả sự kiện</p>
+</div>
+<div style="display: flex; gap: 8px">
+<select class="input" aria-label="Khoảng thời gian" style="width: 160px"><option>30 ngày qua</option><option>7 ngày qua</option><option>Từ đầu năm</option></select>
+<button type="button" class="btn btn-outline"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="m7 10 5 5 5-5"></path><path d="M12 15V3"></path></svg>Tải báo cáo</button>
+</div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px">
+<sc-for list="{{stats}}" as="s" hint-placeholder-count="4">
+<div class="card" style="padding: 20px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; justify-content: space-between; align-items: flex-start">
+<span style="color: #71717A">{{s.label}}</span>
+<span class="badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="{{s.icon}}"></path></svg>{{s.delta}}</span>
+</div>
+<span style="font-size: 26px; font-weight: 600; letter-spacing: -0.02em; font-variant-numeric: tabular-nums">{{s.value}}</span>
+<div style="display: flex; flex-direction: column; gap: 2px; font-size: 13px">
+<span style="font-weight: 500">{{s.foot}}</span>
+<span style="color: #71717A">{{s.sub}}</span>
+</div>
+</div>
+</sc-for>
+</div>
+
+<section class="card" style="padding: 20px; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; justify-content: space-between; align-items: flex-start">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h2 style="margin: 0; font-size: 16px; font-weight: 600">Vé bán ra</h2>
+<span style="color: #71717A">{{rangeLabel}}</span>
+</div>
+<div role="group" aria-label="Khoảng thời gian" style="display: flex; border: 1px solid #E4E4E7; border-radius: 8px; overflow: hidden">
+<sc-for list="{{ranges}}" as="r" hint-placeholder-count="3">
+<button type="button" class="{{r.cls}}" aria-pressed="{{r.pressed}}" onClick="{{r.pick}}">{{r.label}}</button>
+</sc-for>
+</div>
+</div>
+<div style="position: relative; height: 220px">
+<span style="position: absolute; left: 0; right: 0; top: 0; border-top: 1px dashed #E4E4E7"></span>
+<span style="position: absolute; left: 0; right: 0; top: 25%; border-top: 1px dashed #E4E4E7"></span>
+<span style="position: absolute; left: 0; right: 0; top: 50%; border-top: 1px dashed #E4E4E7"></span>
+<span style="position: absolute; left: 0; right: 0; top: 75%; border-top: 1px dashed #E4E4E7"></span>
+<div style="position: absolute; inset: 0; display: flex; align-items: flex-end; gap: {{gap}}; border-bottom: 1px solid #E4E4E7">
+<sc-for list="{{bars}}" as="b" hint-placeholder-count="30">
+<span title="{{b.tip}}" style="flex: 1; height: {{b.h}}; background: #059669; border-radius: 3px 3px 0 0"></span>
+</sc-for>
+</div>
+</div>
+<div style="display: flex; justify-content: space-between; font-size: 12px; color: #71717A; margin-top: -8px">
+<sc-for list="{{ticks}}" as="t" hint-placeholder-count="5"><span>{{t}}</span></sc-for>
+</div>
+</section>
+
+<section class="card" style="overflow: hidden">
+<div style="padding: 20px 20px 12px; display: flex; justify-content: space-between; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h2 style="margin: 0; font-size: 16px; font-weight: 600">Đơn hàng gần đây</h2>
+<span style="color: #71717A">5 đơn mới nhất trên tất cả sự kiện</span>
+</div>
+<a href="OrgOrders.dc.html" class="btn btn-outline btn-sm">Xem tất cả</a>
+</div>
+<table class="tbl">
+<thead><tr><th style="padding-left: 20px">Mã đơn</th><th>Khách hàng</th><th>Sự kiện</th><th>Trạng thái</th><th style="text-align: right; padding-right: 20px">Số tiền</th></tr></thead>
+<tbody>
+<sc-for list="{{recent}}" as="o" hint-placeholder-count="5">
+<tr>
+<td class="mono" style="padding-left: 20px">{{o.id}}</td>
+<td><div style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 500">{{o.name}}</span><span style="font-size: 12px; color: #71717A">{{o.email}}</span></div></td>
+<td style="color: #3F3F46">{{o.event}}</td>
+<td><span class="badge"><span style="width: 6px; height: 6px; border-radius: 50%; background: {{o.dot}}"></span>{{o.status}}</span></td>
+<td style="text-align: right; padding-right: 20px; font-weight: 500; font-variant-numeric: tabular-nums">{{o.amount}}</td>
+</tr>
+</sc-for>
+</tbody>
+</table>
+</section>
+</main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1100}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { range: 30 };
+  }
+  renderVals() {
+    const up = 'm22 7-8.5 8.5-5-5L2 17M16 7h6v6';
+    const down = 'm22 17-8.5-8.5-5 5L2 7M16 17h6v-6';
+    const stats = [
+      { label: 'Doanh thu', value: '512.400.000 ₫', delta: '+12,5%', icon: up, foot: 'Tăng so với 30 ngày trước', sub: 'Đã trừ phí nền tảng 5%' },
+      { label: 'Vé đã bán', value: '386', delta: '+8,1%', icon: up, foot: '3 sự kiện đang mở bán', sub: '42 vé trong 24 giờ qua' },
+      { label: 'Tỷ lệ lấp đầy', value: '76%', delta: '+4,0%', icon: up, foot: 'Trung bình các sự kiện đang bán', sub: 'Cao nhất: Nhạc kịch Giáng Sinh' },
+      { label: 'Tỷ lệ hoàn vé', value: '1,8%', delta: '-0,6%', icon: down, foot: 'Giảm so với 30 ngày trước', sub: '7 đơn hoàn tiền' },
+    ];
+    const n = this.state.range;
+    const vals = Array.from({ length: n }, (_, i) => {
+      const k = i + (90 - n);
+      return Math.max(2, Math.round(12 + 10 * Math.sin(k / 3) + (k % 7) * 2 + (k > 80 ? (k - 80) * 4 : 0)));
+    });
+    const max = Math.max(...vals);
+    const bars = vals.map((v, i) => ({ h: Math.round((v / max) * 100) + '%', tip: v + ' vé' }));
+    const ticks = n === 7 ? ['26/09', '28/09', '30/09', '02/10'] : n === 30 ? ['03/09', '10/09', '17/09', '24/09', '02/10'] : ['04/07', '01/08', '29/08', '26/09'];
+    const ranges = [[90, '3 tháng'], [30, '30 ngày'], [7, '7 ngày']].map(([v, label]) => ({
+      label,
+      cls: v === n ? 'tg tg-on' : 'tg',
+      pressed: v === n ? 'true' : 'false',
+      pick: () => this.setState({ range: v }),
+    }));
+    const paid = { status: 'Đã thanh toán', dot: '#16A34A' };
+    const pending = { status: 'Chờ thanh toán', dot: '#F59E0B' };
+    const recent = [
+      { id: 'TR-8F3K2Q', name: 'Nguyễn Văn An', email: 'an.nguyen@example.com', event: 'Đêm nhạc Rock Sài Gòn', amount: '5.000.000 ₫', ...paid },
+      { id: 'TR-8F3JZ1', name: 'Trần Thị Bình', email: 'binh.tran@example.com', event: 'Đêm nhạc Rock Sài Gòn', amount: '1.500.000 ₫', ...pending },
+      { id: 'TR-8F3JX7', name: 'Lê Hoàng Cường', email: 'cuong.le@example.com', event: 'Nhạc kịch Giáng Sinh', amount: '2.100.000 ₫', ...paid },
+      { id: 'TR-8F3JW2', name: 'Phạm Thu Dung', email: 'dung.pham@example.com', event: 'Đêm nhạc Rock Sài Gòn', amount: '800.000 ₫', ...paid },
+      { id: 'TR-8F3JT9', name: 'Võ Minh Đức', email: 'duc.vo@example.com', event: 'Live Jazz cuối tuần', amount: '1.000.000 ₫', ...paid },
+    ];
+    return {
+      stats, bars, ticks, ranges, recent,
+      gap: n > 30 ? '2px' : n > 7 ? '6px' : '16px',
+      rangeLabel: n === 90 ? '3 tháng gần nhất' : n + ' ngày gần nhất',
+    };
+  }
+}
+</script>
+</body>
+</html>

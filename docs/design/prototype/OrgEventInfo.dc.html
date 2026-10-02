@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Organizer — Sửa sự kiện</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Oswald:wght@500;600&amp;display=swap">
+<style>
+body{margin:0;background:#FFFFFF;color:#09090B;font-family:'Be Vietnam Pro',system-ui,sans-serif;font-size:14px;-webkit-font-smoothing:antialiased}
+a{color:#09090B}a:hover{color:#09090B}
+button{font-family:inherit}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:36px;padding:0 16px;border-radius:8px;font-size:14px;font-weight:500;line-height:1;white-space:nowrap;border:1px solid transparent;cursor:pointer;text-decoration:none;box-sizing:border-box;background:transparent;color:#09090B;font-family:inherit}
+.btn:disabled{opacity:.5;cursor:default}
+.btn-sm{height:32px;padding:0 12px;gap:6px}
+.btn-lg{height:44px;font-size:15px}
+.btn-icon{width:36px;padding:0}
+.btn-default{background:#047857;color:#FFFFFF;box-shadow:0 1px 2px rgba(0,0,0,.05)}.btn-default:hover{background:#065F46;color:#FFFFFF}
+.btn-outline{background:#FFFFFF;border-color:#E4E4E7;box-shadow:0 1px 2px rgba(0,0,0,.05)}.btn-outline:hover{background:#F4F4F5}
+.btn-secondary{background:#F4F4F5;color:#18181B}.btn-secondary:hover{background:#E4E4E7}
+.btn-dashed{border-style:dashed}
+.btn-ghost:hover{background:#F4F4F5}
+.btn-destructive{background:#DC2626;color:#FFFFFF}.btn-destructive:hover{background:#B91C1C;color:#FFFFFF}
+.btn-link{height:auto;padding:0;color:#047857;text-decoration:underline;text-underline-offset:3px}.btn-link:hover{color:#065F46}
+.input{height:36px;width:100%;border:1px solid #E4E4E7;border-radius:8px;padding:0 12px;font-family:inherit;font-size:14px;color:#09090B;background:#FFFFFF;box-sizing:border-box;outline:none;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.input:focus{border-color:#34D399;box-shadow:0 0 0 3px rgba(52,211,153,.3)}
+.input[readonly],.input:disabled{background:#F4F4F5;color:#52525B}
+.ta{min-height:96px;padding:8px 12px;resize:vertical;line-height:1.5}
+.lbl{display:flex;flex-direction:column;gap:8px;font-size:14px;font-weight:500}
+.hint{font-size:12px;font-weight:400;color:#71717A;line-height:1.5}
+.err{font-size:12px;font-weight:400;color:#DC2626}
+.req{color:#DC2626}
+.badge{display:inline-flex;align-items:center;gap:6px;border:1px solid #E4E4E7;border-radius:6px;padding:2px 8px;font-size:12px;font-weight:500;line-height:16px;white-space:nowrap;background:#FFFFFF}
+.dot{width:6px;height:6px;border-radius:50%;display:inline-block;flex-shrink:0}
+.card{background:#FFFFFF;border:1px solid #E4E4E7;border-radius:12px;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.ch{padding:20px 20px 0;display:flex;flex-direction:column;gap:4px}
+.ct{margin:0;font-size:16px;font-weight:600}
+.cd{margin:0;color:#71717A;line-height:1.5}
+.cd:empty{display:none}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin:0;padding:0;list-style:none}
+.steps li{display:flex;flex-direction:column;gap:8px;padding-right:12px}
+.steps .bar{height:4px;border-radius:999px}
+.sim{border:1px dashed #A1A1AA;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px;background:#FAFAFA}
+.cb{padding:20px;display:flex;flex-direction:column;gap:16px}
+.cf{padding:12px 20px;border-top:1px solid #E4E4E7;display:flex;justify-content:flex-end;gap:8px;background:#FAFAFA;border-radius:0 0 12px 12px}
+.tbl{width:100%;border-collapse:collapse}
+.tbl th{height:40px;padding:0 8px;text-align:left;font-weight:500;color:#71717A;border-bottom:1px solid #E4E4E7;white-space:nowrap}
+.tbl td{height:52px;padding:0 8px;border-bottom:1px solid #E4E4E7;vertical-align:middle}
+.tbl tbody tr:last-child td{border-bottom:none}
+.tbl tbody tr:hover{background:#FAFAFA}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px}
+.num{font-variant-numeric:tabular-nums}
+.muted{color:#71717A}
+.menu{position:absolute;z-index:30;background:#FFFFFF;border:1px solid #E4E4E7;border-radius:8px;box-shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1);padding:4px;min-width:200px;text-align:left}
+.mi{display:flex;align-items:center;gap:8px;width:100%;height:32px;padding:0 8px;border:none;border-radius:4px;background:transparent;font-size:14px;color:#09090B;text-align:left;cursor:pointer;text-decoration:none;box-sizing:border-box;font-family:inherit}
+.mi:hover{background:#F4F4F5;color:#09090B}
+.mi:disabled{opacity:.5;cursor:default}
+.mi-danger,.mi-danger:hover{color:#DC2626}
+.ml{height:28px;display:flex;align-items:center;padding:0 8px;font-size:12px;font-weight:500;color:#71717A}
+.sep{height:1px;background:#E4E4E7;margin:4px -4px}
+.overlay{position:absolute;inset:0;z-index:50;background:rgba(0,0,0,.5);display:flex;justify-content:center;align-items:flex-start;padding-top:96px}
+.dialog{width:100%;max-width:512px;background:#FFFFFF;border:1px solid #E4E4E7;border-radius:10px;padding:24px;box-shadow:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.1);display:flex;flex-direction:column;gap:16px;position:relative;box-sizing:border-box}
+.dialog-lg{max-width:680px}
+.dx{position:absolute;top:16px;right:16px;width:24px;height:24px;border:none;background:transparent;border-radius:4px;cursor:pointer;color:#71717A;display:flex;align-items:center;justify-content:center}
+.dx:hover{background:#F4F4F5}
+.dt{margin:0;font-size:18px;font-weight:600;line-height:1.3}
+.dd{margin:0;font-size:14px;color:#71717A;line-height:1.5}
+.df{display:flex;justify-content:flex-end;gap:8px;padding-top:4px}
+.alert{display:flex;gap:12px;align-items:flex-start;border:1px solid #E4E4E7;border-radius:8px;padding:12px 16px;line-height:1.5}
+.alert svg{flex-shrink:0;margin-top:2px}
+.alert-warn{background:#FFFBEB;border-color:#FDE68A;color:#78350F}
+.alert-err{background:#FEF2F2;border-color:#FECACA;color:#7F1D1D}
+.alert-ok{background:#ECFDF5;border-color:#A7F3D0;color:#065F46}
+.alert-info{background:#F4F4F5;border-color:#E4E4E7;color:#3F3F46}
+.tabs{display:flex;gap:24px;border-bottom:1px solid #E4E4E7}
+.tab{height:40px;display:flex;align-items:center;padding:0 2px;border:none;border-bottom:2px solid transparent;margin-bottom:-1px;background:transparent;font-family:inherit;font-size:14px;color:#71717A;cursor:pointer;text-decoration:none;white-space:nowrap}
+.tab:hover{color:#09090B}
+.tab-on,.tab-on:hover{color:#09090B;font-weight:500;border-bottom-color:#059669}
+.seg{display:inline-flex;background:#F4F4F5;border-radius:8px;padding:3px;gap:2px}
+.sg{height:30px;padding:0 12px;border:none;border-radius:6px;background:transparent;font-family:inherit;font-size:13px;font-weight:500;color:#71717A;cursor:pointer;white-space:nowrap}
+.sg-on{background:#FFFFFF;color:#09090B;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.sw{width:36px;height:20px;border-radius:999px;border:none;padding:2px;cursor:pointer;display:inline-flex;flex-shrink:0;box-sizing:border-box}
+.sw:disabled{opacity:.5;cursor:default}
+.sw-on{background:#059669;justify-content:flex-end}
+.sw-off{background:#E4E4E7;justify-content:flex-start}
+.sw span{width:16px;height:16px;border-radius:50%;background:#FFFFFF;box-shadow:0 1px 2px rgba(0,0,0,.2)}
+.ck{width:16px;height:16px;border-radius:4px;border:1px solid #A1A1AA;background:#FFFFFF;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;flex-shrink:0}
+.ck-on{background:#059669;border-color:#059669}
+.rd{width:16px;height:16px;border-radius:50%;border:1px solid #A1A1AA;background:#FFFFFF;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;flex-shrink:0}
+.rd-on{border-color:#059669}
+.rd-on::after{content:'';width:8px;height:8px;border-radius:50%;background:#059669}
+.opt{display:flex;align-items:flex-start;gap:10px;border:none;background:transparent;padding:0;text-align:left;font-family:inherit;font-size:14px;color:#09090B;cursor:pointer}
+.opt .ck,.opt .rd{margin-top:2px}
+.tile{display:flex;align-items:flex-start;gap:10px;border:1px solid #E4E4E7;border-radius:8px;padding:12px;background:#FFFFFF;text-align:left;font-family:inherit;font-size:14px;color:#09090B;cursor:pointer;box-sizing:border-box}
+.tile-on{border-color:#059669;background:#ECFDF5}
+.chip{display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 12px;border:1px solid #E4E4E7;border-radius:999px;background:#FFFFFF;font-family:inherit;font-size:13px;color:#3F3F46;cursor:pointer}
+.chip-on{background:#ECFDF5;border-color:#A7F3D0;color:#065F46;font-weight:500}
+.drop{border:1px dashed #D4D4D8;border-radius:8px;padding:20px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;background:#FAFAFA;color:#71717A}
+.row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid #F4F4F5}
+.row:last-child{border-bottom:none}
+.kv{display:grid;grid-template-columns:180px minmax(0,1fr);row-gap:10px;column-gap:16px;margin:0}
+.kv dt{color:#71717A}.kv dd{margin:0;font-weight:500}
+.toast{position:absolute;right:24px;bottom:24px;z-index:60;background:#09090B;color:#FAFAFA;border-radius:8px;padding:12px 16px;display:flex;align-items:center;gap:10px;box-shadow:0 10px 15px -3px rgba(0,0,0,.2);font-size:14px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.pt{font-family:'Oswald',sans-serif;text-transform:uppercase;white-space:pre-line;font-weight:600}
+.sb{display:flex;align-items:center;gap:8px;height:32px;padding:0 8px;border-radius:6px;font-size:14px;color:#3F3F46;text-decoration:none;box-sizing:border-box}
+.sb:hover{background:#F4F4F5;color:#18181B}
+.sb-on,.sb-on:hover{background:#ECFDF5;color:#065F46;font-weight:500}
+.sbs{display:flex;align-items:center;height:28px;padding:0 8px;border-radius:6px;font-size:14px;color:#3F3F46;text-decoration:none}
+.sbs:hover{background:#F4F4F5;color:#18181B}
+.sbs-on,.sbs-on:hover{background:#ECFDF5;color:#065F46;font-weight:500}
+.sbl{height:32px;display:flex;align-items:center;padding:0 8px;font-size:12px;font-weight:500;color:#71717A}
+</style>
+</helmet>
+<div style="display: flex; min-height: 100vh; position: relative">
+<aside style="width: 256px; flex-shrink: 0; background: #FAFAFA; border-right: 1px solid #E4E4E7; display: flex; flex-direction: column">
+<div style="padding: 8px"><button type="button" class="sb" style="height: 48px; width: 100%; border: none; background: transparent; cursor: pointer; text-align: left"><span style="width: 32px; height: 32px; border-radius: 8px; background: #059669; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4z"></path></svg></span><span style="display: flex; flex-direction: column; flex: 1; min-width: 0; line-height: 1.3"><span style="font-weight: 600; color: #09090B">Saigon Sound Co.</span><span style="font-size: 12px; color: #71717A">Organizer</span></span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button></div>
+<div style="flex: 1; padding: 0 8px; display: flex; flex-direction: column">
+<div class="sbl">Quản lý</div>
+<nav style="display: flex; flex-direction: column; gap: 2px">
+<a href="OrgDashboard.dc.html" class="sb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="1"></rect><rect x="14" y="3" width="7" height="5" rx="1"></rect><rect x="14" y="12" width="7" height="9" rx="1"></rect><rect x="3" y="16" width="7" height="5" rx="1"></rect></svg>Tổng quan</a>
+<a href="OrgEvents.dc.html" class="sb sb-on"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg>Sự kiện<svg style="margin-left: auto" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></a>
+<a href="OrgOrders.dc.html" class="sb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"></path><path d="M8 7h8M8 11h8M8 15h5"></path></svg>Đơn hàng<svg style="margin-left: auto" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></a>
+<a href="Checkin.dc.html" class="sb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2M7 12h10"></path></svg>Check-in</a>
+<a href="OrgStripe.dc.html" class="sb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"></rect><path d="M2 10h20"></path></svg>Thanh toán &amp; Stripe</a>
+<a href="OrgSettings.dc.html" class="sb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 7h-9M14 17H5"></path><circle cx="17" cy="17" r="3"></circle><circle cx="7" cy="7" r="3"></circle></svg>Cài đặt</a>
+</nav>
+<div class="sbl" style="margin-top: 8px">Sự kiện gần đây</div>
+<nav style="display: flex; flex-direction: column; gap: 2px">
+<a href="OrgEventSales.dc.html" class="sb"><span style="width: 16px; height: 16px; border-radius: 4px; background: #0F766E; flex-shrink: 0"></span>Đêm nhạc Rock Sài Gòn</a>
+<a href="OrgEventInfo.dc.html" class="sb"><span style="width: 16px; height: 16px; border-radius: 4px; background: #EA580C; flex-shrink: 0"></span>Rock Sài Gòn — đêm 2</a>
+<a href="OrgEventSales.dc.html" class="sb"><span style="width: 16px; height: 16px; border-radius: 4px; background: #7F1D1D; flex-shrink: 0"></span>Nhạc kịch Giáng Sinh</a>
+</nav>
+</div>
+<div style="padding: 8px; position: relative">
+<sc-if value="{{umOpen}}" hint-placeholder-val="{{ false }}"><div class="menu" role="menu" style="left: 8px; right: 8px; bottom: 60px"><div class="ml">khoa@saigonsound.vn</div><div class="sep"></div><a href="Profile.dc.html" class="mi" role="menuitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="5"></circle><path d="M20 21a8 8 0 0 0-16 0"></path></svg>Hồ sơ cá nhân</a><a href="Notifications.dc.html" class="mi" role="menuitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg>Thông báo</a><a href="Main.dc.html" class="mi" role="menuitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20M2 12h20"></path></svg>Về trang mua vé</a><div class="sep"></div><a href="Auth.dc.html" class="mi" role="menuitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><path d="m16 17 5-5-5-5M21 12H9"></path></svg>Đăng xuất</a></div></sc-if>
+<button type="button" class="sb" aria-expanded="{{umStr}}" onClick="{{toggleUm}}" style="height: 48px; width: 100%; border: none; background: transparent; cursor: pointer; text-align: left"><span style="width: 32px; height: 32px; border-radius: 8px; background: #D1FAE5; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: #065F46; flex-shrink: 0">MK</span><span style="display: flex; flex-direction: column; flex: 1; min-width: 0; line-height: 1.3"><span style="font-weight: 600; color: #09090B">Trần Minh Khoa</span><span style="font-size: 12px; color: #71717A">khoa@saigonsound.vn</span></span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button>
+</div>
+</aside>
+<div style="flex: 1; min-width: 0; display: flex; flex-direction: column">
+<header style="height: 64px; display: flex; align-items: center; gap: 8px; padding: 0 16px; flex-shrink: 0">
+<button type="button" class="btn btn-ghost" aria-label="Thu gọn sidebar" style="width: 28px; height: 28px; padding: 0; margin-left: -4px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M9 3v18"></path></svg></button>
+<span style="width: 1px; height: 16px; background: #E4E4E7; margin-right: 8px"></span>
+<nav aria-label="Breadcrumb"><ol style="display: flex; align-items: center; gap: 6px; list-style: none; margin: 0; padding: 0; color: #71717A"><li><a href="OrgEvents.dc.html" style="color: #71717A; text-decoration: none">Sự kiện</a></li><li style="display: flex"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></li><li style="color: #09090B">Rock Sài Gòn — đêm 2</li><li style="display: flex"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></li><li style="color: #09090B">{{crumb}}</li></ol></nav>
+<span style="flex: 1"></span>
+<a href="Notifications.dc.html" class="btn btn-ghost btn-icon" aria-label="Thông báo (3 chưa đọc)" style="position: relative"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg><span style="position: absolute; top: 7px; right: 8px; width: 8px; height: 8px; border-radius: 50%; background: #DC2626; border: 2px solid #FFFFFF"></span></a>
+</header>
+<main style="flex: 1; padding: 4px 16px 24px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 4px"><h1 style="margin: 0; font-size: 24px; font-weight: 600; letter-spacing: -0.02em">Rock Sài Gòn — đêm 2 <span class="badge" style="vertical-align: middle; margin-left: 8px"><span class="dot" style="background: #A1A1AA"></span>Nháp</span></h1><p style="margin: 0; color: #71717A">CN, 16/11/2026 · 20:00 · Nhà hát Hòa Bình · Khán phòng chính</p></div>
+<div style="display: flex; gap: 8px; align-items: center"><a href="EventDetail.dc.html" class="btn btn-outline"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg>Xem trước</a><button type="button" class="btn btn-outline" onClick="{{saveDraft}}">Lưu nháp</button><button type="button" class="btn btn-default" onClick="{{publish}}">Publish</button></div>
+</div>
+<div class="seg" role="tablist" style="align-self: flex-start"><button type="button" role="tab" class="{{tabInfoCls}}" onClick="{{goInfo}}">Thông tin chung</button><a href="OrgCreateEvent.dc.html" role="tab" class="sg" style="display: inline-flex; align-items: center; text-decoration: none">Hạng vé &amp; giá</a><button type="button" role="tab" class="{{tabSaleCls}}" onClick="{{goSale}}">Mở bán</button><button type="button" role="tab" class="{{tabQueueCls}}" onClick="{{goQueue}}">Phòng chờ</button></div>
+<div style="display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 16px; align-items: start"><div style="display: flex; flex-direction: column; gap: 16px"><sc-if value="{{tInfo}}" hint-placeholder-val="{{ true }}">
+<section class="card"><div class="ch"><h2 class="ct">Ảnh bìa</h2><p class="cd">16:9 · tối thiểu 1600×900 · tối đa 5 MB. Không có ảnh: dùng poster màu tự động.</p></div><div class="cb"><div style="display: flex; gap: 20px; align-items: flex-start"><div style="position: relative; width: 320px; aspect-ratio: 16 / 9; border-radius: 8px; overflow: hidden; background: {{posterBg}}; flex-shrink: 0"><span style="position: absolute; width: 60%; padding-top: 60%; border-radius: 50%; left: 50%; top: -35%; background: {{posterAc}}"></span><span class="pt" style="position: absolute; left: 16px; bottom: 14px; color: #FAFAFA; font-size: 30px; line-height: 0.95">Rock{{nl}}Sài Gòn 2</span></div><div style="display: flex; flex-direction: column; gap: 12px"><div style="display: flex; gap: 8px"><button type="button" class="btn btn-outline btn-sm" onClick="{{upload}}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="m17 8-5-5-5 5M12 3v12"></path></svg>Tải ảnh lên</button><button type="button" class="btn btn-ghost btn-sm" onClick="{{upload}}">Xoá ảnh</button></div><div class="lbl" style="font-size: 13px">Màu poster tự động<div style="display: flex; gap: 8px"><sc-for list="{{swatches}}" as="w" hint-placeholder-count="5"><button type="button" aria-label="{{w.name}}" aria-pressed="{{w.sel}}" onClick="{{w.pick}}" style="width: 28px; height: 28px; border-radius: 50%; background: {{w.bg}}; border: 2px solid {{w.ring}}; cursor: pointer"></button></sc-for></div></div></div></div></div></section>
+<section class="card"><div class="ch"><h2 class="ct">Thông tin cơ bản</h2></div><div class="cb"><label class="lbl"><span>Tên sự kiện <span class="req">*</span></span><input class="input" type="text" value="Rock Sài Gòn — đêm 2"></label><div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px"><label class="lbl"><span>Danh mục <span class="req">*</span></span><select class="input"><option>Nhạc sống</option><option>Sân khấu &amp; Nghệ thuật</option><option>Hài kịch</option><option>Thể thao</option><option>Hội thảo &amp; Workshop</option><option>Lễ hội</option></select></label><label class="lbl">Độ tuổi<select class="input"><option>Mọi lứa tuổi</option><option selected="selected">Từ 16 tuổi</option><option>Từ 18 tuổi</option></select></label></div><label class="lbl">Thẻ <span class="hint" style="margin-top: -6px">Enter để thêm</span><div class="input" style="height: auto; min-height: 36px; display: flex; flex-wrap: wrap; gap: 6px; padding: 6px 8px; align-items: center"><span class="badge">rock</span><span class="badge">live band</span><span class="badge">sài gòn</span><input type="text" aria-label="Thêm thẻ" placeholder="Thêm thẻ…" style="border: none; outline: none; font-family: inherit; font-size: 14px; flex: 1; min-width: 80px"></div></label><div class="lbl"><span>Mô tả <span class="req">*</span></span><div style="border: 1px solid #E4E4E7; border-radius: 8px; overflow: hidden"><div style="display: flex; gap: 2px; padding: 4px; border-bottom: 1px solid #E4E4E7; background: #FAFAFA"><button type="button" class="btn btn-ghost btn-sm" style="width: 32px; padding: 0; font-weight: 700" aria-label="Đậm">B</button><button type="button" class="btn btn-ghost btn-sm" style="width: 32px; padding: 0; font-style: italic" aria-label="Nghiêng">I</button><button type="button" class="btn btn-ghost btn-sm" aria-label="Danh sách">• Danh sách</button><button type="button" class="btn btn-ghost btn-sm" aria-label="Chèn liên kết">Liên kết</button></div><textarea class="input ta" aria-label="Mô tả" style="border: none; box-shadow: none; border-radius: 0; min-height: 120px">Đêm thứ hai của chuỗi Rock Sài Gòn với dàn line-up mới. Chương trình kéo dài 150 phút, gồm 5 ban nhạc.</textarea></div></div><label class="lbl">Quy định tại sự kiện<textarea class="input ta" placeholder="VD: Không mang đồ ăn, thức uống…">Không mang theo đồ ăn, thức uống và máy quay chuyên nghiệp.</textarea></label></div></section>
+<section class="card"><div class="ch"><h2 class="ct">Thời gian &amp; địa điểm</h2><p class="cd">Giờ Việt Nam (GMT+7)</p></div><div class="cb"><div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px"><label class="lbl"><span>Ngày diễn <span class="req">*</span></span><input class="input" type="text" value="16/11/2026"></label><label class="lbl"><span>Bắt đầu <span class="req">*</span></span><input class="input" type="text" value="20:00"></label><label class="lbl">Kết thúc<input class="input" type="text" value="22:30"></label><label class="lbl">Mở cửa<input class="input" type="text" value="19:00"></label></div><div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px"><label class="lbl"><span>Địa điểm <span class="req">*</span></span><select class="input"><option>Nhà hát Hòa Bình — TP.HCM</option><option>Nhà văn hoá Thanh niên — TP.HCM</option><option>Nhà hát Lớn — Hà Nội</option></select><span class="hint">Danh sách do Admin quản lý</span></label><div class="lbl"><span>Sơ đồ ghế <span class="req">*</span></span><div style="display: flex; gap: 8px"><input class="input" type="text" value="Khán phòng chính · 220 ghế · 3 khu" readonly="readonly" aria-label="Sơ đồ ghế"><button type="button" class="btn btn-outline" onClick="{{openMap}}">Đổi</button></div><span class="hint">Khoá sau khi publish</span></div></div></div><div class="cf"><button type="button" class="btn btn-ghost">Huỷ thay đổi</button><button type="button" class="btn btn-default" onClick="{{saveDraft}}">Lưu thay đổi</button></div></section>
+</sc-if>
+<sc-if value="{{tSale}}" hint-placeholder-val="{{ false }}">
+<section class="card"><div class="ch"><h2 class="ct">Thời gian mở bán</h2><p class="cd"></p></div><div class="cb"><div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px"><label class="lbl"><span>Ngày mở bán <span class="req">*</span></span><input class="input" type="text" value="02/11/2026"></label><label class="lbl"><span>Giờ mở bán <span class="req">*</span></span><input class="input" type="text" value="20:00"></label></div><label class="lbl">Kết thúc bán<select class="input" style="max-width: 320px"><option>Khi sự kiện bắt đầu</option><option>2 giờ trước giờ diễn</option><option>24 giờ trước giờ diễn</option></select></label><div class="row" style="border: none; padding-bottom: 0"><div style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 500">Hiện sự kiện trước giờ mở bán</span><span class="hint">Trang sự kiện hiện đếm ngược, nút Mua vé khoá</span></div><button type="button" role="switch" aria-label="Hiện trước giờ mở bán" aria-checked="{{preStr}}" class="{{preCls}}" onClick="{{togglePre}}"><span></span></button></div></div></section>
+<section class="card"><div class="ch"><h2 class="ct">Quy định bán vé</h2><p class="cd">Áp dụng cho mọi sự kiện, không chỉnh được.</p></div><div class="cb" style="gap: 0; padding-top: 8px"><div class="row"><div style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 500">Tối đa vé mỗi đơn</span><span class="hint">Theo chính sách hệ thống (BR-02)</span></div><span class="badge">6 vé</span></div><div class="row"><div style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 500">Thời gian giữ ghế khi thanh toán</span><span class="hint">Theo chính sách hệ thống (BR-03)</span></div><span class="badge">10 phút</span></div><div class="row"><div style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 500">Hạn hoàn vé</span><span class="hint">Theo chính sách hệ thống (BR-07)</span></div><span class="badge">48 giờ trước giờ diễn</span></div><div class="row"><div style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 500">Phí nền tảng</span><span class="hint">Theo chính sách hệ thống (BR-06)</span></div><span class="badge">5% giá vé</span></div></div></section>
+<section class="card"><div class="ch"><h2 class="ct">Hiển thị</h2></div><div class="cb" style="flex-direction: row; gap: 12px"><button type="button" class="{{visPubTile}}" role="radio" aria-checked="{{visPubSel}}" onClick="{{visPub}}" style="flex: 1"><span class="{{visPubRd}}"></span><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 500">Công khai</span><span class="hint">Trang chủ, tìm kiếm, danh mục</span></span></button><button type="button" class="{{visLinkTile}}" role="radio" aria-checked="{{visLinkSel}}" onClick="{{visLink}}" style="flex: 1"><span class="{{visLinkRd}}"></span><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 500">Chỉ người có liên kết</span><span class="hint">Không hiện trong tìm kiếm</span></span></button></div><div class="cf"><button type="button" class="btn btn-default" onClick="{{saveDraft}}">Lưu thay đổi</button></div></section>
+</sc-if>
+<sc-if value="{{tQueue}}" hint-placeholder-val="{{ false }}">
+<section class="card"><div class="cb"><div class="row" style="border: none; padding: 0"><div style="display: flex; flex-direction: column; gap: 4px"><span style="font-weight: 600; font-size: 16px">Sự kiện nhu cầu cao</span><span class="muted" style="line-height: 1.5">Phòng chờ ảo: khách xếp hàng, vào chọn ghế theo lượt.</span></div><button type="button" role="switch" aria-label="Bật phòng chờ" aria-checked="{{hdStr}}" class="{{hdCls}}" onClick="{{toggleHd}}"><span></span></button></div><sc-if value="{{hd}}" hint-placeholder-val="{{ true }}"><div style="display: flex; flex-direction: column; gap: 16px; border-top: 1px solid #E4E4E7; padding-top: 16px"><div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px"><label class="lbl">Mở phòng chờ trước giờ mở bán<select class="input"><option>15 phút</option><option selected="selected">30 phút</option><option>60 phút</option></select><span class="hint">Khách vào trước giờ mở bán được xếp thứ tự ngẫu nhiên</span></label><label class="lbl">Số khách vào chọn ghế mỗi phút<input class="input" type="text" value="200"><span class="hint">Admin điều chỉnh được khi đang mở bán</span></label></div><div class="row" style="padding: 0; border: none"><span class="muted">Hiệu lực mỗi lượt vào</span><span class="badge">15 phút (BR-04)</span></div><a href="Queue.dc.html" class="btn btn-outline btn-sm" style="align-self: flex-start"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg>Xem trước hàng chờ</a></div></sc-if></div><div class="cf"><button type="button" class="btn btn-default" onClick="{{saveDraft}}">Lưu thay đổi</button></div></section>
+<div class="alert alert-info"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path></svg><span>Flag <span class="mono">waiting-room.force</span> (Admin) bật phòng chờ cho mọi sự kiện.</span></div>
+</sc-if>
+</div><aside style="display: flex; flex-direction: column; gap: 16px; position: sticky; top: 16px"><section class="card" style="padding: 20px; display: flex; flex-direction: column; gap: 10px"><h2 class="ct">Trước khi publish</h2><p class="cd" style="margin-bottom: 4px">{{checkSummary}}</p><sc-for list="{{checks}}" as="c" hint-placeholder-count="6"><div style="display: flex; align-items: center; gap: 10px; min-height: 32px"><span style="width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid {{c.ring}}; background: {{c.fill}}; display: flex; align-items: center; justify-content: center; box-sizing: border-box; flex-shrink: 0"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="{{c.tick}}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></span><span style="flex: 1; color: {{c.text}}">{{c.label}}</span><sc-if value="{{c.todo}}" hint-placeholder-val="{{ false }}"><a href="{{c.href}}" class="btn btn-link" style="font-size: 13px">{{c.action}}</a></sc-if></div></sc-for>
+</section><section class="card" style="padding: 20px; display: flex; flex-direction: column; gap: 8px"><h2 class="ct">Sau khi publish</h2><ul style="margin: 0; padding-left: 18px; color: #52525B; line-height: 1.8"><li>Không đổi được địa điểm, sơ đồ ghế.</li><li>Không sửa giá hạng vé đã có người mua.</li><li>Huỷ sự kiện: hoàn tiền toàn bộ đơn tự động.</li></ul></section></aside>
+</div>
+
+</main>
+</div>
+<sc-if value="{{dlgPublish}}" hint-placeholder-val="{{ false }}">
+<div class="overlay">
+<div class="dialog" role="dialog" aria-modal="true" aria-labelledby="d-pub">
+<button type="button" class="dx" aria-label="Đóng" onClick="{{closeDialog}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+<div style="display: flex; flex-direction: column; gap: 8px"><h2 id="d-pub" class="dt">Publish “Rock Sài Gòn — đêm 2”?</h2><p class="dd">Hiển thị công khai, tự mở bán theo lịch.</p></div>
+<dl class="kv" style="grid-template-columns: 160px minmax(0, 1fr)"><dt>Mở bán</dt><dd>20:00, 02/11/2026</dd><dt>Sơ đồ</dt><dd>220 ghế · 3 hạng vé</dd><dt>Giá vé</dt><dd>800.000 ₫ – 2.500.000 ₫</dd><dt>Phòng chờ</dt><dd>{{hdLabel}}</dd></dl><div class="alert alert-warn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4M12 17h.01"></path></svg><span>Sau khi publish: khoá địa điểm và sơ đồ ghế.</span></div>
+<div class="df"><button type="button" class="btn btn-outline" onClick="{{closeDialog}}">Huỷ</button><button type="button" class="btn btn-default" onClick="{{confirmPublish}}">Publish</button></div>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{dlgBlocked}}" hint-placeholder-val="{{ false }}">
+<div class="overlay">
+<div class="dialog" role="dialog" aria-modal="true" aria-labelledby="d-blk">
+<button type="button" class="dx" aria-label="Đóng" onClick="{{closeDialog}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+<div style="display: flex; flex-direction: column; gap: 8px"><h2 id="d-blk" class="dt">Chưa thể publish</h2><p class="dd">Còn thiếu (BR-05):</p></div>
+<ul style="margin: 0; padding-left: 18px; line-height: 1.9"><li>Stripe chưa bật nhận thanh toán</li></ul>
+<div class="df"><button type="button" class="btn btn-outline" onClick="{{closeDialog}}">Để sau</button><a href="OrgStripe.dc.html" class="btn btn-default">Kết nối Stripe</a></div>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{dlgMap}}" hint-placeholder-val="{{ false }}">
+<div class="overlay">
+<div class="dialog" role="alertdialog" aria-modal="true" aria-labelledby="d-map">
+<button type="button" class="dx" aria-label="Đóng" onClick="{{closeDialog}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+<div style="display: flex; flex-direction: column; gap: 8px"><h2 id="d-map" class="dt">Đổi sơ đồ ghế?</h2><p class="dd">Gán hạng vé của 3 khu hiện tại bị xoá, cần gán lại cho sơ đồ mới.</p></div>
+<label class="lbl">Sơ đồ mới<select class="input"><option>Cấu hình hội nghị · 180 ghế · 2 khu</option><option>Khán phòng chính · 220 ghế · 3 khu</option></select></label>
+<div class="df"><button type="button" class="btn btn-outline" onClick="{{closeDialog}}">Giữ sơ đồ</button><button type="button" class="btn btn-destructive" onClick="{{confirmMap}}">Đổi sơ đồ</button></div>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{toastOn}}" hint-placeholder-val="{{ false }}"><div class="toast" role="status"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span>{{toastMsg}}</span><button type="button" class="btn btn-ghost btn-sm" style="color: #FAFAFA; height: 24px; padding: 0 6px" onClick="{{hideToast}}">Đóng</button></div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"tab": {"editor": "enum", "options": ["info", "sale", "queue"], "default": "info"}, "ready": {"editor": "boolean", "default": false}, "dialog": {"editor": "enum", "options": ["none", "publish", "blocked", "map"], "default": "none"}, "$preview": {"width": 1280, "height": 1500}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { sw: 1, pre: true, vis: 'pub' }; }
+
+  dlg(name) { return () => this.setState({ dialog: name, menu: null }); }
+  common() {
+    const dialog = this.state.dialog !== undefined ? this.state.dialog : (this.props.dialog ?? 'none');
+    return {
+      dialog,
+      closeDialog: () => this.setState({ dialog: 'none' }),
+      toastOn: !!this.state.toast,
+      toastMsg: this.state.toast || '',
+      hideToast: () => this.setState({ toast: null }),
+      done: (msg) => () => this.setState({ dialog: 'none', toast: msg, menu: null }),
+    };
+  }
+
+  um() {
+    const bell = this.state.bell !== undefined ? this.state.bell : !!this.props.bell;
+    return {
+      umOpen: !!this.state.um,
+      umStr: this.state.um ? 'true' : 'false',
+      toggleUm: () => this.setState({ um: !this.state.um, bell: false }),
+      bellOpen: bell,
+      bellStr: bell ? 'true' : 'false',
+      toggleBell: () => this.setState({ bell: !bell, um: false }),
+    };
+  }
+
+  renderVals() {
+    const tab = this.state.tab || this.props.tab || 'info';
+    const ready = this.props.ready ?? false;
+    const hd = this.state.hd !== undefined ? this.state.hd : true;
+    const c = this.common();
+    const S = [['Xanh rêu', '#0F766E', '#F59E0B'], ['Cam đất', '#9A3412', '#FDBA74'], ['Tím đêm', '#581C87', '#22D3EE'], ['Navy', '#1E3A8A', '#F59E0B'], ['Đen', '#18181B', '#F43F5E']];
+    const swatches = S.map(([name, bg], i) => ({ name, bg, sel: this.state.sw === i ? 'true' : 'false', ring: this.state.sw === i ? '#09090B' : '#FFFFFF', pick: () => this.setState({ sw: i }) }));
+    const ok = { ring: '#059669', fill: '#059669', tick: '#FFFFFF', text: '#09090B', todo: false };
+    const no = { ring: '#D4D4D8', fill: '#FFFFFF', tick: '#FFFFFF', text: '#71717A', todo: true };
+    const checks = [
+      { label: 'Thông tin cơ bản & mô tả', ...ok },
+      { label: 'Thời gian & địa điểm', ...ok },
+      { label: 'Hạng vé gán đủ 3/3 khu ghế', ...ok, href: 'OrgCreateEvent.dc.html' },
+      { label: 'Giờ mở bán', ...ok },
+      { label: 'Hồ sơ ban tổ chức đã duyệt', ...ok },
+      { label: 'Stripe đã bật nhận thanh toán', ...(ready ? ok : no), action: 'Kết nối', href: 'OrgStripe.dc.html' },
+    ];
+    const seg = (k) => (tab === k ? 'sg sg-on' : 'sg');
+    const vis = this.state.vis;
+    return {
+      ...c, ...this.um(), nl: '\n',
+      tInfo: tab === 'info', tSale: tab === 'sale', tQueue: tab === 'queue',
+      tabInfoCls: seg('info'), tabSaleCls: seg('sale'), tabQueueCls: seg('queue'),
+      goInfo: () => this.setState({ tab: 'info' }), goSale: () => this.setState({ tab: 'sale' }), goQueue: () => this.setState({ tab: 'queue' }),
+      crumb: { info: 'Thông tin chung', sale: 'Mở bán', queue: 'Phòng chờ' }[tab],
+      swatches, posterBg: S[this.state.sw][1], posterAc: S[this.state.sw][2],
+      checks, checkSummary: ready ? 'Đủ điều kiện publish' : 'Còn thiếu 1 mục',
+      preStr: this.state.pre ? 'true' : 'false', preCls: this.state.pre ? 'sw sw-on' : 'sw sw-off', togglePre: () => this.setState({ pre: !this.state.pre }),
+      visPubTile: vis === 'pub' ? 'tile tile-on' : 'tile', visPubRd: vis === 'pub' ? 'rd rd-on' : 'rd', visPubSel: vis === 'pub' ? 'true' : 'false', visPub: () => this.setState({ vis: 'pub' }),
+      visLinkTile: vis === 'link' ? 'tile tile-on' : 'tile', visLinkRd: vis === 'link' ? 'rd rd-on' : 'rd', visLinkSel: vis === 'link' ? 'true' : 'false', visLink: () => this.setState({ vis: 'link' }),
+      hd, hdStr: hd ? 'true' : 'false', hdCls: hd ? 'sw sw-on' : 'sw sw-off', toggleHd: () => this.setState({ hd: !hd }), hdLabel: hd ? 'Bật · 200 khách/phút' : 'Tắt',
+      upload: () => this.setState({ toast: 'Đã cập nhật ảnh bìa' }),
+      saveDraft: () => this.setState({ toast: 'Đã lưu thay đổi' }),
+      publish: this.dlg(ready ? 'publish' : 'blocked'),
+      openMap: this.dlg('map'),
+      dlgPublish: c.dialog === 'publish', dlgBlocked: c.dialog === 'blocked', dlgMap: c.dialog === 'map',
+      confirmPublish: c.done('Đã publish. Sự kiện sẽ mở bán lúc 20:00, 02/11/2026'),
+      confirmMap: c.done('Đã đổi sơ đồ · chưa gán hạng vé'),
+    };
+  }
+}
+</script>
+</body>
+</html>

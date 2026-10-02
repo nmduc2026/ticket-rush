@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>TicketRush — Check-in</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#FAFAFA}a:hover{color:#FAFAFA}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; overflow: hidden; background: #09090B; color: #FAFAFA; font-family: 'Be Vietnam Pro', system-ui, sans-serif; font-size: 14px; display: flex; flex-direction: column; box-sizing: border-box">
+<header style="height: 56px; padding: 0 8px; display: flex; align-items: center; gap: 4px; border-bottom: 1px solid #27272A; flex-shrink: 0">
+<a href="OrgEventSales.dc.html" aria-label="Quay lại" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg></a>
+<div style="display: flex; flex-direction: column">
+<span style="font-size: 15px; font-weight: 600">Check-in · Cổng 2</span>
+<span style="font-size: 12px; color: #A1A1AA">Đêm nhạc Rock Sài Gòn</span>
+</div>
+<span style="flex-grow: 1"></span>
+<span style="font-size: 12px; color: #A1A1AA; padding-right: 10px; font-variant-numeric: tabular-nums">312/1.200</span>
+</header>
+
+<div style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; padding-top: 36px; gap: 16px; background: #18181B">
+<div style="width: 240px; height: 240px; position: relative">
+<span style="position: absolute; top: 0; left: 0; width: 40px; height: 40px; border-top: 3px solid #FAFAFA; border-left: 3px solid #FAFAFA; border-top-left-radius: 12px"></span>
+<span style="position: absolute; top: 0; right: 0; width: 40px; height: 40px; border-top: 3px solid #FAFAFA; border-right: 3px solid #FAFAFA; border-top-right-radius: 12px"></span>
+<span style="position: absolute; bottom: 0; left: 0; width: 40px; height: 40px; border-bottom: 3px solid #FAFAFA; border-left: 3px solid #FAFAFA; border-bottom-left-radius: 12px"></span>
+<span style="position: absolute; bottom: 0; right: 0; width: 40px; height: 40px; border-bottom: 3px solid #FAFAFA; border-right: 3px solid #FAFAFA; border-bottom-right-radius: 12px"></span>
+</div>
+<span style="font-size: 13px; color: #A1A1AA">Đang quét…</span>
+</div>
+
+<section aria-live="polite" style="background: #FFFFFF; color: #09090B; padding: 20px 16px 24px; display: flex; flex-direction: column; gap: 14px; flex-shrink: 0; border-top: 4px solid {{v.bar}}">
+<div style="display: flex; align-items: center; gap: 12px">
+<span style="width: 40px; height: 40px; border-radius: 50%; background: {{v.bar}}; display: flex; align-items: center; justify-content: center; flex-shrink: 0">
+<sc-if value="{{isValid}}" hint-placeholder-val="{{ true }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></sc-if>
+<sc-if value="{{isUsed}}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4M12 16h.01"></path></svg></sc-if>
+<sc-if value="{{isForged}}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></sc-if>
+</span>
+<div style="display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 18px; font-weight: 600">{{v.title}}</span>
+<span style="font-size: 13px; color: #71717A">{{v.detail}}</span>
+</div>
+</div>
+<dl style="margin: 0; display: grid; grid-template-columns: 96px minmax(0, 1fr); row-gap: 8px; font-size: 13px">
+<sc-for list="{{v.rows}}" as="r" hint-placeholder-count="3">
+<dt style="color: #71717A">{{r.k}}</dt><dd style="margin: 0; font-weight: 500">{{r.v}}</dd>
+</sc-for>
+</dl>
+<button type="button" style="height: 48px; border-radius: 8px; border: none; background: #047857; color: #FFFFFF; font-family: inherit; font-size: 15px; font-weight: 500; cursor: pointer">Quét vé tiếp theo</button>
+</section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"result":{"editor":"enum","options":["valid","used","forged"],"default":"valid"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const result = this.props.result ?? 'valid';
+    const variants = {
+      valid: { bar: '#16A34A', title: 'Hợp lệ', detail: 'Đã ghi nhận check-in lúc 19:42', rows: [{ k: 'Vị trí', v: 'VIP · Hàng B · Ghế 7' }, { k: 'Mã vé', v: 'TK-4Q9X-B7' }, { k: 'Người mua', v: 'Nguyễn Văn An' }] },
+      used: { bar: '#D97706', title: 'Vé đã được sử dụng', detail: 'Không cho vào lần hai', rows: [{ k: 'Check-in lúc', v: '19:31 · Cổng 1' }, { k: 'Vị trí', v: 'VIP · Hàng B · Ghế 7' }, { k: 'Mã vé', v: 'TK-4Q9X-B7' }] },
+      forged: { bar: '#DC2626', title: 'Vé không hợp lệ', detail: 'Chữ ký số không khớp', rows: [{ k: 'Lý do', v: 'Mã QR không do TicketRush phát hành' }, { k: 'Xử lý', v: 'Không cho vào, báo quản lý cổng' }] },
+    };
+    return {
+      v: variants[result] || variants.valid,
+      isValid: result === 'valid',
+      isUsed: result === 'used',
+      isForged: result === 'forged',
+    };
+  }
+}
+</script>
+</body>
+</html>

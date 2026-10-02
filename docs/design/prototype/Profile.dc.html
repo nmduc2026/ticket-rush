@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>TicketRush — Hồ sơ cá nhân</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Oswald:wght@500;600&amp;display=swap">
+<style>
+body{margin:0;background:#FFFFFF;color:#09090B;font-family:'Be Vietnam Pro',system-ui,sans-serif;font-size:14px;-webkit-font-smoothing:antialiased}
+a{color:#09090B}a:hover{color:#09090B}
+button{font-family:inherit}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:36px;padding:0 16px;border-radius:8px;font-size:14px;font-weight:500;line-height:1;white-space:nowrap;border:1px solid transparent;cursor:pointer;text-decoration:none;box-sizing:border-box;background:transparent;color:#09090B;font-family:inherit}
+.btn:disabled{opacity:.5;cursor:default}
+.btn-sm{height:32px;padding:0 12px;gap:6px}
+.btn-lg{height:44px;font-size:15px}
+.btn-icon{width:36px;padding:0}
+.btn-default{background:#047857;color:#FFFFFF;box-shadow:0 1px 2px rgba(0,0,0,.05)}.btn-default:hover{background:#065F46;color:#FFFFFF}
+.btn-outline{background:#FFFFFF;border-color:#E4E4E7;box-shadow:0 1px 2px rgba(0,0,0,.05)}.btn-outline:hover{background:#F4F4F5}
+.btn-secondary{background:#F4F4F5;color:#18181B}.btn-secondary:hover{background:#E4E4E7}
+.btn-dashed{border-style:dashed}
+.btn-ghost:hover{background:#F4F4F5}
+.btn-destructive{background:#DC2626;color:#FFFFFF}.btn-destructive:hover{background:#B91C1C;color:#FFFFFF}
+.btn-link{height:auto;padding:0;color:#047857;text-decoration:underline;text-underline-offset:3px}.btn-link:hover{color:#065F46}
+.input{height:36px;width:100%;border:1px solid #E4E4E7;border-radius:8px;padding:0 12px;font-family:inherit;font-size:14px;color:#09090B;background:#FFFFFF;box-sizing:border-box;outline:none;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.input:focus{border-color:#34D399;box-shadow:0 0 0 3px rgba(52,211,153,.3)}
+.input[readonly],.input:disabled{background:#F4F4F5;color:#52525B}
+.ta{min-height:96px;padding:8px 12px;resize:vertical;line-height:1.5}
+.lbl{display:flex;flex-direction:column;gap:8px;font-size:14px;font-weight:500}
+.hint{font-size:12px;font-weight:400;color:#71717A;line-height:1.5}
+.err{font-size:12px;font-weight:400;color:#DC2626}
+.req{color:#DC2626}
+.badge{display:inline-flex;align-items:center;gap:6px;border:1px solid #E4E4E7;border-radius:6px;padding:2px 8px;font-size:12px;font-weight:500;line-height:16px;white-space:nowrap;background:#FFFFFF}
+.dot{width:6px;height:6px;border-radius:50%;display:inline-block;flex-shrink:0}
+.card{background:#FFFFFF;border:1px solid #E4E4E7;border-radius:12px;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.ch{padding:20px 20px 0;display:flex;flex-direction:column;gap:4px}
+.ct{margin:0;font-size:16px;font-weight:600}
+.cd{margin:0;color:#71717A;line-height:1.5}
+.cd:empty{display:none}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin:0;padding:0;list-style:none}
+.steps li{display:flex;flex-direction:column;gap:8px;padding-right:12px}
+.steps .bar{height:4px;border-radius:999px}
+.sim{border:1px dashed #A1A1AA;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px;background:#FAFAFA}
+.cb{padding:20px;display:flex;flex-direction:column;gap:16px}
+.cf{padding:12px 20px;border-top:1px solid #E4E4E7;display:flex;justify-content:flex-end;gap:8px;background:#FAFAFA;border-radius:0 0 12px 12px}
+.tbl{width:100%;border-collapse:collapse}
+.tbl th{height:40px;padding:0 8px;text-align:left;font-weight:500;color:#71717A;border-bottom:1px solid #E4E4E7;white-space:nowrap}
+.tbl td{height:52px;padding:0 8px;border-bottom:1px solid #E4E4E7;vertical-align:middle}
+.tbl tbody tr:last-child td{border-bottom:none}
+.tbl tbody tr:hover{background:#FAFAFA}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px}
+.num{font-variant-numeric:tabular-nums}
+.muted{color:#71717A}
+.menu{position:absolute;z-index:30;background:#FFFFFF;border:1px solid #E4E4E7;border-radius:8px;box-shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1);padding:4px;min-width:200px;text-align:left}
+.mi{display:flex;align-items:center;gap:8px;width:100%;height:32px;padding:0 8px;border:none;border-radius:4px;background:transparent;font-size:14px;color:#09090B;text-align:left;cursor:pointer;text-decoration:none;box-sizing:border-box;font-family:inherit}
+.mi:hover{background:#F4F4F5;color:#09090B}
+.mi:disabled{opacity:.5;cursor:default}
+.mi-danger,.mi-danger:hover{color:#DC2626}
+.ml{height:28px;display:flex;align-items:center;padding:0 8px;font-size:12px;font-weight:500;color:#71717A}
+.sep{height:1px;background:#E4E4E7;margin:4px -4px}
+.overlay{position:absolute;inset:0;z-index:50;background:rgba(0,0,0,.5);display:flex;justify-content:center;align-items:flex-start;padding-top:96px}
+.dialog{width:100%;max-width:512px;background:#FFFFFF;border:1px solid #E4E4E7;border-radius:10px;padding:24px;box-shadow:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.1);display:flex;flex-direction:column;gap:16px;position:relative;box-sizing:border-box}
+.dialog-lg{max-width:680px}
+.dx{position:absolute;top:16px;right:16px;width:24px;height:24px;border:none;background:transparent;border-radius:4px;cursor:pointer;color:#71717A;display:flex;align-items:center;justify-content:center}
+.dx:hover{background:#F4F4F5}
+.dt{margin:0;font-size:18px;font-weight:600;line-height:1.3}
+.dd{margin:0;font-size:14px;color:#71717A;line-height:1.5}
+.df{display:flex;justify-content:flex-end;gap:8px;padding-top:4px}
+.alert{display:flex;gap:12px;align-items:flex-start;border:1px solid #E4E4E7;border-radius:8px;padding:12px 16px;line-height:1.5}
+.alert svg{flex-shrink:0;margin-top:2px}
+.alert-warn{background:#FFFBEB;border-color:#FDE68A;color:#78350F}
+.alert-err{background:#FEF2F2;border-color:#FECACA;color:#7F1D1D}
+.alert-ok{background:#ECFDF5;border-color:#A7F3D0;color:#065F46}
+.alert-info{background:#F4F4F5;border-color:#E4E4E7;color:#3F3F46}
+.tabs{display:flex;gap:24px;border-bottom:1px solid #E4E4E7}
+.tab{height:40px;display:flex;align-items:center;padding:0 2px;border:none;border-bottom:2px solid transparent;margin-bottom:-1px;background:transparent;font-family:inherit;font-size:14px;color:#71717A;cursor:pointer;text-decoration:none;white-space:nowrap}
+.tab:hover{color:#09090B}
+.tab-on,.tab-on:hover{color:#09090B;font-weight:500;border-bottom-color:#059669}
+.seg{display:inline-flex;background:#F4F4F5;border-radius:8px;padding:3px;gap:2px}
+.sg{height:30px;padding:0 12px;border:none;border-radius:6px;background:transparent;font-family:inherit;font-size:13px;font-weight:500;color:#71717A;cursor:pointer;white-space:nowrap}
+.sg-on{background:#FFFFFF;color:#09090B;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.sw{width:36px;height:20px;border-radius:999px;border:none;padding:2px;cursor:pointer;display:inline-flex;flex-shrink:0;box-sizing:border-box}
+.sw:disabled{opacity:.5;cursor:default}
+.sw-on{background:#059669;justify-content:flex-end}
+.sw-off{background:#E4E4E7;justify-content:flex-start}
+.sw span{width:16px;height:16px;border-radius:50%;background:#FFFFFF;box-shadow:0 1px 2px rgba(0,0,0,.2)}
+.ck{width:16px;height:16px;border-radius:4px;border:1px solid #A1A1AA;background:#FFFFFF;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;flex-shrink:0}
+.ck-on{background:#059669;border-color:#059669}
+.rd{width:16px;height:16px;border-radius:50%;border:1px solid #A1A1AA;background:#FFFFFF;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;flex-shrink:0}
+.rd-on{border-color:#059669}
+.rd-on::after{content:'';width:8px;height:8px;border-radius:50%;background:#059669}
+.opt{display:flex;align-items:flex-start;gap:10px;border:none;background:transparent;padding:0;text-align:left;font-family:inherit;font-size:14px;color:#09090B;cursor:pointer}
+.opt .ck,.opt .rd{margin-top:2px}
+.tile{display:flex;align-items:flex-start;gap:10px;border:1px solid #E4E4E7;border-radius:8px;padding:12px;background:#FFFFFF;text-align:left;font-family:inherit;font-size:14px;color:#09090B;cursor:pointer;box-sizing:border-box}
+.tile-on{border-color:#059669;background:#ECFDF5}
+.chip{display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 12px;border:1px solid #E4E4E7;border-radius:999px;background:#FFFFFF;font-family:inherit;font-size:13px;color:#3F3F46;cursor:pointer}
+.chip-on{background:#ECFDF5;border-color:#A7F3D0;color:#065F46;font-weight:500}
+.drop{border:1px dashed #D4D4D8;border-radius:8px;padding:20px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;background:#FAFAFA;color:#71717A}
+.row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid #F4F4F5}
+.row:last-child{border-bottom:none}
+.kv{display:grid;grid-template-columns:180px minmax(0,1fr);row-gap:10px;column-gap:16px;margin:0}
+.kv dt{color:#71717A}.kv dd{margin:0;font-weight:500}
+.toast{position:absolute;right:24px;bottom:24px;z-index:60;background:#09090B;color:#FAFAFA;border-radius:8px;padding:12px 16px;display:flex;align-items:center;gap:10px;box-shadow:0 10px 15px -3px rgba(0,0,0,.2);font-size:14px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.pt{font-family:'Oswald',sans-serif;text-transform:uppercase;white-space:pre-line;font-weight:600}
+.hb{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:36px;padding:0 12px;border-radius:8px;font-size:14px;font-weight:500;color:#09090B;text-decoration:none;border:none;background:transparent;cursor:pointer;position:relative}
+.hb:hover{background:#F4F4F5;color:#09090B}
+.flink{color:#52525B;text-decoration:none;font-size:14px}.flink:hover{color:#09090B}
+.nv{display:flex;align-items:center;gap:10px;height:36px;padding:0 10px;border-radius:8px;font-size:14px;color:#3F3F46;text-decoration:none;border:none;background:transparent;cursor:pointer;width:100%;text-align:left;font-family:inherit;box-sizing:border-box}
+.nv:hover{background:#F4F4F5;color:#09090B}
+.nv-on,.nv-on:hover{background:#ECFDF5;color:#065F46;font-weight:500}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-direction: column; position: relative">
+<header style="background: #FFFFFF; border-bottom: 1px solid #E4E4E7; position: relative; z-index: 20">
+<div style="max-width: 1240px; margin: 0 auto; padding: 0 20px; height: 64px; display: flex; align-items: center; gap: 28px; box-sizing: border-box">
+<a href="Main.dc.html" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: #09090B; font-weight: 700; font-size: 17px; letter-spacing: -0.01em"><span style="width: 28px; height: 28px; border-radius: 6px; background: #059669; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4z"></path></svg></span>TicketRush</a>
+<label style="flex: 1; max-width: 460px; position: relative; display: flex; align-items: center"><span class="sr">Tìm kiếm sự kiện</span><svg style="position: absolute; left: 12px" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><input class="input" type="search" placeholder="Tìm sự kiện, nghệ sĩ, địa điểm" style="height: 40px; padding-left: 36px; background: #F4F4F5; border-color: #F4F4F5; box-shadow: none"></label>
+<div style="flex-grow: 1"></div>
+<nav style="display: flex; align-items: center; gap: 4px; position: relative">
+<a href="OrganizerApply.dc.html" class="hb">Tạo sự kiện</a>
+<a href="MyTickets.dc.html" class="hb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4z"></path></svg>Vé của tôi</a>
+<button type="button" class="hb" style="width: 36px; padding: 0" aria-label="Thông báo (3 chưa đọc)" aria-expanded="{{bellStr}}" onClick="{{toggleBell}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg><span style="position: absolute; top: 7px; right: 8px; width: 8px; height: 8px; border-radius: 50%; background: #DC2626; border: 2px solid #FFFFFF"></span></button>
+<button type="button" aria-label="Tài khoản" aria-expanded="{{umStr}}" onClick="{{toggleUm}}" style="margin-left: 8px; width: 32px; height: 32px; border-radius: 50%; border: none; background: #D1FAE5; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: #065F46; cursor: pointer; font-family: inherit">AN</button>
+<sc-if value="{{bellOpen}}" hint-placeholder-val="{{ false }}"><div class="menu" style="right: 40px; top: 44px; width: 380px; padding: 0">
+<div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid #E4E4E7"><span style="font-weight: 600">Thông báo</span><button type="button" class="btn btn-link" style="font-size: 13px" onClick="{{toggleBell}}">Đánh dấu tất cả đã đọc</button></div>
+<a href="TicketQR.dc.html" class="mi" style="height: auto; padding: 12px 16px; align-items: flex-start; border-radius: 0"><span class="dot" style="background: #059669; margin-top: 7px"></span><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 500">Đặt vé thành công · TR-8F3K2Q</span><span style="font-size: 13px; color: #71717A">2 vé VIP — Đêm nhạc Rock Sài Gòn.</span><span style="font-size: 12px; color: #A1A1AA">5 phút trước</span></span></a>
+<a href="EventDetail.dc.html" class="mi" style="height: auto; padding: 12px 16px; align-items: flex-start; border-radius: 0"><span class="dot" style="background: #059669; margin-top: 7px"></span><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 500">Nhắc lịch: còn 24 giờ</span><span style="font-size: 13px; color: #71717A">Hòa nhạc Mùa Thu bắt đầu 19:30 ngày mai.</span><span style="font-size: 12px; color: #A1A1AA">2 giờ trước</span></span></a>
+<a href="MyBookings.dc.html" class="mi" style="height: auto; padding: 12px 16px; align-items: flex-start; border-radius: 0"><span class="dot" style="background: transparent; margin-top: 7px"></span><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 500">Đã hoàn tiền 450.000 ₫</span><span style="font-size: 13px; color: #71717A">Đơn TR-7C1A9D — Lễ hội Indie Đà Lạt.</span><span style="font-size: 12px; color: #A1A1AA">Hôm qua</span></span></a>
+<div style="padding: 8px; border-top: 1px solid #E4E4E7"><a href="Notifications.dc.html" class="btn btn-ghost btn-sm" style="width: 100%">Xem tất cả thông báo</a></div>
+</div></sc-if>
+<sc-if value="{{umOpen}}" hint-placeholder-val="{{ false }}"><div class="menu" role="menu" style="right: 0; top: 44px; width: 240px">
+<div style="padding: 8px; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600">Nguyễn Văn An</span><span style="font-size: 12px; color: #71717A">an.nguyen@example.com</span></div><div class="sep"></div>
+<a href="Profile.dc.html" class="mi" role="menuitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="5"></circle><path d="M20 21a8 8 0 0 0-16 0"></path></svg>Hồ sơ cá nhân</a><a href="MyTickets.dc.html" class="mi" role="menuitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4z"></path></svg>Vé của tôi</a><a href="MyBookings.dc.html" class="mi" role="menuitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"></path><path d="M8 7h8M8 11h8M8 15h5"></path></svg>Đơn hàng của tôi</a><a href="Notifications.dc.html" class="mi" role="menuitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg>Thông báo<span style="margin-left: auto; font-size: 12px; color: #71717A">3</span></a><div class="sep"></div><a href="OrganizerApply.dc.html" class="mi" role="menuitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg>Đăng ký ban tổ chức</a><div class="sep"></div><a href="Auth.dc.html" class="mi" role="menuitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><path d="m16 17 5-5-5-5M21 12H9"></path></svg>Đăng xuất</a>
+</div></sc-if>
+</nav>
+</div>
+</header>
+<main style="flex-grow: 1; max-width: 1240px; width: 100%; margin: 0 auto; padding: 24px 20px 56px; box-sizing: border-box">
+<div style="display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 32px; align-items: start">
+<nav aria-label="Tài khoản" style="display: flex; flex-direction: column; gap: 2px">
+<a href="Profile.dc.html" class="nv nv-on"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="5"></circle><path d="M20 21a8 8 0 0 0-16 0"></path></svg>Hồ sơ cá nhân</a>
+<a href="MyBookings.dc.html" class="nv"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"></path><path d="M8 7h8M8 11h8M8 15h5"></path></svg>Đơn hàng của tôi</a>
+<a href="MyTickets.dc.html" class="nv"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4z"></path></svg>Vé của tôi</a>
+<a href="Notifications.dc.html" class="nv"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg>Thông báo</a>
+</nav>
+<div style="display: flex; flex-direction: column; gap: 20px; max-width: 760px">
+<div style="display: flex; flex-direction: column; gap: 4px"><h1 style="margin: 0; font-size: 24px; font-weight: 600; letter-spacing: -0.02em">Hồ sơ cá nhân</h1></div>
+<div class="tabs" role="tablist"><sc-for list="{{tabs}}" as="t" hint-placeholder-count="3"><button type="button" role="tab" aria-selected="{{t.sel}}" class="{{t.cls}}" onClick="{{t.pick}}">{{t.label}}</button></sc-for></div>
+<sc-if value="{{tInfo}}" hint-placeholder-val="{{ true }}">
+<section class="card">
+<div class="ch"><h2 class="ct">Thông tin cá nhân</h2><p class="cd"></p></div>
+<div class="cb">
+<div style="display: flex; align-items: center; gap: 16px"><span style="width: 64px; height: 64px; border-radius: 50%; background: #D1FAE5; color: #065F46; font-size: 20px; font-weight: 600; display: flex; align-items: center; justify-content: center">AN</span><div style="display: flex; flex-direction: column; gap: 6px"><div style="display: flex; gap: 8px"><button type="button" class="btn btn-outline btn-sm" onClick="{{uploadAvatar}}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="m17 8-5-5-5 5M12 3v12"></path></svg>Tải ảnh lên</button><button type="button" class="btn btn-ghost btn-sm" onClick="{{removeAvatar}}">Xoá ảnh</button></div><span class="hint">JPG hoặc PNG, tối đa 2 MB.</span></div></div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px">
+<label class="lbl">Họ và tên <input class="input" type="text" value="Nguyễn Văn An"></label>
+<label class="lbl">Số điện thoại<input class="input" type="tel" value="0901 234 567"></label>
+<div class="lbl"><span style="display: flex; align-items: center; gap: 8px">Email<span class="badge" style="color: #15803D"><span class="dot" style="background: #16A34A"></span>Đã xác minh</span></span><div style="display: flex; gap: 8px"><input class="input" type="email" value="an.nguyen@example.com" readonly="readonly" aria-label="Email"><button type="button" class="btn btn-outline" onClick="{{openEmail}}">Đổi email</button></div></div>
+<label class="lbl">Ngày sinh<input class="input" type="text" value="12/04/1996" placeholder="dd/mm/yyyy"></label>
+<label class="lbl">Thành phố<select class="input"><option>TP. Hồ Chí Minh</option><option>Hà Nội</option><option>Đà Nẵng</option></select><span class="hint">Gợi ý sự kiện theo thành phố</span></label>
+</div>
+</div>
+<div class="cf"><button type="button" class="btn btn-ghost">Huỷ thay đổi</button><button type="button" class="btn btn-default" onClick="{{saveInfo}}">Lưu thay đổi</button></div>
+</section>
+<sc-if value="{{isCustomer}}" hint-placeholder-val="{{ true }}"><section class="card" style="padding: 20px; display: flex; align-items: center; gap: 16px; background: #ECFDF5; border-color: #A7F3D0"><div style="flex: 1; display: flex; flex-direction: column; gap: 4px"><span style="font-weight: 600">Ban tổ chức</span><span style="color: #3F3F46">Chưa đăng ký</span></div><a href="OrganizerApply.dc.html" class="btn btn-default">Đăng ký ban tổ chức</a></section></sc-if>
+<sc-if value="{{isOrganizer}}" hint-placeholder-val="{{ false }}"><section class="card" style="padding: 20px; display: flex; align-items: center; gap: 16px"><div style="flex: 1; display: flex; flex-direction: column; gap: 4px"><span style="font-weight: 600">Saigon Sound Co.</span><span class="muted">Ban tổ chức · Đã duyệt</span></div><a href="OrgDashboard.dc.html" class="btn btn-outline">Vào kênh ban tổ chức<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></a></section></sc-if>
+</sc-if>
+<sc-if value="{{tSecurity}}" hint-placeholder-val="{{ false }}">
+<section class="card"><div class="ch"><h2 class="ct">Mật khẩu</h2></div><div class="cb" style="padding-top: 8px"><div class="row" style="border: none"><div style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 500">••••••••••</span><span class="muted">Cập nhật lần cuối 3 tháng trước</span></div><button type="button" class="btn btn-outline" onClick="{{openPassword}}">Đổi mật khẩu</button></div></div></section>
+<section class="card"><div class="ch"><h2 class="ct">Tài khoản liên kết</h2><p class="cd"></p></div><div class="cb" style="padding-top: 8px"><div class="row" style="border: none"><div style="display: flex; align-items: center; gap: 12px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.8 12.2c0-.7-.1-1.4-.2-2H12v3.8h5.5a4.7 4.7 0 0 1-2 3.1v2.6h3.3c1.9-1.8 3-4.4 3-7.5Z"></path><path d="M12 22c2.7 0 5-.9 6.7-2.4l-3.3-2.6c-.9.6-2 1-3.4 1-2.6 0-4.8-1.8-5.6-4.1H3v2.6A10 10 0 0 0 12 22Z"></path><path d="M6.4 13.9a6 6 0 0 1 0-3.8V7.5H3a10 10 0 0 0 0 9z"></path><path d="M12 5.9c1.5 0 2.8.5 3.8 1.5l2.9-2.9A10 10 0 0 0 3 7.5l3.4 2.6C7.2 7.7 9.4 5.9 12 5.9Z"></path></svg><div style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 500">Google</span><span class="muted">an.nguyen@gmail.com</span></div></div><button type="button" class="btn btn-outline" onClick="{{unlink}}">Huỷ liên kết</button></div></div></section>
+<section class="card"><div class="ch" style="flex-direction: row; justify-content: space-between; align-items: flex-start"><div style="display: flex; flex-direction: column; gap: 4px"><h2 class="ct">Phiên đăng nhập</h2><p class="cd"></p></div><button type="button" class="btn btn-outline btn-sm" onClick="{{openLogoutAll}}">Đăng xuất thiết bị khác</button></div>
+<div class="cb" style="padding-top: 8px; gap: 0"><sc-for list="{{sessions}}" as="s" hint-placeholder-count="3"><div class="row"><div style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 500">{{s.device}}</span><span class="muted">{{s.where}}</span></div><sc-if value="{{s.current}}" hint-placeholder-val="{{ false }}"><span class="badge" style="color: #15803D"><span class="dot" style="background: #16A34A"></span>Thiết bị này</span></sc-if><sc-if value="{{s.other}}" hint-placeholder-val="{{ true }}"><button type="button" class="btn btn-ghost btn-sm" onClick="{{s.revoke}}">Đăng xuất</button></sc-if></div></sc-for></div></section>
+<section class="card" style="border-color: #FECACA"><div class="ch"><h2 class="ct" style="color: #B91C1C">Xoá tài khoản</h2><p class="cd">Xoá vĩnh viễn tài khoản và dữ liệu cá nhân. Lịch sử giao dịch giữ ở dạng ẩn danh.</p></div><div class="cb"><div><button type="button" class="btn btn-destructive" onClick="{{openDelete}}">Xoá tài khoản</button></div></div></section>
+</sc-if>
+<sc-if value="{{tPrefs}}" hint-placeholder-val="{{ false }}">
+<section class="card"><div class="ch"><h2 class="ct">Email thông báo</h2><p class="cd"></p></div>
+<div class="cb" style="padding-top: 8px; gap: 0"><sc-for list="{{prefs}}" as="p" hint-placeholder-count="6"><div class="row"><div style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 500; display: flex; gap: 8px; align-items: center">{{p.label}}<sc-if value="{{p.locked}}" hint-placeholder-val="{{ false }}"><span class="badge muted">Bắt buộc</span></sc-if></span><span class="muted">{{p.desc}}</span></div><button type="button" role="switch" aria-label="{{p.label}}" aria-checked="{{p.on}}" class="{{p.cls}}" disabled="{{p.locked}}" onClick="{{p.toggle}}"><span></span></button></div></sc-for></div></section>
+<section class="card"><div class="ch"><h2 class="ct">Kênh nhận &amp; ngôn ngữ</h2></div><div class="cb">
+<div class="row" style="padding-top: 0"><div style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 500">Thông báo đẩy trên trình duyệt</span><span class="muted">Chưa bật trên thiết bị này</span></div><button type="button" class="btn btn-outline btn-sm" onClick="{{enablePush}}">Bật trên thiết bị này</button></div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px"><label class="lbl">Ngôn ngữ<select class="input"><option>Tiếng Việt</option><option>English</option></select></label><label class="lbl">Múi giờ hiển thị<input class="input" type="text" value="Asia/Ho_Chi_Minh (GMT+7)" readonly="readonly"></label></div>
+</div><div class="cf"><button type="button" class="btn btn-default" onClick="{{savePrefs}}">Lưu cài đặt</button></div></section>
+</sc-if>
+</div>
+</div>
+
+</main>
+<footer style="background: #FAFAFA; color: #71717A; border-top: 1px solid #E4E4E7">
+<div style="max-width: 1240px; margin: 0 auto; padding: 24px 20px; box-sizing: border-box; display: flex; justify-content: space-between; font-size: 13px"><span>© 2026 TicketRush</span><div style="display: flex; gap: 20px"><a href="Main.dc.html" class="flink">Chính sách hoàn vé</a><a href="Main.dc.html" class="flink">Điều khoản</a><a href="Main.dc.html" class="flink">Bảo mật</a></div></div>
+</footer>
+<sc-if value="{{dlgEmail}}" hint-placeholder-val="{{ false }}">
+<div class="overlay">
+<div class="dialog" role="dialog" aria-modal="true" aria-labelledby="d-email">
+<button type="button" class="dx" aria-label="Đóng" onClick="{{closeDialog}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+<div style="display: flex; flex-direction: column; gap: 8px"><h2 id="d-email" class="dt">Đổi email đăng nhập</h2><p class="dd">Liên kết xác minh gửi tới email mới. Email hiện tại dùng tiếp cho tới khi xác minh.</p></div>
+<label class="lbl">Email mới<input class="input" type="email" placeholder="ban@example.com"></label><label class="lbl">Mật khẩu hiện tại<input class="input" type="password"></label>
+<div class="df"><button type="button" class="btn btn-outline" onClick="{{closeDialog}}">Huỷ</button><button type="button" class="btn btn-default" onClick="{{sendEmail}}">Gửi email xác minh</button></div>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{dlgPassword}}" hint-placeholder-val="{{ false }}">
+<div class="overlay">
+<div class="dialog" role="dialog" aria-modal="true" aria-labelledby="d-pw">
+<button type="button" class="dx" aria-label="Đóng" onClick="{{closeDialog}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+<div style="display: flex; flex-direction: column; gap: 8px"><h2 id="d-pw" class="dt">Đổi mật khẩu</h2><p class="dd">Mật khẩu mới tối thiểu 8 ký tự, có chữ và số.</p></div>
+<label class="lbl">Mật khẩu hiện tại<input class="input" type="password"></label><label class="lbl">Mật khẩu mới<input class="input" type="password"></label><label class="lbl">Nhập lại mật khẩu mới<input class="input" type="password"></label><button type="button" class="opt" role="checkbox" aria-checked="{{logoutOthersStr}}" onClick="{{toggleLogoutOthers}}"><span class="{{logoutOthersCls}}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></span><span>Đăng xuất khỏi các thiết bị khác</span></button>
+<div class="df"><button type="button" class="btn btn-outline" onClick="{{closeDialog}}">Huỷ</button><button type="button" class="btn btn-default" onClick="{{savePassword}}">Cập nhật mật khẩu</button></div>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{dlgLogoutAll}}" hint-placeholder-val="{{ false }}">
+<div class="overlay">
+<div class="dialog" role="alertdialog" aria-modal="true" aria-labelledby="d-lo">
+<button type="button" class="dx" aria-label="Đóng" onClick="{{closeDialog}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+<div style="display: flex; flex-direction: column; gap: 8px"><h2 id="d-lo" class="dt">Đăng xuất khỏi tất cả thiết bị khác?</h2><p class="dd">Các phiên trên 2 thiết bị khác sẽ kết thúc ngay. Thiết bị này vẫn đăng nhập.</p></div>
+
+<div class="df"><button type="button" class="btn btn-outline" onClick="{{closeDialog}}">Huỷ</button><button type="button" class="btn btn-default" onClick="{{logoutAll}}">Đăng xuất</button></div>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{dlgDelete}}" hint-placeholder-val="{{ false }}">
+<div class="overlay">
+<div class="dialog" role="alertdialog" aria-modal="true" aria-labelledby="d-del">
+<button type="button" class="dx" aria-label="Đóng" onClick="{{closeDialog}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+<div style="display: flex; flex-direction: column; gap: 8px"><h2 id="d-del" class="dt">Xoá vĩnh viễn tài khoản?</h2><p class="dd">Mất quyền truy cập vé, lịch sử đơn hàng và thông báo. Không hoàn tác được.</p></div>
+<div class="alert alert-warn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4M12 17h.01"></path></svg><span>Còn <strong>6 vé sắp diễn ra</strong>. Xoá được khi các vé này đã hoàn hoặc sự kiện đã kết thúc.</span></div><label class="lbl"><span>Nhập <span class="mono">an.nguyen@example.com</span> để xác nhận</span><input class="input" type="text"></label>
+<div class="df"><button type="button" class="btn btn-outline" onClick="{{closeDialog}}">Giữ tài khoản</button><button type="button" class="btn btn-destructive" disabled="{{true}}">Xoá tài khoản</button></div>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{toastOn}}" hint-placeholder-val="{{ false }}"><div class="toast" role="status"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span>{{toastMsg}}</span><button type="button" class="btn btn-ghost btn-sm" style="color: #FAFAFA; height: 24px; padding: 0 6px" onClick="{{hideToast}}">Đóng</button></div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"tab": {"editor": "enum", "options": ["info", "security", "prefs"], "default": "info"}, "role": {"editor": "enum", "options": ["customer", "organizer"], "default": "customer"}, "dialog": {"editor": "enum", "options": ["none", "email", "password", "logoutAll", "delete"], "default": "none"}, "$preview": {"width": 1280, "height": 1100}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { prefs: { remind: true, change: true, follow: true, promo: false }, logoutOthers: true, revoked: [] };
+  }
+
+  dlg(name) { return () => this.setState({ dialog: name, menu: null }); }
+  common() {
+    const dialog = this.state.dialog !== undefined ? this.state.dialog : (this.props.dialog ?? 'none');
+    return {
+      dialog,
+      closeDialog: () => this.setState({ dialog: 'none' }),
+      toastOn: !!this.state.toast,
+      toastMsg: this.state.toast || '',
+      hideToast: () => this.setState({ toast: null }),
+      done: (msg) => () => this.setState({ dialog: 'none', toast: msg, menu: null }),
+    };
+  }
+
+  um() {
+    const bell = this.state.bell !== undefined ? this.state.bell : !!this.props.bell;
+    return {
+      umOpen: !!this.state.um,
+      umStr: this.state.um ? 'true' : 'false',
+      toggleUm: () => this.setState({ um: !this.state.um, bell: false }),
+      bellOpen: bell,
+      bellStr: bell ? 'true' : 'false',
+      toggleBell: () => this.setState({ bell: !bell, um: false }),
+    };
+  }
+
+  renderVals() {
+    const tab = this.state.tab || this.props.tab || 'info';
+    const role = this.props.role ?? 'customer';
+    const c = this.common();
+    const tabs = [['info', 'Thông tin'], ['security', 'Bảo mật'], ['prefs', 'Cài đặt thông báo']].map(([k, label]) => ({
+      label, sel: tab === k ? 'true' : 'false', cls: tab === k ? 'tab tab-on' : 'tab', pick: () => this.setState({ tab: k }) }));
+    const P = this.state.prefs;
+    const prefDefs = [
+      { k: 'order', label: 'Xác nhận đơn hàng & vé điện tử', desc: 'Gửi ngay khi thanh toán thành công.', locked: true },
+      { k: 'refund', label: 'Hoàn tiền & huỷ sự kiện', desc: 'Khi yêu cầu hoàn vé được xử lý hoặc sự kiện bị huỷ.', locked: true },
+      { k: 'remind', label: 'Nhắc lịch trước 24 giờ', desc: 'Kèm giờ mở cửa và bản đồ.' },
+      { k: 'change', label: 'Thay đổi giờ, địa điểm', desc: 'Khi sự kiện đã mua vé đổi thông tin.' },
+      { k: 'follow', label: 'Sự kiện mới từ ban tổ chức đã mua', desc: 'Tối đa 1 email mỗi tuần.' },
+      { k: 'promo', label: 'Khuyến mãi & gợi ý', desc: 'Sự kiện nổi bật theo thành phố.' },
+    ];
+    const prefs = prefDefs.map((d) => {
+      const on = d.locked ? true : !!P[d.k];
+      return { ...d, locked: !!d.locked, on: on ? 'true' : 'false', cls: on ? 'sw sw-on' : 'sw sw-off',
+        toggle: () => this.setState({ prefs: { ...P, [d.k]: !P[d.k] } }) };
+    });
+    const sessions = [
+      { id: 1, device: 'Chrome · Windows', where: 'TP. Hồ Chí Minh · Đang hoạt động', current: true },
+      { id: 2, device: 'Safari · iPhone 15', where: 'Hà Nội · 2 ngày trước' },
+      { id: 3, device: 'Chrome · Android', where: 'TP. Hồ Chí Minh · 9 ngày trước' },
+    ].filter((s) => !this.state.revoked.includes(s.id)).map((s) => ({ ...s, current: !!s.current, other: !s.current,
+      revoke: () => this.setState({ revoked: [...this.state.revoked, s.id], toast: 'Đã đăng xuất ' + s.device }) }));
+    const toast = (m) => () => this.setState({ toast: m });
+    return {
+      ...c, ...this.um(),
+      tabs, tInfo: tab === 'info', tSecurity: tab === 'security', tPrefs: tab === 'prefs',
+      isCustomer: role === 'customer', isOrganizer: role === 'organizer',
+      prefs, sessions,
+      uploadAvatar: toast('Đã cập nhật ảnh đại diện'), removeAvatar: toast('Đã xoá ảnh đại diện'),
+      saveInfo: toast('Đã lưu thông tin cá nhân'), savePrefs: toast('Đã lưu cài đặt thông báo'),
+      enablePush: toast('Đang chờ trình duyệt cấp quyền'), unlink: toast('Chưa có mật khẩu, không huỷ liên kết Google được'),
+      openEmail: this.dlg('email'), openPassword: this.dlg('password'), openLogoutAll: this.dlg('logoutAll'), openDelete: this.dlg('delete'),
+      dlgEmail: c.dialog === 'email', dlgPassword: c.dialog === 'password', dlgLogoutAll: c.dialog === 'logoutAll', dlgDelete: c.dialog === 'delete',
+      sendEmail: c.done('Đã gửi email xác minh tới địa chỉ mới'),
+      savePassword: c.done('Đã đổi mật khẩu'),
+      logoutAll: () => this.setState({ dialog: 'none', revoked: [2, 3], toast: 'Đã đăng xuất khỏi 2 thiết bị khác' }),
+      logoutOthersStr: this.state.logoutOthers ? 'true' : 'false', logoutOthersCls: this.state.logoutOthers ? 'ck ck-on' : 'ck',
+      toggleLogoutOthers: () => this.setState({ logoutOthers: !this.state.logoutOthers }),
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>TicketRush — Trang chủ</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Oswald:wght@500;600&amp;display=swap">
+<style>
+body{margin:0;background:#FFFFFF;color:#09090B;font-family:'Be Vietnam Pro',system-ui,sans-serif;font-size:14px;-webkit-font-smoothing:antialiased}
+a{color:#09090B}a:hover{color:#09090B}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:36px;padding:0 16px;border-radius:8px;font-family:inherit;font-size:14px;font-weight:500;line-height:1;white-space:nowrap;border:1px solid transparent;cursor:pointer;text-decoration:none;box-sizing:border-box}
+.btn-ghost{background:transparent;color:#09090B}.btn-ghost:hover{background:#F4F4F5;color:#09090B}
+.btn-outline{background:#FFFFFF;color:#09090B;border-color:#E4E4E7;box-shadow:0 1px 2px rgba(0,0,0,.05)}.btn-outline:hover{background:#F4F4F5;color:#09090B}
+.btn-default{background:#047857;color:#FFFFFF}.btn-default:hover{background:#065F46;color:#FFFFFF}
+.btn-icon{width:36px;padding:0;border-radius:999px}
+.input{height:40px;border:1px solid #E4E4E7;border-radius:8px;padding:0 12px;font-family:inherit;font-size:14px;color:#09090B;box-sizing:border-box;outline:none}
+.cat{height:44px;display:flex;align-items:center;font-size:14px;color:#71717A;text-decoration:none;border-bottom:2px solid transparent}
+.cat:hover{color:#09090B}
+.cat-on,.cat-on:hover{color:#09090B;font-weight:500;border-bottom-color:#059669}
+.ev{display:flex;flex-direction:column;gap:12px;text-decoration:none;color:#09090B}.ev:hover{color:#09090B}
+.pt{font-family:'Oswald',sans-serif;text-transform:uppercase;white-space:pre-line;font-weight:600}
+.more{color:#09090B;text-decoration:none;font-size:14px;font-weight:500}.more:hover{text-decoration:underline}
+.flink{color:#52525B;text-decoration:none;font-size:14px}.flink:hover{color:#09090B}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-direction: column">
+<header style="background: #FFFFFF; border-bottom: 1px solid #E4E4E7">
+<div style="max-width: 1240px; margin: 0 auto; padding: 0 20px; height: 64px; display: flex; align-items: center; gap: 28px; box-sizing: border-box">
+<a href="Main.dc.html" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: #09090B; font-weight: 700; font-size: 17px; letter-spacing: -0.01em">
+<span style="width: 28px; height: 28px; border-radius: 6px; background: #059669; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4z"></path><path d="M13 6v2M13 11v2M13 16v2"></path></svg></span>
+TicketRush
+</a>
+<label style="flex: 1; max-width: 460px; position: relative; display: flex; align-items: center">
+<span class="sr">Tìm kiếm sự kiện</span>
+<svg style="position: absolute; left: 12px" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+<input class="input" type="search" placeholder="Tìm sự kiện, nghệ sĩ, địa điểm" style="width: 100%; padding-left: 36px; background: #F4F4F5; border-color: #F4F4F5">
+</label>
+<div style="flex-grow: 1"></div>
+<nav style="display: flex; align-items: center; gap: 4px">
+<a href="OrganizerApply.dc.html" class="btn btn-ghost">Tạo sự kiện</a>
+<a href="MyTickets.dc.html" class="btn btn-ghost"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4z"></path></svg>Vé của tôi</a>
+<a href="Notifications.dc.html" class="btn btn-ghost" aria-label="Thông báo (3 chưa đọc)" style="width: 36px; padding: 0; position: relative"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg><span style="position: absolute; top: 7px; right: 8px; width: 8px; height: 8px; border-radius: 50%; background: #DC2626; border: 2px solid #FFFFFF"></span></a>
+<a href="Profile.dc.html" aria-label="Tài khoản" style="margin-left: 8px; width: 32px; height: 32px; border-radius: 50%; background: #D1FAE5; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: #065F46; text-decoration: none">AN</a>
+</nav>
+</div>
+<nav aria-label="Danh mục" style="max-width: 1240px; margin: 0 auto; padding: 0 20px; display: flex; gap: 28px; box-sizing: border-box">
+<a href="EventList.dc.html" class="cat cat-on">Tất cả</a>
+<a href="EventList.dc.html" class="cat">Nhạc sống</a>
+<a href="EventList.dc.html" class="cat">Sân khấu &amp; Nghệ thuật</a>
+<a href="EventList.dc.html" class="cat">Hài kịch</a>
+<a href="EventList.dc.html" class="cat">Thể thao</a>
+<a href="EventList.dc.html" class="cat">Hội thảo &amp; Workshop</a>
+<a href="EventList.dc.html" class="cat">Lễ hội</a>
+</nav>
+</header>
+
+<main style="flex-grow: 1">
+<section aria-label="Sự kiện nổi bật" style="max-width: 1240px; margin: 0 auto; padding: 24px 20px 0; box-sizing: border-box; position: relative">
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px">
+<sc-for list="{{featured}}" as="f" hint-placeholder-count="2">
+<a href="EventDetail.dc.html" style="position: relative; display: block; aspect-ratio: 2 / 1; border-radius: 12px; overflow: hidden; background: {{f.bg}}; text-decoration: none">
+<span style="position: absolute; border-radius: 50%; width: {{f.cs}}; height: {{f.cs}}; left: {{f.cx}}; top: {{f.cy}}; background: {{f.ac}}"></span>
+<span style="position: absolute; left: 0; right: 0; top: {{f.ly}}; height: 2px; background: {{f.fg}}; opacity: 0.2"></span>
+<div style="position: absolute; left: 28px; right: 28px; bottom: 24px; color: {{f.fg}}; display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.85">{{f.kicker}}</span>
+<span class="pt" style="font-size: 52px; line-height: 0.95">{{f.short}}</span>
+<span style="font-size: 14px; opacity: 0.9">{{f.when}} · {{f.venue}}</span>
+</div>
+</a>
+</sc-for>
+</div>
+<button type="button" class="btn btn-outline btn-icon" aria-label="Trước" style="position: absolute; left: 4px; top: 50%; margin-top: -6px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg></button>
+<button type="button" class="btn btn-outline btn-icon" aria-label="Sau" style="position: absolute; right: 4px; top: 50%; margin-top: -6px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></button>
+<div style="display: flex; justify-content: center; gap: 6px; padding-top: 14px">
+<span style="width: 20px; height: 6px; border-radius: 3px; background: #059669"></span>
+<span style="width: 6px; height: 6px; border-radius: 3px; background: #D4D4D8"></span>
+<span style="width: 6px; height: 6px; border-radius: 3px; background: #D4D4D8"></span>
+</div>
+</section>
+
+<sc-for list="{{rails}}" as="rail" hint-placeholder-count="2">
+<section style="max-width: 1240px; margin: 0 auto; padding: 36px 20px 0; box-sizing: border-box">
+<div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 16px">
+<h2 style="margin: 0; font-size: 20px; font-weight: 600; letter-spacing: -0.01em">{{rail.title}}</h2>
+<a href="EventList.dc.html" class="more">Xem tất cả</a>
+</div>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px">
+<sc-for list="{{rail.items}}" as="e" hint-placeholder-count="4">
+<a href="EventDetail.dc.html" class="ev">
+<div style="position: relative; aspect-ratio: 16 / 9; border-radius: 8px; overflow: hidden; background: {{e.bg}}">
+<span style="position: absolute; border-radius: 50%; width: {{e.cs}}; height: {{e.cs}}; left: {{e.cx}}; top: {{e.cy}}; background: {{e.ac}}"></span>
+<span style="position: absolute; left: 0; right: 0; top: {{e.ly}}; height: 2px; background: {{e.fg}}; opacity: 0.2"></span>
+<div style="position: absolute; left: 14px; right: 14px; bottom: 12px; color: {{e.fg}}; display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.85">{{e.kicker}}</span>
+<span class="pt" style="font-size: 24px; line-height: 0.95">{{e.short}}</span>
+</div>
+<sc-if value="{{e.hasTag}}" hint-placeholder-val="{{ false }}">
+<span style="position: absolute; top: 10px; left: 10px; background: #047857; color: #FFFFFF; font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 4px">{{e.tag}}</span>
+</sc-if>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 13px; font-weight: 500; color: #047857">{{e.when}}</span>
+<span style="font-size: 15px; font-weight: 600; line-height: 1.35">{{e.title}}</span>
+<span style="font-size: 13px; color: #71717A">{{e.venue}}</span>
+<span style="font-size: 14px; font-weight: 600; margin-top: 2px">Từ {{e.price}}</span>
+</div>
+</a>
+</sc-for>
+</div>
+</section>
+</sc-for>
+
+<section style="max-width: 1240px; margin: 0 auto; padding: 36px 20px 0; box-sizing: border-box">
+<h2 style="margin: 0 0 16px; font-size: 20px; font-weight: 600; letter-spacing: -0.01em">Theo thành phố</h2>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px">
+<sc-for list="{{cities}}" as="c" hint-placeholder-count="4">
+<a href="EventList.dc.html" style="height: 96px; border-radius: 8px; border: 1px solid #E4E4E7; padding: 16px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; text-decoration: none; color: #09090B">
+<span style="font-size: 16px; font-weight: 600">{{c.name}}</span>
+<span style="font-size: 13px; color: #71717A">Xem sự kiện</span>
+</a>
+</sc-for>
+</div>
+</section>
+
+<section style="max-width: 1240px; margin: 0 auto; padding: 36px 20px 56px; box-sizing: border-box">
+<div style="border-radius: 12px; background: #ECFDF5; padding: 28px 32px; display: flex; align-items: center; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 6px; flex-grow: 1">
+<span style="font-size: 18px; font-weight: 600">Dành cho ban tổ chức</span>
+<span style="font-size: 14px; color: #52525B">Bán vé theo sơ đồ ghế · Nhận tiền qua Stripe · Phí 5% mỗi vé</span>
+</div>
+<a href="OrganizerApply.dc.html" class="btn btn-default" style="height: 40px">Đăng ký bán vé</a>
+</div>
+</section>
+</main>
+
+<footer style="background: #FAFAFA; color: #09090B; border-top: 1px solid #E4E4E7">
+<div style="max-width: 1240px; margin: 0 auto; padding: 40px 20px 28px; box-sizing: border-box; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span style="font-weight: 700; font-size: 16px">TicketRush</span>
+<span style="font-size: 14px; color: #52525B; line-height: 1.6">Nền tảng bán vé sự kiện có sơ đồ ghế.</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px"><span style="font-size: 13px; font-weight: 600">Khách hàng</span><a href="MyTickets.dc.html" class="flink">Vé của tôi</a><a href="Main.dc.html" class="flink">Chính sách hoàn vé</a><a href="Main.dc.html" class="flink">Câu hỏi thường gặp</a></div>
+<div style="display: flex; flex-direction: column; gap: 10px"><span style="font-size: 13px; font-weight: 600">Ban tổ chức</span><a href="OrganizerApply.dc.html" class="flink">Đăng ký bán vé</a><a href="OrgDashboard.dc.html" class="flink">Bảng điều khiển</a></div>
+<div style="display: flex; flex-direction: column; gap: 10px"><span style="font-size: 13px; font-weight: 600">TicketRush</span><a href="Main.dc.html" class="flink">Giới thiệu</a><a href="Main.dc.html" class="flink">Điều khoản sử dụng</a><a href="Main.dc.html" class="flink">Chính sách bảo mật</a></div>
+</div>
+<div style="max-width: 1240px; margin: 0 auto; padding: 16px 20px 24px; box-sizing: border-box; border-top: 1px solid #E4E4E7; font-size: 13px; color: #71717A">© 2026 TicketRush</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const E = [
+      { title: 'Đêm nhạc Rock Sài Gòn', short: 'Rock\nSài Gòn', kicker: 'Live concert', when: 'T7, 15 thg 11 · 20:00', venue: 'Nhà hát Hòa Bình, TP.HCM', price: '800.000 ₫', bg: '#0F766E', ac: '#F59E0B', fg: '#FAFAFA', cs: '62%', cx: '58%', cy: '-30%', ly: '30%', tag: 'Mở bán 20:00 hôm nay' },
+      { title: 'Hòa nhạc Mùa Thu', short: 'Hòa nhạc\nMùa Thu', kicker: 'Giao hưởng', when: 'CN, 22 thg 11 · 19:30', venue: 'Nhà hát Lớn, Hà Nội', price: '600.000 ₫', bg: '#F5F0E6', ac: '#C2410C', fg: '#1C1917', cs: '40%', cx: '62%', cy: '10%', ly: '72%' },
+      { title: 'Lễ hội Indie Đà Lạt', short: 'Indie\nĐà Lạt', kicker: 'Lễ hội âm nhạc', when: 'CN, 29 thg 11 · 17:00', venue: 'Quảng trường Lâm Viên, Đà Lạt', price: '450.000 ₫', bg: '#14532D', ac: '#FACC15', fg: '#F0FDF4', cs: '56%', cx: '-12%', cy: '-24%', ly: '64%' },
+      { title: 'Đêm hài độc thoại', short: 'Stand-up\nNight', kicker: 'Hài kịch', when: 'T7, 06 thg 12 · 20:00', venue: 'Nhà văn hoá Thanh niên, TP.HCM', price: '350.000 ₫', bg: '#FDE047', ac: '#18181B', fg: '#18181B', cs: '34%', cx: '66%', cy: '12%', ly: '20%' },
+      { title: 'Live Jazz cuối tuần', short: 'Jazz\nWeekend', kicker: 'Jazz', when: 'T7, 13 thg 12 · 20:30', venue: 'Phòng trà Bến Thành, TP.HCM', price: '500.000 ₫', bg: '#1E3A8A', ac: '#F59E0B', fg: '#EFF6FF', cs: '48%', cx: '60%', cy: '-18%', ly: '58%' },
+      { title: 'Nhạc kịch Giáng Sinh', short: 'Đêm\nGiáng Sinh', kicker: 'Nhạc kịch', when: 'T5, 24 thg 12 · 19:00', venue: 'Nhà hát Hòa Bình, TP.HCM', price: '700.000 ₫', bg: '#7F1D1D', ac: '#FCA5A5', fg: '#FFF1F2', cs: '38%', cx: '64%', cy: '22%', ly: '36%', tag: 'Hết vé' },
+      { title: 'Countdown 2027', short: 'Count\ndown 27', kicker: 'Lễ hội', when: 'T5, 31 thg 12 · 21:00', venue: 'Công viên Biển Đông, Đà Nẵng', price: '400.000 ₫', bg: '#0F172A', ac: '#38BDF8', fg: '#F8FAFC', cs: '70%', cx: '40%', cy: '-50%', ly: '78%' },
+      { title: 'EDM Festival mùa xuân', short: 'EDM\nSpring', kicker: 'Electronic', when: 'CN, 10 thg 01 · 18:00', venue: 'SVĐ Mỹ Đình, Hà Nội', price: '1.200.000 ₫', bg: '#581C87', ac: '#22D3EE', fg: '#FAF5FF', cs: '44%', cx: '-8%', cy: '30%', ly: '18%' },
+    ].map((e) => ({ ...e, hasTag: !!e.tag }));
+    const big = (e) => ({ ...e, cs: e.cs });
+    return {
+      featured: [big(E[0]), big(E[4])],
+      rails: [
+        { title: 'Sự kiện nổi bật', items: E.slice(0, 4) },
+        { title: 'Sắp diễn ra', items: E.slice(4, 8) },
+      ],
+      cities: [{ name: 'TP. Hồ Chí Minh' }, { name: 'Hà Nội' }, { name: 'Đà Nẵng' }, { name: 'Đà Lạt' }],
+    };
+  }
+}
+</script>
+</body>
+</html>

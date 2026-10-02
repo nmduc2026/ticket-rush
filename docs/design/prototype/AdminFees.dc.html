@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Admin — Phí nền tảng</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Oswald:wght@500;600&amp;display=swap">
+<style>
+body{margin:0;background:#FFFFFF;color:#09090B;font-family:'Be Vietnam Pro',system-ui,sans-serif;font-size:14px;-webkit-font-smoothing:antialiased}
+a{color:#09090B}a:hover{color:#09090B}
+button{font-family:inherit}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:36px;padding:0 16px;border-radius:8px;font-size:14px;font-weight:500;line-height:1;white-space:nowrap;border:1px solid transparent;cursor:pointer;text-decoration:none;box-sizing:border-box;background:transparent;color:#09090B;font-family:inherit}
+.btn:disabled{opacity:.5;cursor:default}
+.btn-sm{height:32px;padding:0 12px;gap:6px}
+.btn-lg{height:44px;font-size:15px}
+.btn-icon{width:36px;padding:0}
+.btn-default{background:#047857;color:#FFFFFF;box-shadow:0 1px 2px rgba(0,0,0,.05)}.btn-default:hover{background:#065F46;color:#FFFFFF}
+.btn-outline{background:#FFFFFF;border-color:#E4E4E7;box-shadow:0 1px 2px rgba(0,0,0,.05)}.btn-outline:hover{background:#F4F4F5}
+.btn-secondary{background:#F4F4F5;color:#18181B}.btn-secondary:hover{background:#E4E4E7}
+.btn-dashed{border-style:dashed}
+.btn-ghost:hover{background:#F4F4F5}
+.btn-destructive{background:#DC2626;color:#FFFFFF}.btn-destructive:hover{background:#B91C1C;color:#FFFFFF}
+.btn-link{height:auto;padding:0;color:#047857;text-decoration:underline;text-underline-offset:3px}.btn-link:hover{color:#065F46}
+.input{height:36px;width:100%;border:1px solid #E4E4E7;border-radius:8px;padding:0 12px;font-family:inherit;font-size:14px;color:#09090B;background:#FFFFFF;box-sizing:border-box;outline:none;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.input:focus{border-color:#34D399;box-shadow:0 0 0 3px rgba(52,211,153,.3)}
+.input[readonly],.input:disabled{background:#F4F4F5;color:#52525B}
+.ta{min-height:96px;padding:8px 12px;resize:vertical;line-height:1.5}
+.lbl{display:flex;flex-direction:column;gap:8px;font-size:14px;font-weight:500}
+.hint{font-size:12px;font-weight:400;color:#71717A;line-height:1.5}
+.err{font-size:12px;font-weight:400;color:#DC2626}
+.req{color:#DC2626}
+.badge{display:inline-flex;align-items:center;gap:6px;border:1px solid #E4E4E7;border-radius:6px;padding:2px 8px;font-size:12px;font-weight:500;line-height:16px;white-space:nowrap;background:#FFFFFF}
+.dot{width:6px;height:6px;border-radius:50%;display:inline-block;flex-shrink:0}
+.card{background:#FFFFFF;border:1px solid #E4E4E7;border-radius:12px;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.ch{padding:20px 20px 0;display:flex;flex-direction:column;gap:4px}
+.ct{margin:0;font-size:16px;font-weight:600}
+.cd{margin:0;color:#71717A;line-height:1.5}
+.cd:empty{display:none}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin:0;padding:0;list-style:none}
+.steps li{display:flex;flex-direction:column;gap:8px;padding-right:12px}
+.steps .bar{height:4px;border-radius:999px}
+.sim{border:1px dashed #A1A1AA;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px;background:#FAFAFA}
+.cb{padding:20px;display:flex;flex-direction:column;gap:16px}
+.cf{padding:12px 20px;border-top:1px solid #E4E4E7;display:flex;justify-content:flex-end;gap:8px;background:#FAFAFA;border-radius:0 0 12px 12px}
+.tbl{width:100%;border-collapse:collapse}
+.tbl th{height:40px;padding:0 8px;text-align:left;font-weight:500;color:#71717A;border-bottom:1px solid #E4E4E7;white-space:nowrap}
+.tbl td{height:52px;padding:0 8px;border-bottom:1px solid #E4E4E7;vertical-align:middle}
+.tbl tbody tr:last-child td{border-bottom:none}
+.tbl tbody tr:hover{background:#FAFAFA}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px}
+.num{font-variant-numeric:tabular-nums}
+.muted{color:#71717A}
+.menu{position:absolute;z-index:30;background:#FFFFFF;border:1px solid #E4E4E7;border-radius:8px;box-shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1);padding:4px;min-width:200px;text-align:left}
+.mi{display:flex;align-items:center;gap:8px;width:100%;height:32px;padding:0 8px;border:none;border-radius:4px;background:transparent;font-size:14px;color:#09090B;text-align:left;cursor:pointer;text-decoration:none;box-sizing:border-box;font-family:inherit}
+.mi:hover{background:#F4F4F5;color:#09090B}
+.mi:disabled{opacity:.5;cursor:default}
+.mi-danger,.mi-danger:hover{color:#DC2626}
+.ml{height:28px;display:flex;align-items:center;padding:0 8px;font-size:12px;font-weight:500;color:#71717A}
+.sep{height:1px;background:#E4E4E7;margin:4px -4px}
+.overlay{position:absolute;inset:0;z-index:50;background:rgba(0,0,0,.5);display:flex;justify-content:center;align-items:flex-start;padding-top:96px}
+.dialog{width:100%;max-width:512px;background:#FFFFFF;border:1px solid #E4E4E7;border-radius:10px;padding:24px;box-shadow:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.1);display:flex;flex-direction:column;gap:16px;position:relative;box-sizing:border-box}
+.dialog-lg{max-width:680px}
+.dx{position:absolute;top:16px;right:16px;width:24px;height:24px;border:none;background:transparent;border-radius:4px;cursor:pointer;color:#71717A;display:flex;align-items:center;justify-content:center}
+.dx:hover{background:#F4F4F5}
+.dt{margin:0;font-size:18px;font-weight:600;line-height:1.3}
+.dd{margin:0;font-size:14px;color:#71717A;line-height:1.5}
+.df{display:flex;justify-content:flex-end;gap:8px;padding-top:4px}
+.alert{display:flex;gap:12px;align-items:flex-start;border:1px solid #E4E4E7;border-radius:8px;padding:12px 16px;line-height:1.5}
+.alert svg{flex-shrink:0;margin-top:2px}
+.alert-warn{background:#FFFBEB;border-color:#FDE68A;color:#78350F}
+.alert-err{background:#FEF2F2;border-color:#FECACA;color:#7F1D1D}
+.alert-ok{background:#ECFDF5;border-color:#A7F3D0;color:#065F46}
+.alert-info{background:#F4F4F5;border-color:#E4E4E7;color:#3F3F46}
+.tabs{display:flex;gap:24px;border-bottom:1px solid #E4E4E7}
+.tab{height:40px;display:flex;align-items:center;padding:0 2px;border:none;border-bottom:2px solid transparent;margin-bottom:-1px;background:transparent;font-family:inherit;font-size:14px;color:#71717A;cursor:pointer;text-decoration:none;white-space:nowrap}
+.tab:hover{color:#09090B}
+.tab-on,.tab-on:hover{color:#09090B;font-weight:500;border-bottom-color:#059669}
+.seg{display:inline-flex;background:#F4F4F5;border-radius:8px;padding:3px;gap:2px}
+.sg{height:30px;padding:0 12px;border:none;border-radius:6px;background:transparent;font-family:inherit;font-size:13px;font-weight:500;color:#71717A;cursor:pointer;white-space:nowrap}
+.sg-on{background:#FFFFFF;color:#09090B;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.sw{width:36px;height:20px;border-radius:999px;border:none;padding:2px;cursor:pointer;display:inline-flex;flex-shrink:0;box-sizing:border-box}
+.sw:disabled{opacity:.5;cursor:default}
+.sw-on{background:#059669;justify-content:flex-end}
+.sw-off{background:#E4E4E7;justify-content:flex-start}
+.sw span{width:16px;height:16px;border-radius:50%;background:#FFFFFF;box-shadow:0 1px 2px rgba(0,0,0,.2)}
+.ck{width:16px;height:16px;border-radius:4px;border:1px solid #A1A1AA;background:#FFFFFF;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;flex-shrink:0}
+.ck-on{background:#059669;border-color:#059669}
+.rd{width:16px;height:16px;border-radius:50%;border:1px solid #A1A1AA;background:#FFFFFF;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;flex-shrink:0}
+.rd-on{border-color:#059669}
+.rd-on::after{content:'';width:8px;height:8px;border-radius:50%;background:#059669}
+.opt{display:flex;align-items:flex-start;gap:10px;border:none;background:transparent;padding:0;text-align:left;font-family:inherit;font-size:14px;color:#09090B;cursor:pointer}
+.opt .ck,.opt .rd{margin-top:2px}
+.tile{display:flex;align-items:flex-start;gap:10px;border:1px solid #E4E4E7;border-radius:8px;padding:12px;background:#FFFFFF;text-align:left;font-family:inherit;font-size:14px;color:#09090B;cursor:pointer;box-sizing:border-box}
+.tile-on{border-color:#059669;background:#ECFDF5}
+.chip{display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 12px;border:1px solid #E4E4E7;border-radius:999px;background:#FFFFFF;font-family:inherit;font-size:13px;color:#3F3F46;cursor:pointer}
+.chip-on{background:#ECFDF5;border-color:#A7F3D0;color:#065F46;font-weight:500}
+.drop{border:1px dashed #D4D4D8;border-radius:8px;padding:20px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;background:#FAFAFA;color:#71717A}
+.row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid #F4F4F5}
+.row:last-child{border-bottom:none}
+.kv{display:grid;grid-template-columns:180px minmax(0,1fr);row-gap:10px;column-gap:16px;margin:0}
+.kv dt{color:#71717A}.kv dd{margin:0;font-weight:500}
+.toast{position:absolute;right:24px;bottom:24px;z-index:60;background:#09090B;color:#FAFAFA;border-radius:8px;padding:12px 16px;display:flex;align-items:center;gap:10px;box-shadow:0 10px 15px -3px rgba(0,0,0,.2);font-size:14px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.pt{font-family:'Oswald',sans-serif;text-transform:uppercase;white-space:pre-line;font-weight:600}
+.sb{display:flex;align-items:center;gap:8px;height:32px;padding:0 8px;border-radius:6px;font-size:14px;color:#3F3F46;text-decoration:none;box-sizing:border-box}
+.sb:hover{background:#F4F4F5;color:#18181B}
+.sb-on,.sb-on:hover{background:#ECFDF5;color:#065F46;font-weight:500}
+.sbs{display:flex;align-items:center;height:28px;padding:0 8px;border-radius:6px;font-size:14px;color:#3F3F46;text-decoration:none}
+.sbs:hover{background:#F4F4F5;color:#18181B}
+.sbs-on,.sbs-on:hover{background:#ECFDF5;color:#065F46;font-weight:500}
+.sbl{height:32px;display:flex;align-items:center;padding:0 8px;font-size:12px;font-weight:500;color:#71717A}
+</style>
+</helmet>
+<div style="display: flex; min-height: 100vh; position: relative">
+<aside style="width: 256px; flex-shrink: 0; background: #FAFAFA; border-right: 1px solid #E4E4E7; display: flex; flex-direction: column">
+<div style="padding: 8px"><button type="button" class="sb" style="height: 48px; width: 100%; border: none; background: transparent; cursor: pointer; text-align: left"><span style="width: 32px; height: 32px; border-radius: 8px; background: #059669; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4z"></path></svg></span><span style="display: flex; flex-direction: column; flex: 1; min-width: 0; line-height: 1.3"><span style="font-weight: 600; color: #09090B">TicketRush</span><span style="font-size: 12px; color: #71717A">Quản trị hệ thống</span></span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button></div>
+<div style="flex: 1; padding: 0 8px; display: flex; flex-direction: column">
+<div class="sbl">Vận hành</div>
+<nav style="display: flex; flex-direction: column; gap: 2px">
+<a href="AdminOrganizers.dc.html" class="sb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path></svg>Organizer<svg style="margin-left: auto" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></a>
+<a href="AdminVenues.dc.html" class="sb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="20" height="20" rx="2" transform="translate(-2 0)"></rect><path d="M7 22v-4h6v4M6 6h.01M14 6h.01M10 6h.01M10 10h.01M10 14h.01M14 10h.01M14 14h.01M6 10h.01M6 14h.01"></path></svg>Địa điểm &amp; sơ đồ<svg style="margin-left: auto" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></a>
+<a href="AdminRegions.dc.html" class="sb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z"></path><path d="M15 5.764v15M9 3.236v15"></path></svg>Đơn vị hành chính</a>
+<a href="AdminOrders.dc.html" class="sb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"></path><path d="M8 7h8M8 11h8M8 15h5"></path></svg>Đơn hàng &amp; hoàn tiền</a>
+<a href="AdminFees.dc.html" class="sb sb-on"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 5 5 19"></path><circle cx="6.5" cy="6.5" r="2.5"></circle><circle cx="17.5" cy="17.5" r="2.5"></circle></svg>Phí nền tảng</a>
+</nav>
+<div class="sbl" style="margin-top: 8px">Hệ thống</div>
+<nav style="display: flex; flex-direction: column; gap: 2px">
+<a href="AdminAuditLogs.dc.html" class="sb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5M12 7v5l4 2"></path></svg>Audit log</a>
+<a href="AdminFlags.dc.html" class="sb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><path d="M4 22v-7"></path></svg>Feature flags</a>
+<a href="AdminUsers.dc.html" class="sb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="5"></circle><path d="M20 21a8 8 0 0 0-16 0"></path></svg>Người dùng</a>
+</nav>
+</div>
+<div style="padding: 8px; position: relative">
+<sc-if value="{{umOpen}}" hint-placeholder-val="{{ false }}"><div class="menu" role="menu" style="left: 8px; right: 8px; bottom: 60px"><div class="ml">admin@ticketrush.vn</div><div class="sep"></div><a href="Profile.dc.html" class="mi" role="menuitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="5"></circle><path d="M20 21a8 8 0 0 0-16 0"></path></svg>Hồ sơ cá nhân</a><a href="Notifications.dc.html" class="mi" role="menuitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg>Thông báo</a><a href="Main.dc.html" class="mi" role="menuitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20M2 12h20"></path></svg>Về trang mua vé</a><div class="sep"></div><a href="Auth.dc.html" class="mi" role="menuitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><path d="m16 17 5-5-5-5M21 12H9"></path></svg>Đăng xuất</a></div></sc-if>
+<button type="button" class="sb" aria-expanded="{{umStr}}" onClick="{{toggleUm}}" style="height: 48px; width: 100%; border: none; background: transparent; cursor: pointer; text-align: left"><span style="width: 32px; height: 32px; border-radius: 8px; background: #D1FAE5; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: #065F46; flex-shrink: 0">QT</span><span style="display: flex; flex-direction: column; flex: 1; min-width: 0; line-height: 1.3"><span style="font-weight: 600; color: #09090B">Quản trị viên</span><span style="font-size: 12px; color: #71717A">admin@ticketrush.vn</span></span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button>
+</div>
+</aside>
+<div style="flex: 1; min-width: 0; display: flex; flex-direction: column">
+<header style="height: 64px; display: flex; align-items: center; gap: 8px; padding: 0 16px; flex-shrink: 0">
+<button type="button" class="btn btn-ghost" aria-label="Thu gọn sidebar" style="width: 28px; height: 28px; padding: 0; margin-left: -4px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M9 3v18"></path></svg></button>
+<span style="width: 1px; height: 16px; background: #E4E4E7; margin-right: 8px"></span>
+<nav aria-label="Breadcrumb"><ol style="display: flex; align-items: center; gap: 6px; list-style: none; margin: 0; padding: 0; color: #71717A"><li style="color: #09090B">Phí nền tảng</li></ol></nav>
+<span style="flex: 1"></span>
+<a href="Notifications.dc.html" class="btn btn-ghost btn-icon" aria-label="Thông báo (3 chưa đọc)" style="position: relative"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg><span style="position: absolute; top: 7px; right: 8px; width: 8px; height: 8px; border-radius: 50%; background: #DC2626; border: 2px solid #FFFFFF"></span></a>
+</header>
+<main style="flex: 1; padding: 4px 16px 24px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 4px"><h1 style="margin: 0; font-size: 24px; font-weight: 600; letter-spacing: -0.02em">Phí nền tảng</h1></div>
+<div style="display: flex; gap: 8px; align-items: center"><a href="AdminAuditLogs.dc.html" class="btn btn-outline"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5M12 7v5l4 2"></path></svg>Lịch sử thay đổi</a></div>
+</div>
+<div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px"><section class="card" style="padding: 24px; display: flex; flex-direction: column; gap: 12px"><span class="muted">Mức phí mặc định</span><div style="display: flex; align-items: baseline; gap: 12px"><span class="num" style="font-size: 44px; font-weight: 700; letter-spacing: -0.03em">{{rate}}%</span><span class="muted">giá vé</span></div><span class="hint">Áp dụng cho organizer không có mức riêng · Đổi lần cuối 01/06/2026 · admin@ticketrush.vn</span><div><button type="button" class="btn btn-outline" onClick="{{openDefault}}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.17 6.81a1 1 0 0 0-3.99-3.99L3.84 16.17a2 2 0 0 0-.5.83l-1.32 4.35a.5.5 0 0 0 .62.62l4.35-1.32a2 2 0 0 0 .83-.5z"></path></svg>Thay đổi mức mặc định</button></div></section><section class="card" style="padding: 24px; display: flex; flex-direction: column; gap: 14px"><span class="muted">Tính thử</span><div style="display: flex; gap: 6px; flex-wrap: wrap"><sc-for list="{{prices}}" as="p" hint-placeholder-count="4"><button type="button" class="{{p.cls}}" onClick="{{p.pick}}">{{p.label}}</button></sc-for></div><div style="display: flex; flex-direction: column; gap: 8px"><div style="display: flex; justify-content: space-between"><span class="muted">Khách trả</span><span class="num" style="font-weight: 500">{{calc.price}}</span></div><div style="display: flex; justify-content: space-between"><span class="muted">Phí nền tảng ({{rate}}%)</span><span class="num">−{{calc.fee}}</span></div><div style="display: flex; justify-content: space-between; border-top: 1px solid #E4E4E7; padding-top: 8px"><span style="font-weight: 500">Organizer nhận (trước phí Stripe)</span><span class="num" style="font-weight: 600">{{calc.net}}</span></div></div></section></div>
+<section class="card" style="overflow: visible"><div class="ch" style="flex-direction: row; justify-content: space-between; align-items: flex-start; padding-bottom: 12px"><div style="display: flex; flex-direction: column; gap: 4px"><h2 class="ct">Mức phí riêng theo organizer</h2><p class="cd">Ưu tiên hơn mức mặc định trong khoảng thời gian hiệu lực.</p></div><button type="button" class="btn btn-default btn-sm" onClick="{{openAdd}}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>Thêm mức riêng</button></div><table class="tbl"><thead><tr><th style="padding-left: 20px">Organizer</th><th style="text-align: right">Mức phí</th><th>Hiệu lực</th><th>Lý do</th><th>Tạo bởi</th><th>Trạng thái</th><th><span class="sr">Thao tác</span></th></tr></thead><tbody><sc-for list="{{rows}}" as="r" hint-placeholder-count="4"><tr><td style="padding-left: 20px; font-weight: 500">{{r.org}}</td><td class="num" style="text-align: right; font-weight: 600">{{r.rate}}</td><td class="num muted">{{r.range}}</td><td class="muted">{{r.reason}}</td><td class="muted">{{r.by}}</td><td><span class="badge"><span class="dot" style="background: {{r.dot}}"></span>{{r.label}}</span></td><td style="text-align: right; position: relative; width: 48px"><button type="button" class="btn btn-ghost" aria-label="Mở menu thao tác" aria-expanded="{{r.menuStr}}" onClick="{{r.toggleMenu}}" style="width: 32px; height: 32px; padding: 0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg></button><sc-if value="{{r.menuOpen}}" hint-placeholder-val="{{ false }}"><div class="menu" role="menu" style="right: 8px; top: 44px"><button type="button" class="mi" role="menuitem" onClick="{{r.edit}}">Sửa</button><sc-if value="{{r.isActive}}" hint-placeholder-val="{{ false }}"><button type="button" class="mi" role="menuitem" onClick="{{r.end}}">Kết thúc ngay</button></sc-if><div class="sep"></div><button type="button" class="mi mi-danger" role="menuitem" onClick="{{r.remove}}">Xoá</button></div></sc-if></td></tr></sc-for></tbody></table></section>
+
+</main>
+</div>
+<sc-if value="{{dlgDefault}}" hint-placeholder-val="{{ false }}">
+<div class="overlay">
+<div class="dialog" role="dialog" aria-modal="true" aria-labelledby="d-def">
+<button type="button" class="dx" aria-label="Đóng" onClick="{{closeDialog}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+<div style="display: flex; flex-direction: column; gap: 8px"><h2 id="d-def" class="dt">Thay đổi mức phí mặc định</h2><p class="dd">Chỉ áp dụng cho đơn tạo sau thời điểm hiệu lực. Đơn đã thanh toán giữ nguyên mức phí cũ.</p></div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px"><label class="lbl">Mức phí mới (%)<input class="input" type="text" value="5" style="text-align: right"></label><label class="lbl">Hiệu lực từ<select class="input"><option>Ngay lập tức</option><option>00:00 ngày 01/11/2026</option></select></label></div><label class="lbl"><span>Lý do <span class="req">*</span></span><textarea class="input ta" placeholder="Ghi vào audit log"></textarea></label><div class="alert alert-warn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4M12 17h.01"></path></svg><span>Ảnh hưởng 42 organizer đang dùng mức mặc định. Báo trước tối thiểu 7 ngày.</span></div>
+<div class="df"><button type="button" class="btn btn-outline" onClick="{{closeDialog}}">Huỷ</button><button type="button" class="btn btn-default" onClick="{{saveDefault}}">Lưu thay đổi</button></div>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{dlgOverride}}" hint-placeholder-val="{{ false }}">
+<div class="overlay">
+<div class="dialog" role="dialog" aria-modal="true" aria-labelledby="d-ov">
+<button type="button" class="dx" aria-label="Đóng" onClick="{{closeDialog}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+<div style="display: flex; flex-direction: column; gap: 8px"><h2 id="d-ov" class="dt">{{ovTitle}}</h2><p class="dd">Mức riêng ưu tiên hơn mức mặc định trong khoảng hiệu lực.</p></div>
+<label class="lbl"><span>Organizer <span class="req">*</span></span><select class="input"><option>{{ovOrg}}</option><option>Hanoi Live</option><option>Đà Lạt Fest</option><option>Jazz Club SG</option></select></label><div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px"><label class="lbl">Mức phí (%)<input class="input" type="text" value="{{ovRate}}" style="text-align: right"></label><label class="lbl">Từ ngày<input class="input" type="text" value="01/10/2026"></label><label class="lbl">Đến ngày <span class="hint" style="margin-top: -6px">Để trống = vô thời hạn</span><input class="input" type="text" value="31/12/2026"></label></div><label class="lbl"><span>Lý do <span class="req">*</span></span><textarea class="input ta" placeholder="VD: Hợp đồng đối tác chiến lược">{{ovReason}}</textarea></label>
+<div class="df"><button type="button" class="btn btn-outline" onClick="{{closeDialog}}">Huỷ</button><button type="button" class="btn btn-default" onClick="{{saveOverride}}">Lưu</button></div>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{dlgDelete}}" hint-placeholder-val="{{ false }}">
+<div class="overlay">
+<div class="dialog" role="alertdialog" aria-modal="true" aria-labelledby="d-del">
+<button type="button" class="dx" aria-label="Đóng" onClick="{{closeDialog}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+<div style="display: flex; flex-direction: column; gap: 8px"><h2 id="d-del" class="dt">Xoá mức phí riêng của {{t.org}}?</h2><p class="dd">Organizer quay về mức mặc định cho các đơn mới. Đơn cũ không bị ảnh hưởng.</p></div>
+
+<div class="df"><button type="button" class="btn btn-outline" onClick="{{closeDialog}}">Huỷ</button><button type="button" class="btn btn-destructive" onClick="{{confirmDelete}}">Xoá</button></div>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{toastOn}}" hint-placeholder-val="{{ false }}"><div class="toast" role="status"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span>{{toastMsg}}</span><button type="button" class="btn btn-ghost btn-sm" style="color: #FAFAFA; height: 24px; padding: 0 6px" onClick="{{hideToast}}">Đóng</button></div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dialog": {"editor": "enum", "options": ["none", "default", "override", "delete"], "default": "none"}, "$preview": {"width": 1280, "height": 900}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = Object.assign({ q: '', page: 1, menu: null, open: null, target: null }, this.init ? this.init() : {}); }
+
+  dlg(name) { return () => this.setState({ dialog: name, menu: null }); }
+  common() {
+    const dialog = this.state.dialog !== undefined ? this.state.dialog : (this.props.dialog ?? 'none');
+    return {
+      dialog,
+      closeDialog: () => this.setState({ dialog: 'none' }),
+      toastOn: !!this.state.toast,
+      toastMsg: this.state.toast || '',
+      hideToast: () => this.setState({ toast: null }),
+      done: (msg) => () => this.setState({ dialog: 'none', toast: msg, menu: null }),
+    };
+  }
+
+  um() {
+    const bell = this.state.bell !== undefined ? this.state.bell : !!this.props.bell;
+    return {
+      umOpen: !!this.state.um,
+      umStr: this.state.um ? 'true' : 'false',
+      toggleUm: () => this.setState({ um: !this.state.um, bell: false }),
+      bellOpen: bell,
+      bellStr: bell ? 'true' : 'false',
+      toggleBell: () => this.setState({ bell: !bell, um: false }),
+    };
+  }
+
+  pager(list, size) {
+    const pageCount = Math.max(1, Math.ceil(list.length / size));
+    const page = Math.min(this.state.page || 1, pageCount);
+    return {
+      slice: list.slice((page - 1) * size, page * size),
+      total: list.length, page, pageCount,
+      atStart: page === 1, atEnd: page === pageCount,
+      first: () => this.setState({ page: 1 }),
+      prev: () => this.setState({ page: Math.max(1, page - 1) }),
+      next: () => this.setState({ page: Math.min(pageCount, page + 1) }),
+      last: () => this.setState({ page: pageCount }),
+    };
+  }
+
+  facet(key, defs, all, field) {
+    const sel = this.state[key] || [];
+    const open = this.state.open === key;
+    const o = {};
+    o[key + 'Open'] = open;
+    o[key + 'Str'] = open ? 'true' : 'false';
+    o[key + 'Toggle'] = () => this.setState({ open: open ? null : key, menu: null });
+    o[key + 'Has'] = sel.length > 0;
+    o[key + 'Sum'] = sel.length > 1 ? sel.length + ' đã chọn' : sel.length ? (defs.find((d) => d.k === sel[0]) || {}).label : '';
+    o[key + 'Clear'] = () => this.setState({ [key]: [], page: 1 });
+    o[key + 'Opts'] = defs.map((d) => {
+      const on = sel.includes(d.k);
+      return { label: d.label, dot: d.dot || '', hasDot: !!d.dot, count: all.filter((r) => r[field] === d.k).length,
+        checked: on ? 'true' : 'false', ck: on ? 'ck ck-on' : 'ck',
+        toggle: () => this.setState({ [key]: on ? sel.filter((x) => x !== d.k) : [...sel, d.k], page: 1 }) };
+    });
+    return o;
+  }
+
+  withMenu(r) {
+    const open = this.state.menu === r.id;
+    return { ...r, menuOpen: open, menuStr: open ? 'true' : 'false',
+      toggleMenu: () => this.setState({ menu: open ? null : r.id, open: null }) };
+  }
+
+  init() { return { price: 1000000, removed: [], ended: [] }; }
+  renderVals() {
+    const rate = 5;
+    const fmt = (v) => v.toLocaleString('vi-VN') + ' ₫';
+    const prices = [500000, 1000000, 2500000, 5000000].map((p) => ({ label: fmt(p), cls: this.state.price === p ? 'chip chip-on' : 'chip', pick: () => this.setState({ price: p }) }));
+    const p = this.state.price;
+    const S = { active: { label: 'Đang áp dụng', dot: '#16A34A' }, upcoming: { label: 'Sắp áp dụng', dot: '#2563EB' }, ended: { label: 'Đã kết thúc', dot: '#A1A1AA' } };
+    const all = [
+      { id: 1, org: 'Saigon Sound Co.', rate: '3,5%', r: '3.5', range: '01/09/2026 – 31/12/2026', reason: 'Đối tác ra mắt nền tảng', by: 'admin@ticketrush.vn', s: 'active' },
+      { id: 2, org: 'Hanoi Live', rate: '4%', r: '4', range: '01/10/2026 – vô thời hạn', reason: 'Hợp đồng năm 2026', by: 'admin@ticketrush.vn', s: 'active' },
+      { id: 3, org: 'Đà Lạt Fest', rate: '2%', r: '2', range: '15/11/2026 – 30/11/2026', reason: 'Lễ hội cộng đồng phi lợi nhuận', by: 'ops@ticketrush.vn', s: 'upcoming' },
+      { id: 4, org: 'Jazz Club SG', rate: '4,5%', r: '4.5', range: '01/03/2026 – 31/08/2026', reason: 'Khuyến mãi organizer mới', by: 'admin@ticketrush.vn', s: 'ended' },
+    ].filter((r) => !this.state.removed.includes(r.id)).map((r) => ({ ...r, s: this.state.ended.includes(r.id) ? 'ended' : r.s }));
+    const c = this.common();
+    const rows = all.map((r) => this.withMenu({ ...r, ...S[r.s], isActive: r.s === 'active',
+      edit: () => this.setState({ dialog: 'override', target: r.id, menu: null }),
+      end: () => this.setState({ ended: [...this.state.ended, r.id], menu: null, toast: 'Đã kết thúc mức phí riêng của ' + r.org }),
+      remove: () => this.setState({ dialog: 'delete', target: r.id, menu: null }) }));
+    const t = all.find((r) => r.id === this.state.target);
+    const editing = !!t && c.dialog === 'override';
+    return {
+      ...c, ...this.um(), rate, prices, rows,
+      calc: { price: fmt(p), fee: fmt(p * rate / 100), net: fmt(p - p * rate / 100) },
+      openDefault: this.dlg('default'), openAdd: () => this.setState({ dialog: 'override', target: null }),
+      dlgDefault: c.dialog === 'default', dlgOverride: c.dialog === 'override', dlgDelete: c.dialog === 'delete',
+      ovTitle: editing ? 'Sửa mức phí riêng' : 'Thêm mức phí riêng', ovOrg: editing ? t.org : 'Chọn organizer…', ovRate: editing ? t.r : '', ovReason: editing ? t.reason : '',
+      t: t || { org: '' },
+      saveDefault: c.done('Đã lưu mức phí mặc định'), saveOverride: c.done(editing ? 'Đã cập nhật mức phí riêng' : 'Đã thêm mức phí riêng'),
+      confirmDelete: () => this.setState({ dialog: 'none', removed: [...this.state.removed, this.state.target], toast: 'Đã xoá mức phí riêng' }),
+    };
+  }
+}
+</script>
+</body>
+</html>

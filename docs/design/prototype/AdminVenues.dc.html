@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Admin — Địa điểm</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#FFFFFF;color:#09090B;font-family:'Be Vietnam Pro',system-ui,sans-serif;font-size:14px;-webkit-font-smoothing:antialiased}
+a{color:#09090B}a:hover{color:#09090B}
+button{font-family:inherit}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:36px;padding:0 16px;border-radius:8px;font-size:14px;font-weight:500;line-height:1;white-space:nowrap;border:1px solid transparent;cursor:pointer;text-decoration:none;box-sizing:border-box;background:transparent;color:#09090B}
+.btn:disabled{opacity:.5;cursor:default}
+.btn-sm{height:32px;padding:0 12px;gap:6px}
+.btn-icon{width:32px;padding:0}
+.btn-default{background:#047857;color:#FFFFFF;box-shadow:0 1px 2px rgba(0,0,0,.05)}.btn-default:hover{background:#065F46;color:#FFFFFF}
+.btn-outline{background:#FFFFFF;border-color:#E4E4E7;box-shadow:0 1px 2px rgba(0,0,0,.05)}.btn-outline:hover{background:#F4F4F5}
+.btn-dashed{border-style:dashed}
+.btn-ghost:hover{background:#F4F4F5}
+.btn-destructive{background:#DC2626;color:#FFFFFF}.btn-destructive:hover{background:#B91C1C;color:#FFFFFF}
+.input{height:36px;border:1px solid #E4E4E7;border-radius:8px;padding:0 12px;font-family:inherit;font-size:14px;color:#09090B;background:#FFFFFF;box-sizing:border-box;outline:none;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.lbl{display:flex;flex-direction:column;gap:8px;font-size:14px;font-weight:500}
+.lbl .input{width:100%}
+.tbl{width:100%;border-collapse:collapse}
+.tbl th{height:40px;padding:0 8px;text-align:left;font-weight:500;color:#71717A;border-bottom:1px solid #E4E4E7;white-space:nowrap}
+.tbl td{height:52px;padding:0 8px;border-bottom:1px solid #E4E4E7;vertical-align:middle}
+.tbl tbody tr:last-child td{border-bottom:none}
+.tbl tbody tr:hover{background:#FAFAFA}
+.cb{width:16px;height:16px;margin:0;accent-color:#059669;vertical-align:middle}
+.sb{display:flex;align-items:center;gap:8px;height:32px;padding:0 8px;border-radius:6px;font-size:14px;color:#3F3F46;text-decoration:none;box-sizing:border-box}
+.sb:hover{background:#F4F4F5;color:#18181B}
+.sbs{display:flex;align-items:center;height:28px;padding:0 8px;border-radius:6px;font-size:14px;color:#3F3F46;text-decoration:none}
+.sbs:hover{background:#F4F4F5;color:#18181B}
+.sbs-on,.sbs-on:hover{background:#ECFDF5;color:#065F46;font-weight:500}
+.sbl{height:32px;display:flex;align-items:center;padding:0 8px;font-size:12px;font-weight:500;color:#71717A}
+.menu{position:absolute;z-index:30;background:#FFFFFF;border:1px solid #E4E4E7;border-radius:8px;box-shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1);padding:4px;min-width:200px;text-align:left}
+.mi{display:flex;align-items:center;gap:8px;width:100%;height:32px;padding:0 8px;border:none;border-radius:4px;background:transparent;font-size:14px;color:#09090B;text-align:left;cursor:pointer;text-decoration:none;box-sizing:border-box}
+.mi:hover{background:#F4F4F5;color:#09090B}
+.mi-danger,.mi-danger:hover{color:#DC2626}
+.sep{height:1px;background:#E4E4E7;margin:4px -4px}
+.overlay{position:absolute;inset:0;z-index:50;background:rgba(0,0,0,.5);display:flex;justify-content:center;align-items:flex-start;padding-top:100px}
+.dialog{width:100%;max-width:512px;background:#FFFFFF;border:1px solid #E4E4E7;border-radius:10px;padding:24px;box-shadow:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.1);display:flex;flex-direction:column;gap:16px;position:relative;box-sizing:border-box}
+.dx{position:absolute;top:16px;right:16px;width:24px;height:24px;border:none;background:transparent;border-radius:4px;cursor:pointer;color:#71717A;display:flex;align-items:center;justify-content:center}
+.dt{margin:0;font-size:18px;font-weight:600;line-height:1.2}
+.dd{margin:0;font-size:14px;color:#71717A;line-height:1.5}
+.df{display:flex;justify-content:flex-end;gap:8px;padding-top:4px}
+.btn-sm{height:32px;padding:0 12px;gap:6px}
+.btn-outline{background:#FFFFFF;border-color:#E4E4E7;box-shadow:0 1px 2px rgba(0,0,0,.05)}.btn-outline:hover{background:#F4F4F5}
+.btn-ghost:hover{background:#F4F4F5}
+.btn-link{height:auto;padding:0;color:#047857;text-decoration:underline;text-underline-offset:3px}.btn-link:hover{color:#065F46}
+.hint{font-size:12px;font-weight:400;color:#71717A;line-height:1.5}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px}
+.num{font-variant-numeric:tabular-nums}
+.muted{color:#71717A}
+.dialog-lg{max-width:680px}
+.dx:hover{background:#F4F4F5}
+.df{display:flex;justify-content:flex-end;gap:8px;padding-top:4px}
+.alert{display:flex;gap:12px;align-items:flex-start;border:1px solid #E4E4E7;border-radius:8px;padding:12px 16px;line-height:1.5}
+.alert svg{flex-shrink:0;margin-top:2px}
+.alert-warn{background:#FFFBEB;border-color:#FDE68A;color:#78350F}
+.alert-err{background:#FEF2F2;border-color:#FECACA;color:#7F1D1D}
+.alert-ok{background:#ECFDF5;border-color:#A7F3D0;color:#065F46}
+.alert-info{background:#F4F4F5;border-color:#E4E4E7;color:#3F3F46}
+.rd{width:16px;height:16px;border-radius:50%;border:1px solid #A1A1AA;background:#FFFFFF;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;flex-shrink:0}
+.rd-on{border-color:#059669}
+.rd-on::after{content:'';width:8px;height:8px;border-radius:50%;background:#059669}
+.tile{display:flex;align-items:flex-start;gap:10px;border:1px solid #E4E4E7;border-radius:8px;padding:12px;background:#FFFFFF;text-align:left;font-family:inherit;font-size:14px;color:#09090B;cursor:pointer;box-sizing:border-box}
+.tile-on{border-color:#059669;background:#ECFDF5}
+.drop{border:1px dashed #D4D4D8;border-radius:8px;padding:20px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;background:#FAFAFA;color:#71717A}
+.toast{position:absolute;right:24px;bottom:24px;z-index:60;background:#09090B;color:#FAFAFA;border-radius:8px;padding:12px 16px;display:flex;align-items:center;gap:10px;box-shadow:0 10px 15px -3px rgba(0,0,0,.2);font-size:14px}
+</style>
+</helmet>
+<div style="display: flex; min-height: 100vh; position: relative">
+<aside style="width: 256px; flex-shrink: 0; background: #FAFAFA; border-right: 1px solid #E4E4E7; display: flex; flex-direction: column">
+<div style="padding: 8px">
+<button type="button" class="sb" style="height: 48px; width: 100%; border: none; background: transparent; cursor: pointer; text-align: left">
+<span style="width: 32px; height: 32px; border-radius: 8px; background: #059669; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4z"></path></svg></span>
+<span style="display: flex; flex-direction: column; flex: 1; min-width: 0; line-height: 1.3"><span style="font-weight: 600; color: #09090B">TicketRush</span><span style="font-size: 12px; color: #71717A">Quản trị hệ thống</span></span>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 15 5 5 5-5"></path><path d="m7 9 5-5 5 5"></path></svg>
+</button>
+</div>
+<div style="flex: 1; padding: 0 8px; display: flex; flex-direction: column">
+<div class="sbl">Vận hành</div>
+<nav style="display: flex; flex-direction: column; gap: 2px">
+<a href="AdminOrganizers.dc.html" class="sb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path></svg>Organizer<svg style="margin-left: auto" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></a>
+<a href="AdminVenues.dc.html" class="sb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"></rect><path d="M9 22v-4h6v4M8 6h.01M16 6h.01M12 6h.01M12 10h.01M12 14h.01M16 10h.01M16 14h.01M8 10h.01M8 14h.01"></path></svg>Địa điểm &amp; sơ đồ<svg style="margin-left: auto; transform: rotate(90deg)" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></a>
+<a href="AdminRegions.dc.html" class="sb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z"></path><path d="M15 5.764v15M9 3.236v15"></path></svg>Đơn vị hành chính</a>
+<div style="margin: 0 0 2px 15px; padding-left: 10px; border-left: 1px solid #E4E4E7; display: flex; flex-direction: column; gap: 2px">
+<a href="AdminVenues.dc.html" class="sbs sbs-on">Địa điểm</a>
+<a href="AdminSeatMap.dc.html" class="sbs">Sơ đồ ghế</a>
+</div>
+<a href="AdminOrders.dc.html" class="sb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"></path><path d="M8 7h8M8 11h8M8 15h5"></path></svg>Đơn hàng &amp; hoàn tiền</a>
+<a href="AdminFees.dc.html" class="sb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 5 5 19"></path><circle cx="6.5" cy="6.5" r="2.5"></circle><circle cx="17.5" cy="17.5" r="2.5"></circle></svg>Phí nền tảng</a>
+</nav>
+<div class="sbl" style="margin-top: 8px">Hệ thống</div>
+<nav style="display: flex; flex-direction: column; gap: 2px">
+<a href="AdminAuditLogs.dc.html" class="sb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5M12 7v5l4 2"></path></svg>Audit log</a>
+<a href="AdminFlags.dc.html" class="sb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><path d="M4 22v-7"></path></svg>Feature flags</a>
+<a href="AdminUsers.dc.html" class="sb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"></circle><path d="M20 21a8 8 0 0 0-16 0"></path></svg>Người dùng</a>
+</nav>
+</div>
+<div style="padding: 8px">
+<button type="button" class="sb" style="height: 48px; width: 100%; border: none; background: transparent; cursor: pointer; text-align: left">
+<span style="width: 32px; height: 32px; border-radius: 8px; background: #D1FAE5; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: #065F46; flex-shrink: 0">QT</span>
+<span style="display: flex; flex-direction: column; flex: 1; min-width: 0; line-height: 1.3"><span style="font-weight: 600; color: #09090B">Quản trị viên</span><span style="font-size: 12px; color: #71717A">admin@ticketrush.vn</span></span>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 15 5 5 5-5"></path><path d="m7 9 5-5 5 5"></path></svg>
+</button>
+</div>
+</aside>
+
+<div style="flex: 1; min-width: 0; display: flex; flex-direction: column">
+<header style="height: 64px; display: flex; align-items: center; gap: 8px; padding: 0 16px; flex-shrink: 0">
+<button type="button" class="btn btn-ghost" aria-label="Thu gọn sidebar" style="width: 28px; height: 28px; padding: 0; margin-left: -4px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M9 3v18"></path></svg></button>
+<span style="width: 1px; height: 16px; background: #E4E4E7; margin-right: 8px"></span>
+<nav aria-label="Breadcrumb"><ol style="display: flex; align-items: center; gap: 6px; list-style: none; margin: 0; padding: 0; color: #71717A"><li><a href="AdminVenues.dc.html" style="color: #71717A; text-decoration: none">Địa điểm &amp; sơ đồ</a></li><li style="display: flex"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></li><li style="color: #09090B">Địa điểm</li></ol></nav>
+</header>
+
+<main style="flex: 1; padding: 4px 16px 24px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h1 style="margin: 0; font-size: 24px; font-weight: 600; letter-spacing: -0.02em">Địa điểm</h1>
+<p style="margin: 0; color: #71717A">Danh sách organizer chọn khi tạo sự kiện</p>
+</div>
+<div style="display: flex; gap: 8px"><button type="button" class="btn btn-outline" onClick="{{downloadTpl}}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="m7 10 5 5 5-5M12 15V3"></path></svg>Tải file mẫu</button><button type="button" class="btn btn-outline" onClick="{{openImport}}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="m17 8-5-5-5 5M12 3v12"></path></svg>Import Excel</button><button type="button" class="btn btn-default" onClick="{{openCreate}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>Thêm địa điểm</button></div>
+</div>
+
+<div style="display: flex; align-items: center; gap: 8px">
+<input class="input" type="search" aria-label="Lọc địa điểm" placeholder="Tìm tên, địa chỉ…" value="{{q}}" onChange="{{onSearch}}" style="height: 32px; width: 260px">
+<div style="position: relative">
+<button type="button" class="btn btn-outline btn-sm btn-dashed" aria-expanded="{{facetOpenStr}}" onClick="{{toggleFacet}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 12h8M12 8v8"></path></svg>Tỉnh/TP
+<sc-if value="{{hasCity}}" hint-placeholder-val="{{ false }}"><span style="width: 1px; height: 16px; background: #E4E4E7; margin: 0 2px"></span><span style="background: #F4F4F5; border-radius: 4px; padding: 2px 6px; font-size: 12px; font-weight: 400">{{citySummary}}</span></sc-if>
+</button>
+<sc-if value="{{facetOpen}}" hint-placeholder-val="{{ false }}">
+<div class="menu" style="top: 38px; left: 0; width: 220px">
+<sc-for list="{{cityOpts}}" as="o" hint-placeholder-count="4">
+<button type="button" class="mi" role="menuitemcheckbox" aria-checked="{{o.checked}}" onClick="{{o.toggle}}">
+<span style="width: 16px; height: 16px; border-radius: 4px; border: 1px solid {{o.boxBorder}}; background: {{o.boxBg}}; display: flex; align-items: center; justify-content: center; box-sizing: border-box"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>
+<span style="flex: 1">{{o.label}}</span>
+<span style="font-size: 12px; color: #71717A; font-variant-numeric: tabular-nums">{{o.count}}</span>
+</button>
+</sc-for>
+<sc-if value="{{hasCity}}" hint-placeholder-val="{{ false }}"><div class="sep"></div><button type="button" class="mi" style="justify-content: center" onClick="{{clearCity}}">Xoá bộ lọc</button></sc-if>
+</div>
+</sc-if>
+</div>
+<sc-if value="{{filtered}}" hint-placeholder-val="{{ false }}">
+<button type="button" class="btn btn-ghost btn-sm" onClick="{{reset}}">Đặt lại<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+</sc-if>
+</div>
+
+<div style="border: 1px solid #E4E4E7; border-radius: 8px">
+<table class="tbl">
+<thead><tr>
+<th style="width: 32px; padding-left: 12px"><input type="checkbox" class="cb" aria-label="Chọn tất cả"></th>
+<th>Địa điểm</th><th>Tỉnh/TP</th><th style="text-align: right">Sức chứa</th><th style="text-align: right">Sơ đồ ghế</th><th style="text-align: right">Sự kiện sắp tới</th><th>Cập nhật</th>
+<th style="width: 48px"><span style="position: absolute; width: 1px; height: 1px; overflow: hidden">Thao tác</span></th>
+</tr></thead>
+<tbody>
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="10">
+<tr>
+<td style="padding-left: 12px"><input type="checkbox" class="cb" aria-label="Chọn dòng"></td>
+<td><div style="display: flex; flex-direction: column; gap: 2px"><a href="AdminSeatMap.dc.html" style="font-weight: 500; text-decoration: none">{{r.name}}</a><span style="font-size: 12px; color: #71717A">{{r.address}}</span></div></td>
+<td style="color: #3F3F46">{{r.city}}</td>
+<td style="text-align: right; font-variant-numeric: tabular-nums">{{r.capacity}}</td>
+<td style="text-align: right; font-variant-numeric: tabular-nums">{{r.maps}}</td>
+<td style="text-align: right; font-variant-numeric: tabular-nums">{{r.upcoming}}</td>
+<td style="color: #3F3F46; font-variant-numeric: tabular-nums">{{r.updated}}</td>
+<td style="text-align: right; position: relative">
+<button type="button" class="btn btn-ghost" aria-label="Mở menu thao tác" aria-expanded="{{r.menuStr}}" onClick="{{r.toggleMenu}}" style="width: 32px; height: 32px; padding: 0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg></button>
+<sc-if value="{{r.menuOpen}}" hint-placeholder-val="{{ false }}">
+<div class="menu" role="menu" style="right: 8px; top: 44px">
+<button type="button" class="mi" role="menuitem" onClick="{{r.edit}}">Sửa thông tin</button>
+<a href="AdminSeatMap.dc.html" class="mi" role="menuitem">Quản lý sơ đồ ghế</a>
+<div class="sep"></div>
+<button type="button" class="mi mi-danger" role="menuitem" onClick="{{r.remove}}">Xoá địa điểm</button>
+</div>
+</sc-if>
+</td>
+</tr>
+</sc-for>
+</tbody>
+</table>
+</div>
+
+<div style="display: flex; align-items: center; justify-content: space-between; padding: 0 4px">
+<span style="color: #71717A">0 / {{total}} dòng được chọn.</span>
+<div style="display: flex; align-items: center; gap: 24px">
+<label style="display: flex; align-items: center; gap: 8px; font-weight: 500">Số dòng mỗi trang<select class="input" style="height: 32px; width: 72px; padding: 0 8px"><option>10</option><option>20</option><option>50</option></select></label>
+<span style="font-weight: 500; font-variant-numeric: tabular-nums">Trang {{page}} / {{pageCount}}</span>
+<div style="display: flex; gap: 8px">
+<button type="button" class="btn btn-outline btn-icon" style="height: 32px" aria-label="Trang đầu" disabled="{{atStart}}" onClick="{{first}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m11 17-5-5 5-5M18 17l-5-5 5-5"></path></svg></button>
+<button type="button" class="btn btn-outline btn-icon" style="height: 32px" aria-label="Trang trước" disabled="{{atStart}}" onClick="{{prev}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg></button>
+<button type="button" class="btn btn-outline btn-icon" style="height: 32px" aria-label="Trang sau" disabled="{{atEnd}}" onClick="{{next}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></button>
+<button type="button" class="btn btn-outline btn-icon" style="height: 32px" aria-label="Trang cuối" disabled="{{atEnd}}" onClick="{{last}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 17 5-5-5-5M13 17l5-5-5-5"></path></svg></button>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+<sc-if value="{{dlgForm}}" hint-placeholder-val="{{ false }}">
+<div class="overlay">
+<div class="dialog" role="dialog" aria-modal="true" aria-labelledby="dlg-venue">
+<button type="button" class="dx" aria-label="Đóng" onClick="{{closeDialog}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+<div style="display: flex; flex-direction: column; gap: 8px"><h2 id="dlg-venue" class="dt">{{formTitle}}</h2><p class="dd">Sơ đồ ghế tạo sau khi lưu địa điểm.</p></div>
+<label class="lbl">Tên địa điểm<input class="input" type="text" value="{{form.name}}" placeholder="VD: Nhà hát Hòa Bình"></label>
+<label class="lbl">Địa chỉ<input class="input" type="text" value="{{form.address}}" placeholder="Số nhà, tên đường"></label>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+<label class="lbl">Tỉnh/Thành phố<select class="input"><option>TP. Hồ Chí Minh</option><option>Hà Nội</option><option>Đà Nẵng</option><option>Lâm Đồng</option></select></label>
+<label class="lbl">Xã/Phường/Đặc khu<select class="input"><option>Phường Bàn Cờ</option><option>Phường Bến Thành</option><option>Phường Sài Gòn</option></select><span class="hint">Danh mục Đơn vị hành chính, lọc theo tỉnh</span></label>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+<label class="lbl">Sức chứa<input class="input" type="text" value="{{form.capacity}}" placeholder="0"></label>
+</div>
+<div class="df"><button type="button" class="btn btn-outline" onClick="{{closeDialog}}">Huỷ</button><button type="button" class="btn btn-default" onClick="{{closeDialog}}">Lưu địa điểm</button></div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{dlgDelete}}" hint-placeholder-val="{{ false }}">
+<div class="overlay">
+<div class="dialog" role="alertdialog" aria-modal="true" aria-labelledby="dlg-vdel" style="max-width: 460px">
+<div style="display: flex; flex-direction: column; gap: 8px"><h2 id="dlg-vdel" class="dt">Xoá “{{form.name}}”?</h2><p class="dd">Xoá cả các sơ đồ ghế của địa điểm. Không xoá được khi có sự kiện sắp diễn ra.</p></div>
+<div class="df"><button type="button" class="btn btn-outline" onClick="{{closeDialog}}">Huỷ</button><button type="button" class="btn btn-destructive" onClick="{{closeDialog}}">Xoá địa điểm</button></div>
+</div>
+</div>
+</sc-if>
+</div>
+<sc-if value="{{dlgImport}}" hint-placeholder-val="{{ false }}"><div class="overlay"><div class="dialog dialog-lg" role="dialog" aria-modal="true" aria-labelledby="d-imp"><button type="button" class="dx" aria-label="Đóng" onClick="{{closeImport}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg></button><div style="display: flex; flex-direction: column; gap: 8px"><h2 id="d-imp" class="dt">{{impTitle}}</h2><p class="dd">{{impStepLabel}}</p></div><sc-if value="{{impUpload}}" hint-placeholder-val="{{ true }}"><sc-if value="{{impNoFile}}" hint-placeholder-val="{{ true }}"><div class="drop"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4M8 13h2M14 13h2M8 17h2M14 17h2"></path></svg><span><button type="button" class="btn btn-link" onClick="{{pickFile}}">Chọn file</button> hoặc kéo thả vào đây</span><span class="hint">.xlsx hoặc .csv · tối đa 5 MB · tối đa 5.000 dòng</span></div></sc-if><sc-if value="{{impHasFile}}" hint-placeholder-val="{{ false }}"><div style="display: flex; align-items: center; gap: 12px; border: 1px solid #E4E4E7; border-radius: 8px; padding: 10px 12px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#047857" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4M8 13h2M14 13h2M8 17h2M14 17h2"></path></svg><span style="flex: 1; display: flex; flex-direction: column"><span style="font-weight: 500">{{impFileName}}</span><span class="hint">{{impTotal}} dòng · 48 KB</span></span><button type="button" class="btn btn-ghost btn-sm" aria-label="Bỏ file" onClick="{{removeFile}}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></button></div></sc-if><div class="lbl"><span><span>Khi trùng mã</span></span><div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px"><button type="button" class="{{impUpdTile}}" role="radio" aria-checked="{{impUpdSel}}" onClick="{{pickUpd}}"><span class="{{impUpdRd}}"></span><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 500">Cập nhật bản ghi có sẵn</span><span class="hint">Ghi đè theo mã</span></span></button><button type="button" class="{{impSkipTile}}" role="radio" aria-checked="{{impSkipSel}}" onClick="{{pickSkip}}"><span class="{{impSkipRd}}"></span><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 500">Bỏ qua dòng trùng</span><span class="hint">Chỉ thêm mới</span></span></button></div></div><div style="border: 1px solid #E4E4E7; border-radius: 8px; overflow: hidden"><div style="display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: #FAFAFA; border-bottom: 1px solid #E4E4E7"><span style="font-weight: 500">Cột trong file mẫu <span class="mono hint">{{impTpl}}</span></span><button type="button" class="btn btn-outline btn-sm" onClick="{{downloadTpl}}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="m7 10 5 5 5-5M12 15V3"></path></svg>Tải file mẫu</button></div><table class="tbl"><thead><tr><th style="padding-left: 12px">Cột</th><th>Bắt buộc</th><th>Ghi chú</th></tr></thead><tbody><sc-for list="{{impCols}}" as="c" hint-placeholder-count="4"><tr><td class="mono" style="padding-left: 12px; height: 40px">{{c.name}}</td><td style="height: 40px">{{c.req}}</td><td class="hint" style="height: 40px">{{c.note}}</td></tr></sc-for></tbody></table></div><div class="df"><button type="button" class="btn btn-outline" onClick="{{closeImport}}">Huỷ</button><button type="button" class="btn btn-default" disabled="{{impNoFile}}" onClick="{{impCheck}}">Kiểm tra file</button></div></sc-if><sc-if value="{{impPreview}}" hint-placeholder-val="{{ false }}"><div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px"><div style="border: 1px solid #E4E4E7; border-radius: 8px; padding: 10px 12px; display: flex; flex-direction: column; gap: 2px"><span class="hint">Tổng số dòng</span><span class="num" style="font-size: 20px; font-weight: 600; color: #09090B">{{impTotal}}</span></div><div style="border: 1px solid #E4E4E7; border-radius: 8px; padding: 10px 12px; display: flex; flex-direction: column; gap: 2px"><span class="hint">Hợp lệ</span><span class="num" style="font-size: 20px; font-weight: 600; color: #15803D">{{impValid}}</span></div><div style="border: 1px solid #E4E4E7; border-radius: 8px; padding: 10px 12px; display: flex; flex-direction: column; gap: 2px"><span class="hint">Lỗi</span><span class="num" style="font-size: 20px; font-weight: 600; color: #B91C1C">{{impErr}}</span></div><div style="border: 1px solid #E4E4E7; border-radius: 8px; padding: 10px 12px; display: flex; flex-direction: column; gap: 2px"><span class="hint">Thêm mới / cập nhật</span><span class="num" style="font-size: 20px; font-weight: 600; color: #09090B">{{impSplit}}</span></div></div><div class="alert alert-warn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4M12 17h.01"></path></svg><span>{{impErr}} dòng lỗi bị bỏ qua. Sửa trong file lỗi rồi import lại các dòng đó.</span></div><div style="border: 1px solid #E4E4E7; border-radius: 8px; overflow: hidden"><table class="tbl"><thead><tr><th style="padding-left: 12px">Dòng</th><th>Cột</th><th>Giá trị</th><th>Lỗi</th></tr></thead><tbody><sc-for list="{{impErrors}}" as="e" hint-placeholder-count="4"><tr><td class="num" style="padding-left: 12px; height: 40px">{{e.row}}</td><td class="mono" style="height: 40px">{{e.col}}</td><td class="mono" style="height: 40px">{{e.val}}</td><td style="height: 40px; color: #B91C1C">{{e.msg}}</td></tr></sc-for></tbody></table></div><div class="df" style="justify-content: space-between"><button type="button" class="btn btn-ghost" onClick="{{downloadErr}}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="m7 10 5 5 5-5M12 15V3"></path></svg>Tải file lỗi</button><div style="display: flex; gap: 8px"><button type="button" class="btn btn-outline" onClick="{{impBack}}">Chọn file khác</button><button type="button" class="btn btn-default" onClick="{{impRun}}">Import {{impValid}} dòng hợp lệ</button></div></div></sc-if><sc-if value="{{impDone}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 14px; align-items: flex-start"><span style="width: 40px; height: 40px; border-radius: 50%; background: #15803D; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></span><div style="display: flex; flex-direction: column; gap: 4px"><span style="font-weight: 600; font-size: 16px">Đã import {{impValid}} dòng</span><span class="muted">{{impNew}} thêm mới · {{impUpd}} cập nhật · {{impErr}} dòng lỗi bỏ qua</span><span class="hint">Ghi audit log: <span class="mono">{{impAudit}}</span></span></div></div><div class="df"><button type="button" class="btn btn-outline" onClick="{{downloadErr}}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="m7 10 5 5 5-5M12 15V3"></path></svg>Tải file lỗi</button><button type="button" class="btn btn-default" onClick="{{closeImport}}">Đóng</button></div></sc-if></div></div></sc-if>
+<sc-if value="{{impToastOn}}" hint-placeholder-val="{{ false }}"><div class="toast" role="status"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><span>{{impToastMsg}}</span><button type="button" class="btn btn-ghost btn-sm" style="color: #FAFAFA; height: 24px; padding: 0 6px" onClick="{{hideImpToast}}">Đóng</button></div></sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dialog":{"editor":"enum","options":["none","create","edit","delete","import","importPreview","importDone"],"default":"none"},"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { q: '', city: [], facet: false, page: 1, menu: null, dialog: undefined, form: null };
+  }
+
+  importVals() {
+    const cfg = {"title": "Import địa điểm", "tpl": "mau-dia-diem.xlsx", "file": "dia-diem-2026.xlsx", "total": 26, "valid": 23, "nNew": 20, "audit": "VENUES_IMPORTED", "cols": [{"name": "ma", "req": "Không", "note": "Có mã → cập nhật địa điểm cũ"}, {"name": "ten", "req": "Có", "note": "VD: Nhà hát Hòa Bình"}, {"name": "dia_chi", "req": "Có", "note": "Số nhà, tên đường"}, {"name": "ma_xa", "req": "Có", "note": "Mã xã/phường trong danh mục Đơn vị hành chính"}, {"name": "suc_chua", "req": "Có", "note": "Số nguyên > 0"}], "errors": [{"row": 4, "col": "ma_xa", "val": "27001", "msg": "Không có xã/phường mã 27001"}, {"row": 9, "col": "suc_chua", "val": "-50", "msg": "Sức chứa phải > 0"}, {"row": 17, "col": "ten", "val": "", "msg": "Thiếu tên"}]};
+    const d = this.state.dialog !== undefined ? this.state.dialog : (this.props.dialog ?? 'none');
+    const open = typeof d === 'string' && d.indexOf('import') === 0;
+    const step = this.state.impStep || ({ import: 'upload', importPreview: 'preview', importDone: 'done' }[d] || 'upload');
+    const hasFile = this.state.impFile !== undefined ? this.state.impFile : step !== 'upload';
+    const upd = this.state.impMode !== 'skip';
+    const nNew = upd ? cfg.nNew : cfg.valid;
+    const nUpd = upd ? cfg.valid - cfg.nNew : 0;
+    const go = (s) => () => this.setState({ impStep: s });
+    return {
+      dlgImport: open, impUpload: step === 'upload', impPreview: step === 'preview', impDone: step === 'done',
+      impStepLabel: { upload: 'Bước 1/3 · Chọn file', preview: 'Bước 2/3 · Kiểm tra dữ liệu', done: 'Bước 3/3 · Kết quả' }[step],
+      impTitle: cfg.title, impTpl: cfg.tpl, impCols: cfg.cols, impErrors: cfg.errors, impAudit: cfg.audit,
+      impFileName: cfg.file, impTotal: cfg.total, impValid: cfg.valid, impErr: cfg.total - cfg.valid,
+      impNew: nNew, impUpd: nUpd, impSplit: nNew + ' / ' + nUpd,
+      impHasFile: hasFile, impNoFile: !hasFile,
+      pickFile: () => this.setState({ impFile: true }), removeFile: () => this.setState({ impFile: false }),
+      impUpdTile: upd ? 'tile tile-on' : 'tile', impUpdRd: upd ? 'rd rd-on' : 'rd', impUpdSel: upd ? 'true' : 'false', pickUpd: () => this.setState({ impMode: 'update' }),
+      impSkipTile: upd ? 'tile' : 'tile tile-on', impSkipRd: upd ? 'rd' : 'rd rd-on', impSkipSel: upd ? 'false' : 'true', pickSkip: () => this.setState({ impMode: 'skip' }),
+      impCheck: go('preview'), impBack: () => this.setState({ impStep: 'upload', impFile: false }), impRun: go('done'),
+      openImport: () => this.setState({ dialog: 'import', impStep: 'upload', impFile: false, menu: null }),
+      closeImport: () => this.setState({ dialog: 'none', impStep: undefined, impFile: undefined }),
+      downloadTpl: () => this.setState({ impToast: 'Đã tải ' + cfg.tpl }),
+      downloadErr: () => this.setState({ impToast: 'Đã tải ' + cfg.tpl.replace('.xlsx', '-loi.xlsx') }),
+      impToastOn: !!this.state.impToast, impToastMsg: this.state.impToast || '', hideImpToast: () => this.setState({ impToast: null }),
+    };
+  }
+  renderVals() { return Object.assign({}, this._rv(), this.importVals()); }
+  _rv() {
+    const raw = [
+      ['Nhà hát Hòa Bình', '240 Đường 3/2, Quận 10', 'TP. Hồ Chí Minh', 2300],
+      ['Nhà văn hoá Thanh niên', '4 Phạm Ngọc Thạch, Quận 1', 'TP. Hồ Chí Minh', 800],
+      ['Phòng trà Bến Thành', '[Địa chỉ], Quận 1', 'TP. Hồ Chí Minh', 180],
+      ['Nhà hát Lớn Hà Nội', '1 Tràng Tiền, Hoàn Kiếm', 'Hà Nội', 600],
+      ['Cung Văn hoá Lao động', '91 Trần Hưng Đạo, Hoàn Kiếm', 'Hà Nội', 1200],
+      ['Nhà thi đấu Phú Thọ', '1 Lữ Gia, Quận 11', 'TP. Hồ Chí Minh', 5000],
+      ['Saigon Outcast', '[Địa chỉ], Thủ Đức', 'TP. Hồ Chí Minh', 400],
+      ['Trung tâm Hội nghị Ariyana', '[Địa chỉ], Ngũ Hành Sơn', 'Đà Nẵng', 1500],
+      ['Quảng trường Lâm Viên', 'Trần Quốc Toản, Phường 1', 'Lâm Đồng', 3000],
+      ['Nhà hát Trưng Vương', '35 Phan Châu Trinh, Hải Châu', 'Đà Nẵng', 900],
+      ['Sân khấu Kịch Phú Nhuận', '[Địa chỉ], Phú Nhuận', 'TP. Hồ Chí Minh', 350],
+      ['Hà Nội Opera Studio', '[Địa chỉ], Ba Đình', 'Hà Nội', 220],
+      ['Nhà thi đấu Quân khu 7', '202 Hoàng Văn Thụ, Tân Bình', 'TP. Hồ Chí Minh', 4500],
+      ['SVĐ Mỹ Đình', 'Lê Đức Thọ, Nam Từ Liêm', 'Hà Nội', 40000],
+      ['Nhà hát Thành phố', '7 Công Trường Lam Sơn, Quận 1', 'TP. Hồ Chí Minh', 500],
+      ['Không gian sáng tạo Q3', '[Địa chỉ], Quận 3', 'TP. Hồ Chí Minh', 150],
+      ['Nhà văn hoá Thiếu nhi Đà Lạt', '[Địa chỉ], Phường 2', 'Lâm Đồng', 600],
+      ['Cung thể thao Tiên Sơn', '[Địa chỉ], Hải Châu', 'Đà Nẵng', 7000],
+    ];
+    const all = raw.map(([name, address, city, capacity], i) => ({
+      id: 'VN-' + (100 + i), name, address, city,
+      capacity: capacity.toLocaleString('vi-VN'),
+      cap: capacity,
+      maps: (i % 3) + 1,
+      upcoming: (i * 5) % 7,
+      updated: String(28 - (i % 20)).padStart(2, '0') + '/09/2026',
+    }));
+    const cities = ['TP. Hồ Chí Minh', 'Hà Nội', 'Đà Nẵng', 'Lâm Đồng'];
+    const q = this.state.q.trim().toLowerCase();
+    const cs = this.state.city;
+    const rowsAll = all.filter((r) => (!q || (r.name + ' ' + r.address).toLowerCase().includes(q)) && (!cs.length || cs.includes(r.city)));
+    const size = 10;
+    const pageCount = Math.max(1, Math.ceil(rowsAll.length / size));
+    const page = Math.min(this.state.page, pageCount);
+    const rows = rowsAll.slice((page - 1) * size, page * size).map((r) => ({
+      ...r,
+      menuOpen: this.state.menu === r.id,
+      menuStr: this.state.menu === r.id ? 'true' : 'false',
+      toggleMenu: () => this.setState({ menu: this.state.menu === r.id ? null : r.id, facet: false }),
+      edit: () => this.setState({ dialog: 'edit', form: { name: r.name, address: r.address, capacity: String(r.cap) }, menu: null }),
+      remove: () => this.setState({ dialog: 'delete', form: { name: r.name }, menu: null }),
+    }));
+    const cityOpts = cities.map((c) => {
+      const on = cs.includes(c);
+      return {
+        label: c,
+        count: all.filter((r) => r.city === c).length,
+        checked: on ? 'true' : 'false',
+        boxBg: on ? '#059669' : '#FFFFFF',
+        boxBorder: on ? '#059669' : '#A1A1AA',
+        toggle: () => this.setState({ city: on ? cs.filter((x) => x !== c) : [...cs, c], page: 1 }),
+      };
+    });
+    const dialog = this.state.dialog !== undefined ? this.state.dialog : (this.props.dialog ?? 'none');
+    const form = this.state.form || (dialog === 'create' ? { name: '', address: '', capacity: '' } : { name: all[0].name, address: all[0].address, capacity: String(all[0].cap) });
+    return {
+      q: this.state.q,
+      onSearch: (e) => this.setState({ q: e.target.value, page: 1 }),
+      facetOpen: this.state.facet,
+      facetOpenStr: this.state.facet ? 'true' : 'false',
+      toggleFacet: () => this.setState({ facet: !this.state.facet, menu: null }),
+      cityOpts,
+      hasCity: cs.length > 0,
+      citySummary: cs.length > 1 ? cs.length + ' đã chọn' : cs[0] || '',
+      clearCity: () => this.setState({ city: [], page: 1 }),
+      filtered: !!q || cs.length > 0,
+      reset: () => this.setState({ q: '', city: [], page: 1 }),
+      rows,
+      total: rowsAll.length,
+      page, pageCount,
+      atStart: page === 1,
+      atEnd: page === pageCount,
+      first: () => this.setState({ page: 1 }),
+      prev: () => this.setState({ page: Math.max(1, page - 1) }),
+      next: () => this.setState({ page: Math.min(pageCount, page + 1) }),
+      last: () => this.setState({ page: pageCount }),
+      form,
+      formTitle: dialog === 'edit' ? 'Sửa địa điểm' : 'Thêm địa điểm',
+      openCreate: () => this.setState({ dialog: 'create', form: { name: '', address: '', capacity: '' } }),
+      closeDialog: () => this.setState({ dialog: 'none' }),
+      dlgForm: dialog === 'create' || dialog === 'edit',
+      dlgDelete: dialog === 'delete',
+    };
+  }
+}
+</script>
+</body>
+</html>
