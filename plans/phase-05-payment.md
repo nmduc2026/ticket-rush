@@ -22,6 +22,7 @@ Thanh toán bằng Stripe (test mode) với webhook, idempotency, và đầy đ�
 - [ ] Đọc lại plan, xem backlog
 
 ## Step 5.1 — Chuẩn bị
+- [ ] Tạo tài khoản Stripe test mode (hoãn từ Step 0.6): quốc gia hỗ trợ merchant (vd. Singapore), `stripe login`, thử tạo PaymentIntent VND (`stripe payment_intents create --amount=50000 --currency=vnd`) để xác nhận charge được VND
 - [ ] `stripe-java`; key test trong `.env`
 - [ ] Bảng `payable_bookings`, `payments`, `stripe_events` (Flyway)
 - [ ] Nghe `BookingCreated` → lưu `payable_bookings` (projection, module payment không đọc bảng của booking)

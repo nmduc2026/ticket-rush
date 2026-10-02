@@ -63,6 +63,7 @@ Thay đổi ảnh hưởng thiết kế (thêm thư viện, đổi luồng, đ�
 
 ### R5 — Commit theo step, tag theo phase
 - Mỗi step = 1 hoặc vài commit, message dạng `feat(booking): giữ ghế bằng Redis Lua (step 4.2)`.
+- Theo **Conventional Commits**: `type(scope): mô tả (step N.M)`. `type` ∈ `feat`, `fix`, `refactor`, `test`, `docs`, `chore`, `ci`, `build`; `scope` là module/khu vực (`booking`, `payment`, `infra`, `fe`…).
 - Kết thúc phase → tag `phase-04-done`.
 
 ### R6 — Mỗi phase bắt đầu bằng Step N.0 (re-plan)
@@ -93,7 +94,7 @@ Claude sẽ: code → chạy kiểm tra trong DoD → báo kết quả → chờ
 
 | Mốc | Thời điểm mục tiêu | Thuộc |
 |---|---|---|
-| AWS Lab 0 — bảo mật tài khoản, budgets | Tuần đầu (Phase 0) | Phase 0 |
+| AWS Lab 0 — bảo mật tài khoản, budgets, Terraform hello world | ~đầu 11/2026, **trước Lab 1** (hoãn từ Phase 0) | Phase 7 (Step 7.0a) |
 | AWS Lab 1 — deploy MVP | ~cuối 11/2026 | Phase 7 |
 | AWS Lab 2 — ALB + Auto Scaling Group | ~cuối 12/2026 | Phase 10 |
 | AWS Lab 3 — RDS Multi-AZ failover | ~đầu 01/2027 | Phase 11 |

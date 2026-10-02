@@ -92,7 +92,7 @@ Bán vé concert là bài toán có tải **cực kỳ không đều**: ngày th
 | BR-07 | Hoàn vé được phép đến **48 giờ trước giờ diễn**; hoàn 100% giá vé, phí nền tảng không hoàn |
 | BR-08 | Sự kiện bị huỷ → hoàn tiền toàn bộ booking tự động |
 | BR-09 | Một vé chỉ được check-in **1 lần**; vé đã hoàn bị thu hồi (REVOKED) |
-| BR-10 | Tiền lưu dạng **số nguyên đơn vị nhỏ nhất** (`amount_minor` BIGINT) + mã tiền tệ; không dùng float/double |
+| BR-10 | Tiền lưu dạng **số nguyên đơn vị nhỏ nhất** (`amount_minor` BIGINT) + mã tiền tệ (mặc định **VND**, zero-decimal — xem Q1); không dùng float/double |
 | BR-11 | Thời gian lưu **UTC** (`timestamptz`), hiển thị theo `Asia/Ho_Chi_Minh` |
 
 ---
@@ -1028,6 +1028,8 @@ terraform apply → làm lab → terraform destroy → verify-clean.sh → hôm 
 
 ## 24. Quyết định kiến trúc (ADR)
 
+> ADR-01 → ADR-14 giữ dạng bảng dưới đây. Quyết định mới từ ADR-15 trở đi viết thành file riêng trong `docs/adr/` theo [mẫu](adr/0000-template.md), rồi thêm 1 dòng vào bảng này.
+
 | # | Quyết định | Lựa chọn | Lý do chính | Phương án đã loại |
 |---|---|---|---|---|
 | ADR-01 | Mô hình xử lý request | **Spring MVC + Virtual Threads** | Code tuần tự dễ đọc/debug, chịu tải đồng thời cao | WebFlux (phức tạp, phải đổi cả hệ sinh thái sang reactive) |
@@ -1049,9 +1051,11 @@ terraform apply → làm lab → terraform destroy → verify-clean.sh → hôm 
 
 ## 25. Câu hỏi mở
 
-| # | Câu hỏi | Ghi chú |
-|---|---|---|
-| Q1 | Tiền tệ dùng cho Stripe: **USD** hay **VND**? | Stripe chưa hỗ trợ merchant tại VN ở live mode; project chỉ dùng test mode → cần tạo tài khoản Stripe với quốc gia được hỗ trợ (vd. Singapore/US). VND là zero-decimal currency trong Stripe |
-| Q2 | Có làm gói **Organizer Pro** (Stripe Billing subscription, giảm phí nền tảng 5% → 2%) không? | Thêm kiến thức về subscription, nhưng tăng phạm vi |
-| Q3 | Sơ đồ ghế do **Admin** tạo theo địa điểm (organizer chỉ chọn & gán hạng vé) — đồng ý? | Giảm độ phức tạp so với để organizer tự vẽ sơ đồ |
-| Q4 | Tên dự án "TicketRush" — giữ hay đổi? | |
+Đã chốt ngày 02/10/2026. Hiện không còn câu hỏi bỏ ngỏ.
+
+| # | Câu hỏi | Quyết định | Ghi chú |
+|---|---|---|---|
+| Q1 | Tiền tệ dùng cho Stripe | **VND** | Stripe chưa hỗ trợ merchant tại VN ở live mode; project chỉ dùng test mode → tạo tài khoản Stripe với quốc gia được hỗ trợ (vd. Singapore). VND là **zero-decimal currency**: `amount_minor` = số đồng (50.000đ → `50000`, không nhân 100). Phí nền tảng 5% phải làm tròn về số nguyên (quy ước: làm tròn xuống). Không viết code giả định "2 chữ số thập phân" |
+| Q2 | Gói **Organizer Pro** (subscription, giảm phí 5% → 2%) | **Không làm** | Đưa vào backlog (B1) |
+| Q3 | Sơ đồ ghế do **Admin** tạo theo địa điểm, organizer chỉ chọn & gán hạng vé | **Đồng ý** | Giảm độ phức tạp so với để organizer tự vẽ sơ đồ |
+| Q4 | Tên dự án | **Giữ "TicketRush"** | |

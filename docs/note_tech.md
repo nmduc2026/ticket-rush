@@ -124,7 +124,7 @@ spring.threads.virtual.enabled: true
 > UUID có **phần đầu là timestamp** → các ID sinh sau luôn "lớn hơn" ID trước → insert vào index B-tree nhanh, sắp xếp theo thời gian được. UUIDv4 thì ngẫu nhiên hoàn toàn → index bị phân mảnh.
 
 ### Tiền dạng số nguyên (minor units)
-> Không bao giờ dùng `double` cho tiền (`0.1 + 0.2 = 0.30000000000000004`). Lưu theo đơn vị nhỏ nhất: 50.00 USD → `5000` (cent).
+> Không bao giờ dùng `double` cho tiền (`0.1 + 0.2 = 0.30000000000000004`). Lưu theo đơn vị nhỏ nhất: 50.00 USD → `5000` (cent). VND không có đơn vị lẻ nên 50.000đ → `50000`.
 
 ```java
 record Money(long amountMinor, String currency) {}

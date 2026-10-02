@@ -7,8 +7,8 @@ Máy dev sẵn sàng, repo có cấu trúc chuẩn, tài khoản AWS được kh
 
 ## Kết quả cuối phase
 - `git log` có commit đầu tiên, repo đã push lên GitHub.
-- Nhận được email cảnh báo thử từ AWS Budgets.
-- `terraform apply` / `destroy` một bucket S3 thành công, không còn sót resource.
+- Có sẵn code Terraform hello world + `verify-clean.sh` (đã validate).
+- ⏸ Email AWS Budgets và `terraform apply`/`destroy` thật: hoãn sang Step 7.0a.
 
 ## Không làm trong phase này
 - ❌ Chưa tạo project Spring Boot / React (Phase 1)
@@ -33,17 +33,18 @@ Máy dev sẵn sàng, repo có cấu trúc chuẩn, tài khoản AWS được kh
 - [x] `.gitattributes` với `* text=auto eol=lf` (tránh lỗi xuống dòng CRLF trên Windows với file `.sh`)
 - [x] Tạo khung thư mục: `backend/`, `frontend/`, `infra/`, `load-tests/`, `docs/adr/`, `docs/runbooks/`
 - [x] Chuyển `overview.md` → `docs/overview.md`, đã cập nhật link
-- [ ] Tạo repo GitHub (public → GitHub Actions & SonarCloud miễn phí), push
+- [x] Tạo repo GitHub (public → GitHub Actions & SonarCloud miễn phí), push
 
 **Kiểm tra:** repo trên GitHub có đúng cấu trúc, không có file rác.
 
 ## Step 0.3 — Chặn secret ngay từ đầu
-- [ ] Cài **gitleaks** + pre-commit hook
-- [ ] Tạo `.env.example` (mẫu), `.env` nằm trong `.gitignore`
+- [x] Cài **gitleaks** + pre-commit hook tự viết (`.githooks/pre-commit`, bật bằng `git config core.hooksPath .githooks`)
+- [x] Tạo `.env.example` (mẫu), `.env` nằm trong `.gitignore`
 
 **Kiểm tra:** thử commit một file chứa chuỗi giống AWS key giả → bị chặn.
 
 ## Step 0.4 — AWS Lab 0: khoá chặt tài khoản
+> ⏸ **Hoãn sang Step 7.0a** (làm ngay trước khi dùng AWS lần đầu). Không chạy `terraform apply` khi chưa xong bước này.
 - [ ] Xem loại tài khoản (Free plan / Paid plan) và **ngày hết hạn credits** chính xác → ghi vào [README](README.md) mục 5
 - [ ] Bật MFA cho root, đăng xuất root
 - [ ] Bật IAM Identity Center, tạo user làm việc có MFA, permission set AdministratorAccess (chỉ cho lab cá nhân)
@@ -56,28 +57,28 @@ Máy dev sẵn sàng, repo có cấu trúc chuẩn, tài khoản AWS được kh
 **Kiểm tra:** nhận email xác nhận budget; `aws sts get-caller-identity --profile ticketrush` trả về user SSO (không phải root).
 
 ## Step 0.5 — Terraform "hello world" + script kiểm tra sạch
-- [ ] `infra/terraform/aws/lab-00/`: provider với `default_tags`, 1 bucket S3
-- [ ] Viết `infra/terraform/aws/verify-clean.sh`: quét EC2, EBS, snapshot, EIP, ELB, NAT, RDS, RDS snapshot theo region
-- [ ] `apply` → kiểm tra trên console → `destroy` → chạy `verify-clean.sh`
+- [x] `infra/terraform/aws/lab-00/`: provider với `default_tags`, 1 bucket S3
+- [x] Viết `infra/terraform/aws/verify-clean.sh`: quét EC2, EBS, snapshot, EIP, ELB, NAT, RDS, RDS snapshot theo region
+- [ ] ⏸ Hoãn sang Step 7.0a: `apply` → kiểm tra trên console → `destroy` → chạy `verify-clean.sh`
 
-**Kiểm tra:** script báo "sạch"; ngày hôm sau Cost Explorer = 0$.
+**Kiểm tra:** `terraform validate` + `bash -n verify-clean.sh` chạy được. (Chạy thật `apply`/`destroy` + "sạch" + Cost Explorer = 0$ kiểm tra ở Step 7.0a.)
 
 ## Step 0.6 — Tài khoản dịch vụ ngoài & chốt câu hỏi mở
-- [ ] Trả lời **Q1–Q4** trong [overview.md §25](../docs/overview.md#25-câu-hỏi-mở), cập nhật overview
-- [ ] Tạo tài khoản Stripe (test mode) theo quốc gia đã chốt ở Q1, cài `stripe login`
+- [x] Trả lời **Q1–Q4** trong [overview.md §25](../docs/overview.md#25-câu-hỏi-mở), cập nhật overview
+- [ ] ⏸ Hoãn đến Phase 5: tạo tài khoản Stripe (test mode) theo quốc gia đã chốt ở Q1, cài `stripe login`; thử tạo PaymentIntent VND để xác nhận tài khoản charge được VND
 - [ ] (Chưa cần) Cloudflare, SonarCloud, Sentry — tạo khi tới phase dùng
 
-**Kiểm tra:** overview §25 không còn câu hỏi bỏ ngỏ; `stripe login` thành công.
+**Kiểm tra:** overview §25 không còn câu hỏi bỏ ngỏ. (`stripe login` kiểm tra ở Phase 5.)
 
 ## Step 0.7 — Quy ước làm việc
-- [ ] `docs/adr/0000-template.md` (mẫu ADR) + viết lại 14 ADR trong overview §24 thành file ngắn (hoặc giữ dạng bảng — chọn 1)
-- [ ] Thống nhất quy ước commit message (R5)
+- [x] `docs/adr/0000-template.md` (mẫu ADR); 14 ADR cũ giữ dạng bảng trong overview §24, ADR mới (từ ADR-15) viết thành file riêng
+- [x] Thống nhất quy ước commit message: Conventional Commits (R5 trong [README](README.md))
 
 **Kiểm tra:** commit + tag `phase-00-done`.
 
 ---
 
 ## Checklist kết thúc phase
-- [ ] Tất cả step đã tick
+- [ ] Tất cả step đã tick (trừ các mục ⏸ đã hoãn sang Phase 5 / Phase 7)
 - [ ] Không còn việc dở dang; ý tưởng phát sinh đã ghi vào backlog
 - [ ] Tag `phase-00-done`

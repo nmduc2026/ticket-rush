@@ -1,0 +1,20 @@
+#!/bin/sh
+# Chặn commit chứa secret (gitleaks). Bật hook: git config core.hooksPath .githooks
+
+# Windows: app đã mở trước khi cài gitleaks (winget) có thể chưa có PATH mới -> tìm trong thư mục winget
+if ! command -v gitleaks >/dev/null 2>&1; then
+  for d in "$HOME"/AppData/Local/Microsoft/WinGet/Packages/Gitleaks.Gitleaks_*; do
+    [ -d "$d" ] && PATH="$PATH:$d"
+  done
+fi
+
+if ! command -v gitleaks >/dev/null 2>&1; then
+  echo "gitleaks chưa được cài. Cài: winget install Gitleaks.Gitleaks (hoặc brew install gitleaks)" >&2
+  exit 1
+fi
+
+gitleaks git --staged --redact --verbose || {
+  echo "" >&2
+  echo "Commit bị chặn: phát hiện secret trong thay đổi đã stage." >&2
+  exit 1
+}

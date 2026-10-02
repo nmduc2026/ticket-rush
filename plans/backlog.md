@@ -5,7 +5,7 @@
 
 | # | Ý tưởng | Nguồn (phase/step) | Phase dự kiến | Ghi chú |
 |---|---|---|---|---|
-| B1 | Gói Organizer Pro (Stripe Billing subscription, giảm phí 5% → 2%) | overview Q2 | 12 | Tuỳ câu trả lời Q2 |
+| B1 | Gói Organizer Pro (Stripe Billing subscription, giảm phí 5% → 2%) | overview Q2 | 12 | Đã chốt không làm (Q2) — chỉ làm nếu muốn mở rộng |
 | B2 | k6 làm performance gate trong CI | Thiết kế | 16 | Bonus |
 | B3 | GraalVM native image / CRaC giảm thời gian khởi động | Thiết kế | 16 | Liên quan pre-warming |
 | B4 | Vé đứng không đánh số (general admission) | overview 1.2 | — | Ngoài phạm vi hiện tại |

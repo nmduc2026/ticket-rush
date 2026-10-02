@@ -20,6 +20,19 @@ Biến code thành sản phẩm chạy được ở bất kỳ đâu: test E2E, 
 ## Step 7.0 — Re-plan
 - [ ] Đọc lại plan, xem backlog; liệt kê nợ kỹ thuật từ Phase 1–6
 
+## Step 7.0a — AWS Lab 0 (hoãn từ Phase 0, làm TRƯỚC mọi thứ dùng AWS)
+> Credits hết hạn ~10/01/2027 — làm bước này sớm trong Phase 7, không để sát Lab 1.
+- [ ] Xem loại tài khoản (Free plan / Paid plan) và **ngày hết hạn credits** chính xác → ghi vào [README](README.md) mục 5
+- [ ] Bật MFA cho root, đăng xuất root
+- [ ] Bật IAM Identity Center, tạo user làm việc có MFA, permission set AdministratorAccess (chỉ cho lab cá nhân)
+- [ ] `aws configure sso` → `aws sso login --profile ticketrush`; region cố định `ap-southeast-1`
+- [ ] AWS Budgets: zero-spend budget + monthly budget 5$/20$/50$ (actual + forecast)
+- [ ] Budget Action ở mức 50$: stop EC2/RDS + gắn IAM deny policy
+- [ ] Bật Cost Anomaly Detection, Free Tier usage alerts
+- [ ] Chạy `infra/terraform/aws/lab-00`: `terraform apply -var expires_at=...` → kiểm tra console → `terraform destroy` → `verify-clean.sh`
+
+**Kiểm tra:** nhận email xác nhận budget; `aws sts get-caller-identity --profile ticketrush` trả về user SSO (không phải root); `verify-clean.sh` báo "sạch"; hôm sau Cost Explorer = 0$.
+
 ## Step 7.1 — Hoàn thiện nhỏ cho Organizer
 - [ ] Trang danh sách đơn / vé đã bán của 1 sự kiện (truy vấn đơn giản — biểu đồ & jOOQ để Phase 12)
 
